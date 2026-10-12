@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal de Requerimentos | STGP FCT UNESP</title>
+  <meta name="description" content="Portal oficial de requerimentos administrativos da Seção Técnica de Gestão de Pessoas da FCT UNESP. Selecione seu perfil para emissão de documentos.">
+  <link rel="shortcut icon" href="unesp.ico" type="image/x-icon">
+  <link rel="icon" href="unesp.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+
+  <!-- Redirecionamento retrocompatível para links diretos antigos com ?tipo= -->
+  <script>
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      if (params.get('tipo')) {
+        window.location.replace('formulario.html' + window.location.search);
+      }
+    })();
+  </script>
+</head>
+<body>
+  <!-- Barra Superior Institucional UNESP (Padrão Portal Unesp) -->
+  <div class="unesp-top-bar">
+    <div class="top-bar-content">
+      <div class="top-bar-brand">
+        <a href="https://www.unesp.br" target="_blank" title="Universidade Estadual Paulista Júlio de Mesquita Filho">
+          <img src="unesp-logo-white.svg" alt="Logotipo UNESP" class="unesp-logo-svg">
+        </a>
+        <span class="top-bar-sep">|</span>
+        <span class="top-bar-campus">Câmpus de Presidente Prudente</span>
+      </div>
+      <div class="top-bar-links">
+        <a href="https://www.fct.unesp.br/" target="_blank" class="top-link" title="Acessar o portal oficial da FCT">Portal FCT Unesp</a>
+        <span class="top-bar-dot">•</span>
+        <a href="https://www.fct.unesp.br/#!/administracao/recursos-humanos/" target="_blank" class="top-link" title="Seção Técnica de Gestão de Pessoas (Recursos Humanos)">Página da STGP</a>
+        <span class="top-bar-dot">•</span>
+        <a href="../index.html" class="top-link" title="Portal STGP Digital">STGP Digital</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cabeçalho Principal da Aplicação -->
+  <header class="app-header">
+    <div class="header-content">
+      <div class="brand">
+        <a href="https://www.fct.unesp.br/" target="_blank" title="Faculdade de Ciências e Tecnologia - FCT UNESP">
+          <img src="fct-logo.png" alt="Logotipo FCT" class="brand-fct-logo">
+        </a>
+        <div class="brand-titles">
+          <h1>STGP Digital — Portal de Modelos de Documentos</h1>
+          <p>Faculdade de Ciências e Tecnologia — Seção Técnica de Gestão de Pessoas (STGP)</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <span class="badge-status">Câmpus de Presidente Prudente</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Barra Superior de Retorno e Localização (Modelo B) -->
+  <div class="top-nav-back-bar">
+    <div class="top-nav-back-inner">
+      <a href="../index.html" class="btn-back-stgp" title="Voltar para a página inicial">
+        <svg class="back-arrow-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        <span>Voltar para Início</span>
+      </a>
+      <span class="breadcrumb-sep">/</span>
+      <span class="breadcrumb-current">Modelos de Requerimentos</span>
+    </div>
+  </div>
+
+  <!-- Conteúdo Principal do Hub -->
+  <main class="hub-profile-container">
+
+    <!-- Hero Institucional -->
+    <section class="hub-hero">
+      <div class="hub-hero-header">
+        <h2 class="hub-hero-title">
+          <span>📝</span> Portal de Requerimentos Administrativos
+        </h2>
+        <p class="hub-hero-subtitle">
+          Bem-vindo(a) ao gerador de requerimentos da Seção Técnica de Gestão de Pessoas da FCT UNESP. Para começar, identifique o seu perfil de atendimento abaixo para carregar os modelos e instruções adequados à sua solicitação.
+        </p>
+
+        <!-- Box Informativo -->
+        <div class="hub-notice-box">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+          <div>
+            <strong>Emissão Ágil e Padronizada:</strong>
+            <span> Todos os formulários contam com validação automática de dados funcionais, busca inteligente de CEP por endereço, pré-visualização em tempo real na folha A4 e exportação vetorial de alta definição para impressão ou assinatura digital.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção de Escolha de Perfil -->
+    <section class="profile-selection-section">
+      <h3 class="profile-section-title">1. Selecione o seu Perfil de Atendimento</h3>
+      <p class="profile-section-desc">Clique no cartão que melhor define o seu vínculo para acessar o catálogo de documentos disponíveis:</p>
+
+      <!-- Grid dos 2 Perfis Principais -->
+      <div class="profile-cards-grid">
+
+        <!-- Perfil 1: Servidor(a) / Aposentado(a) -->
+        <a href="servidor.html" class="profile-choice-card" title="Acessar requerimentos para Servidores e Aposentados">
+          <div>
+            <div class="profile-card-header">
+              <div class="profile-icon-box" aria-hidden="true">🏢</div>
+              <span class="profile-badge">Servidores UNESP</span>
+            </div>
+
+            <h4 class="profile-card-title">Servidor(a) ou Aposentado(a)</h4>
+            <p class="profile-card-desc">
+              Destinado a docentes, pesquisadores, funcionários técnico-administrativos (em atividade) e servidores aposentados da UNESP que necessitam requerer adicionais, licenças, contagem de tempo, alterações cadastrais ou benefícios tributários.
+            </p>
+
+            <div class="profile-card-tags">
+              <span class="profile-tag">Adicional de Insalubridade (CLT)</span>
+              <span class="profile-tag">Contagem de Tempo</span>
+              <span class="profile-tag">Dados Bancários</span>
+              <span class="profile-tag">Licença Gestante</span>
+              <span class="profile-tag">Licença Saúde (CLT)</span>
+              <span class="profile-tag">Isenção de IR (Aposentados)</span>
+            </div>
+          </div>
+
+          <div class="profile-card-footer">
+            <span class="profile-card-count">7 Requerimentos disponíveis</span>
+            <span class="btn-select-profile">
+              Acessar Requerimentos
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </span>
+          </div>
+        </a>
+
+        <!-- Perfil 2: Familiar / Terceiro (Externo) -->
+        <a href="externo.html" class="profile-choice-card" title="Acessar requerimentos para Familiares e Terceiros">
+          <div>
+            <div class="profile-card-header">
+              <div class="profile-icon-box" aria-hidden="true" style="background: #eef2ff; color: #4338ca; border-color: #c7d2fe;">👥</div>
+              <span class="profile-badge" style="background: #eef2ff; color: #4338ca; border-color: #c7d2fe;">Público Externo</span>
+            </div>
+
+            <h4 class="profile-card-title">Familiar ou Terceiro (Externo)</h4>
+            <p class="profile-card-desc">
+              Destinado a cônjuges, dependentes, herdeiros, familiares ou procuradores e representantes legais que precisam solicitar direitos, ressarcimentos ou indenizações vinculadas a servidores ou ex-servidores da FCT UNESP.
+            </p>
+
+            <div class="profile-card-tags">
+              <span class="profile-tag">Auxílio Funeral (Cônjuge / Familiar)</span>
+              <span class="profile-tag">Indenização de Licença-Prêmio</span>
+              <span class="profile-tag">Ressarcimento de Despesas</span>
+              <span class="profile-tag">Beneficiários e Herdeiros</span>
+            </div>
+          </div>
+
+          <div class="profile-card-footer">
+            <span class="profile-card-count">2 Requerimentos disponíveis</span>
+            <span class="btn-select-profile" style="background: #4338ca;">
+              Acessar Requerimentos
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </span>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- Banner com as Etapas do Processo -->
+    <div class="hub-info-banner">
+      <div class="info-item">
+        <div class="info-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+        </div>
+        <div class="info-text">
+          <h4>1. Escolha o Modelo</h4>
+          <p>Localize o requerimento desejado dentro do seu perfil funcional ou externo no catálogo.</p>
+        </div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+          </svg>
+        </div>
+        <div class="info-text">
+          <h4>2. Preenchimento Assistido</h4>
+          <p>Preencha os campos com validação em tempo real e visualização simultânea na folha A4.</p>
+        </div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+        </div>
+        <div class="info-text">
+          <h4>3. Assinatura e Envio</h4>
+          <p>Gere o PDF vetorial, assine via Gov.br ou manualmente e encaminhe à STGP FCT UNESP.</p>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Rodapé Institucional Oficial UNESP (Padrão Oficial Portal Unesp - 5 Colunas) -->
+  <footer class="app-footer">
+    <div class="footer-grid">
+      <!-- Coluna 1: FUNDAÇÕES -->
+      <div class="footer-group">
+        <h3>FUNDAÇÕES</h3>
+        <ul>
+          <li><a href="https://editoraunesp.com.br/" target="_blank" rel="noopener">Editora Unesp</a></li>
+          <li><a href="https://www.fundunesp.org.br/" target="_blank" rel="noopener">Fundunesp</a></li>
+          <li><a href="https://www.vunesp.com.br/" target="_blank" rel="noopener">Fundação Vunesp</a></li>
+        </ul>
+      </div>
+
+      <!-- Coluna 2: GOVERNO -->
+      <div class="footer-group">
+        <h3>GOVERNO</h3>
+        <ul>
+          <li><a href="https://www.saopaulo.sp.gov.br/" target="_blank" rel="noopener">Governo de São Paulo</a></li>
+          <li><a href="https://www.cruesp.sp.gov.br/" target="_blank" rel="noopener">Conselho de Reitores</a></li>
+          <li><a href="https://unesp.br/transparencia/" target="_blank" rel="noopener">Transparência Unesp</a></li>
+        </ul>
+      </div>
+
+      <!-- Coluna 3: SISTEMAS -->
+      <div class="footer-group">
+        <h3>SISTEMAS</h3>
+        <ul>
+          <li><a href="https://sistemas.unesp.br/" target="_blank" rel="noopener">Sistemas Online</a></li>
+          <li><a href="https://www2.unesp.br/eduroam" target="_blank" rel="noopener">EDUROAM</a></li>
+          <li><a href="https://www2.unesp.br/vpn" target="_blank" rel="noopener">VPN</a></li>
+          <li><a href="https://email.unesp.br/" target="_blank" rel="noopener">Webmail</a></li>
+        </ul>
+      </div>
+
+      <!-- Coluna 4: SAÚDE -->
+      <div class="footer-group">
+        <h3>SAÚDE</h3>
+        <ul>
+          <li><a href="https://www.unesp.br/unespsaude/" target="_blank" rel="noopener">Unesp Saúde</a></li>
+          <li><a href="https://www.ecaresentinela.com.br/" target="_blank" rel="noopener">e-Care Sentinela</a></li>
+          <li><a href="https://www.unesp.br/numis" target="_blank" rel="noopener">NUMIS</a></li>
+        </ul>
+      </div>
+
+      <!-- Coluna 5: INFORMAÇÕES -->
+      <div class="footer-group">
+        <h3>INFORMAÇÕES</h3>
+        <ul>
+          <li><a href="https://www2.unesp.br/secgeral/manuais/legislacao-unesp/" target="_blank" rel="noopener">Legislação Unesp</a></li>
+          <li><a href="https://www.unesp.br/ai/documentos/lgpd/legislacao/" target="_blank" rel="noopener">Política de Privacidade</a></li>
+          <li><a href="https://www.fct.unesp.br/lib/modals/modal-preferencias-privacidade.php" target="_blank" rel="noopener">Preferências de Privacidade</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bloco Central do Rodapé (Logo, Endereço Oficial e Redes Sociais) -->
+    <div class="footer-central-block">
+      <a href="https://www.unesp.br" target="_blank" title="Universidade Estadual Paulista Júlio de Mesquita Filho" rel="noopener">
+        <img src="unesp-logo.svg" alt="Logotipo UNESP" class="footer-unesp-logo-center">
+      </a>
+      <div class="footer-address-text">
+        <p class="footer-unit-title"><strong>Faculdade de Ciências e Tecnologia - Câmpus de Presidente Prudente</strong></p>
+        <p>Rua Roberto Simonsen, 305 - Centro Educacional</p>
+        <p>P. Prudente/SP - CEP 19060-900</p>
+        <p>Telefone: (18) 3229-5388</p>
+      </div>
+      <div class="footer-social-icons">
+        <a href="https://www.facebook.com/UnespPrudente/" target="_blank" title="Facebook - FCT UNESP" aria-label="Facebook" rel="noopener">
+          <svg viewBox="0 0 36 36" width="36" height="36">
+            <circle cx="18" cy="18" r="18" fill="#1877F2"/>
+            <path d="M22.68 18.53l.65-4.23h-4.05v-2.75c0-1.16.57-2.28 2.38-2.28h1.84V5.67s-1.67-.28-3.27-.28c-3.33 0-5.52 2.02-5.52 5.69v3.22h-3.76v4.23h3.76v10.25c.75.12 1.53.18 2.31.18s1.56-.06 2.31-.18V18.53h3.35z" fill="#fff"/>
+          </svg>
+        </a>
+        <a href="https://www.instagram.com/fctunesp/" target="_blank" title="Instagram - FCT UNESP" aria-label="Instagram" rel="noopener">
+          <svg viewBox="0 0 36 36" width="36" height="36">
+            <defs>
+              <linearGradient id="igGradHub" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#FFDD55"/>
+                <stop offset="50%" stop-color="#E1306C"/>
+                <stop offset="100%" stop-color="#C13584"/>
+              </linearGradient>
+            </defs>
+            <rect width="36" height="36" rx="9" fill="url(#igGradHub)"/>
+            <rect x="7" y="7" width="22" height="22" rx="6" fill="none" stroke="#fff" stroke-width="2.2"/>
+            <circle cx="18" cy="18" r="4.8" fill="none" stroke="#fff" stroke-width="2.2"/>
+            <circle cx="24.5" cy="11.5" r="1.5" fill="#fff"/>
+          </svg>
+        </a>
+        <a href="https://www.youtube.com/@fct_unesp" target="_blank" title="YouTube - FCT UNESP" aria-label="YouTube" rel="noopener">
+          <svg viewBox="0 0 46 34" width="44" height="32">
+            <rect width="46" height="34" rx="8" fill="#FF0000"/>
+            <polygon points="19,10 31,17 19,24" fill="#fff"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

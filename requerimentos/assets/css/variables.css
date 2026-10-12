@@ -1,0 +1,44 @@
+/* ============================================================
+   TOKENS E VARIÁVEIS GLOBAIS — PORTAL DE REQUERIMENTOS STGP
+   Identidade Visual Oficial da UNESP / FCT Câmpus de Presidente Prudente
+   ============================================================ */
+
+:root {
+  --primary: #00a3e3;           /* Azul Ciano Oficial UNESP */
+  --primary-dark: #0082b6;      /* Azul Ciano Hover */
+  --primary-light: #f0f9fd;     /* Azul Sutil Fundo */
+  --primary-border-subtle: #99daf4;
+  --dark-blue: #0e5374;         /* Azul Médio Institucional */
+  --darker-blue: #1b303b;       /* Azul Noturno UNESP (Topbar e Footer) */
+  --accent: #00a3e3;
+  --accent-hover: #0082b6;
+  --success: #00c853;           /* Verde Sucesso */
+  --danger: #ec5840;            /* Vermelho Alerta */
+  --text-main: #1a1a1a;         /* Texto padrão Portal Unesp */
+  --text-muted: #666666;        /* Texto secundário */
+  --bg-app: #f8f8f8;            /* Fundo da página */
+  --bg-card: #ffffff;           /* Fundo dos cartões */
+  --border-color: #dee2e6;       /* Bordas suaves */
+  --border-radius: 4px;         /* Bordas padrão UNESP */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Raleway', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--bg-app);
+  color: var(--text-main);
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  max-width: 100vw;
+}

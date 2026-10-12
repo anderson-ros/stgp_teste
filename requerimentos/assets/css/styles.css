@@ -1,0 +1,10 @@
+/* ============================================================
+   PORTAL DE REQUERIMENTOS STGP — FCT UNESP
+   Arquivo Mestre de Estilos (Consolidação dos Módulos CSS)
+   ============================================================ */
+
+@import url('variables.css');
+@import url('layout.css');
+@import url('form.css');
+@import url('preview.css');
+@import url('hub.css');

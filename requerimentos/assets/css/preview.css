@@ -1,0 +1,910 @@
+/* ============================================================
+   PRÉ-VISUALIZAÇÃO A4 E ESTILOS DE IMPRESSÃO
+   Portal de Requerimentos STGP — FCT UNESP
+   ============================================================ */
+
+/* Barra de Ferramentas da Visualização */
+.preview-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+  padding: 0.6rem 1rem;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  font-size: 0.825rem;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.preview-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  color: var(--darker-blue);
+}
+
+.preview-toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.preview-zoom-controls {
+  display: inline-flex;
+  align-items: center;
+  background: #f1f5f9;
+  padding: 2px;
+  border-radius: var(--border-radius);
+  border: 1px solid #e2e8f0;
+  gap: 2px;
+}
+
+.btn-zoom {
+  background: transparent;
+  border: none;
+  border-radius: 3px;
+  padding: 5px 9px;
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--darker-blue);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.15s ease;
+  min-height: 32px;
+}
+
+.btn-zoom:hover:not(.active) {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.btn-zoom.active {
+  background: #ffffff;
+  color: var(--primary-dark);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  font-weight: 700;
+}
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--success);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 200, 83, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(0, 200, 83, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 200, 83, 0); }
+}
+
+.preview-hint {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+
+@media screen and (max-width: 768px) {
+  .preview-toolbar {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0.65rem 0.75rem;
+    gap: 0.5rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .preview-status {
+    justify-content: center;
+    text-align: center;
+    font-size: 0.78rem;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+  .preview-toolbar-actions {
+    justify-content: center;
+    width: 100%;
+  }
+  .preview-zoom-controls {
+    justify-content: center;
+    margin: 0 auto;
+  }
+  .preview-hint {
+    display: none;
+  }
+}
+
+/* Envoltório da Folha A4 */
+.a4-wrapper {
+  background: #cbd5e1;
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  overflow-x: auto;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.a4-wrapper.mode-fit-screen {
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.a4-wrapper.mode-100 {
+  overflow-x: auto;
+  display: block;
+}
+
+/* Container de Escalonamento Responsivo */
+.a4-scale-container {
+  display: block;
+  position: relative;
+  margin: 0 auto;
+  transform-origin: top left;
+  box-sizing: border-box;
+  transition: width 0.15s ease, height 0.15s ease;
+}
+
+/* Ações mobile da seção de pré-visualização */
+.preview-mobile-actions {
+  display: none;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+@media screen and (max-width: 992px) {
+  .preview-section {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .preview-mobile-actions {
+    display: flex !important;
+    flex-direction: column;
+    width: 100%;
+    gap: 0.65rem;
+  }
+
+  .preview-mobile-actions .btn {
+    width: 100%;
+    min-height: 48px;
+  }
+
+  .a4-wrapper {
+    padding: 0.75rem 0.5rem;
+    max-height: none; /* No celular, permitir visualização sem container aninhado restrito */
+    min-height: 220px;
+  }
+}
+
+/* Documento A4 - Simulação Exata de Página Única (210mm x 297mm) */
+.a4-page {
+  background: #ffffff;
+  width: 210mm;
+  height: 297mm;
+  max-height: 297mm;
+  margin: 0 auto;
+  /* Margens oficiais UNESP: Superior 20mm, Direita 20mm, Inferior 10mm, Esquerda 20mm */
+  padding: 20mm 20mm 10mm 20mm;
+  box-sizing: border-box;
+  box-shadow: var(--shadow-lg);
+  color: #111827;
+  font-family: 'Merriweather', Georgia, serif;
+  font-size: 11pt;
+  line-height: 1.55;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Elementos do Documento */
+.doc-destinatario {
+  margin-top: 0;
+  margin-bottom: 3.5rem; /* Espaçamento generoso entre o cabeçalho e a qualificação */
+  text-transform: uppercase;
+  font-size: 11pt;
+  line-height: 1.5;
+  font-family: 'Inter', system-ui, sans-serif;
+  color: #000000;
+  text-align: justify;
+}
+
+.doc-paragrafo {
+  text-align: justify;
+  text-indent: 2.5cm; /* Recuo padrão de expediente oficial */
+  margin-bottom: 1rem;
+  font-size: 11pt;
+  line-height: 1.55;
+}
+
+.doc-val {
+  color: #0f172a;
+}
+
+.doc-box-pedido {
+  background-color: #fcfcfc;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  padding: 10px 14px;
+  margin: 0.95rem 0;
+  text-align: justify;
+  font-size: 10.5pt;
+  line-height: 1.5;
+}
+
+.doc-box-pedido p {
+  margin-bottom: 0.4rem;
+}
+.doc-box-pedido p:last-child {
+  margin-bottom: 0;
+}
+
+.doc-anexos-bloco {
+  margin: 0.95rem 0;
+  font-size: 10pt;
+  line-height: 1.5;
+}
+
+.doc-lista-anexos {
+  margin-left: 1.5rem;
+  margin-top: 0.25rem;
+}
+
+.doc-lista-anexos li {
+  text-align: justify;
+}
+
+.doc-fecho {
+  text-align: justify;
+  text-indent: 2.5cm;
+  margin: 1.15rem 0 0.85rem 0;
+  font-size: 11pt;
+}
+
+.doc-data-local {
+  text-align: center;
+  margin: 1.15rem 0 1.5rem 0;
+  font-size: 11pt;
+}
+
+.doc-assinatura-area {
+  text-align: center;
+  margin-top: auto;
+  padding-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.doc-assinatura-nome {
+  font-weight: bold;
+  font-size: 10.5pt;
+  line-height: 1;
+  margin-bottom: 2px;
+}
+
+.doc-assinatura-cargo {
+  font-size: 10pt;
+  color: #334155;
+  line-height: 1;
+}
+
+.doc-assinatura-contato {
+  font-size: 9.5pt;
+  color: #334155;
+  line-height: 1.35;
+  margin-top: 4px;
+}
+.doc-assinatura-contato div {
+  margin-top: 1px;
+}
+
+/* Bloco de Ciência da Chefia Imediata */
+.doc-chefia-area {
+  text-align: center;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.doc-chefia-ciente {
+  font-weight: normal;
+  font-size: 10.5pt;
+  margin-bottom: 2.75rem; /* Espaço para visto ou rubrica */
+}
+
+.doc-chefia-responsavel {
+  font-size: 10pt;
+  font-weight: 600;
+  color: #1e293b;
+  line-height: 1;
+}
+
+/* ==========================================================================
+   Ajustes Exclusivos por Tipo de Requerimento (Garantia de 1 Página A4)
+   ========================================================================== */
+
+/* Auxílio Funeral */
+.a4-page.doc-auxilio-funeral .doc-destinatario {
+  font-size: 10.5pt;
+  line-height: 1.45;
+}
+.a4-page.doc-auxilio-funeral .doc-paragrafo {
+  margin-bottom: 0.75rem;
+  font-size: 10.5pt;
+  line-height: 1.48;
+}
+.a4-page.doc-auxilio-funeral .doc-box-pedido {
+  padding: 8px 12px;
+  margin: 0.65rem 0;
+  font-size: 10pt;
+  line-height: 1.45;
+}
+.a4-page.doc-auxilio-funeral .doc-box-pedido p {
+  margin-bottom: 0.35rem;
+}
+.a4-page.doc-auxilio-funeral .doc-anexos-bloco {
+  margin: 0.65rem 0;
+  font-size: 8.5pt;
+  line-height: 1.38;
+}
+.a4-page.doc-auxilio-funeral .doc-lista-anexos {
+  margin-left: 1.35rem;
+  margin-top: 0.2rem;
+}
+.a4-page.doc-auxilio-funeral .doc-lista-anexos li {
+  margin-bottom: 2px;
+}
+.a4-page.doc-auxilio-funeral .doc-fecho {
+  margin: 0.75rem 0 0.5rem 0;
+  font-size: 10.5pt;
+}
+.a4-page.doc-auxilio-funeral .doc-data-local {
+  margin: 0.75rem 0 1.1rem 0;
+  font-size: 10.5pt;
+}
+
+/* Isenção de Imposto de Renda */
+.a4-page.doc-isencao-ir .doc-box-pedido {
+  padding: 10px 14px;
+  margin: 0.75rem 0;
+  font-size: 11pt;
+  line-height: 1.5;
+}
+.a4-page.doc-isencao-ir .doc-box-pedido p {
+  margin-bottom: 0.35rem;
+}
+.a4-page.doc-isencao-ir .doc-anexos-bloco {
+  margin: 0.65rem 0;
+  font-size: 9.5pt;
+  line-height: 1.4;
+}
+.a4-page.doc-isencao-ir .doc-lista-anexos li {
+  margin-bottom: 2px;
+}
+.a4-page.doc-isencao-ir .doc-fecho {
+  margin-bottom: 2rem;
+}
+
+/* Adicional de Insalubridade */
+.a4-page.doc-insalubridade .doc-box-pedido {
+  padding: 8px 12px;
+  margin: 0.5rem 0;
+  font-size: 10pt;
+  line-height: 1.42;
+}
+.a4-page.doc-insalubridade .doc-box-pedido p {
+  margin-bottom: 0.3rem;
+}
+.a4-page.doc-insalubridade .doc-anexos-bloco {
+  margin: 0.45rem 0;
+  font-size: 8.5pt;
+  line-height: 1.35;
+}
+.a4-page.doc-insalubridade .doc-lista-anexos li {
+  margin-bottom: 1.5px;
+}
+.a4-page.doc-insalubridade .doc-fecho {
+  margin-bottom: 1.5rem;
+}
+.a4-page.doc-insalubridade .doc-chefia-area {
+  margin-top: 2.2rem;
+  margin-bottom: 0.2rem;
+}
+
+/* Contagem e Averbação de Tempo de Serviço/Contribuição */
+.a4-page.doc-contagem-tempo .doc-box-pedido {
+  padding: 8px 12px;
+  margin: 0.45rem 0;
+  font-size: 10.5pt;
+  line-height: 1.35;
+}
+.a4-page.doc-contagem-tempo .doc-box-pedido p {
+  margin-bottom: 0.35rem;
+}
+.a4-page.doc-contagem-tempo .doc-anexos-bloco {
+  margin: 0.35rem 0;
+  font-size: 9.5pt;
+  line-height: 1.25;
+}
+.a4-page.doc-contagem-tempo .doc-fecho {
+  margin-bottom: 1.6rem;
+}
+.a4-page.doc-contagem-tempo .doc-chefia-area {
+  margin-top: 2rem;
+  margin-bottom: 0.2rem;
+}
+
+/* Alteração de Dados Bancários */
+.a4-page.doc-banco .doc-fecho {
+  margin-bottom: 2rem;
+}
+
+/* Licença Gestante */
+.a4-page.doc-gestante .doc-fecho {
+  margin-bottom: 2rem;
+}
+.a4-page.doc-gestante .doc-chefia-area {
+  margin-top: 2.8rem;
+}
+
+/* Licença Saúde */
+.a4-page.doc-saude .doc-box-pedido {
+  padding: 8px 12px;
+  margin: 0.45rem 0;
+  font-size: 11pt;
+  line-height: 1.38;
+}
+.a4-page.doc-saude .doc-box-pedido p {
+  margin-bottom: 0.25rem;
+}
+.a4-page.doc-saude .doc-anexos-bloco {
+  margin: 0.35rem 0;
+  font-size: 10pt;
+  line-height: 1.3;
+}
+.a4-page.doc-saude .doc-fecho {
+  margin-bottom: 1.8rem;
+}
+.a4-page.doc-saude .doc-chefia-area {
+  margin-top: 2.2rem;
+  margin-bottom: 0.2rem;
+}
+
+/* ==========================================================================
+   Indenização de Licença-Prêmio de Beneficiários
+   ========================================================================== */
+.a4-page.doc-lp-beneficiario {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 297mm;
+  max-height: 297mm;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.a4-page.doc-lp-beneficiario .doc-destinatario {
+  margin-bottom: 2.2rem; /* Quebra de linha / espaçamento equilibrado entre cabeçalho e qualificação */
+}
+.a4-page.doc-lp-beneficiario .doc-paragrafo {
+  margin-bottom: 0.6rem;
+}
+.a4-page.doc-lp-beneficiario .doc-anexos-bloco {
+  margin: 0.4rem 0;
+  font-size: 9.5pt;
+  line-height: 1.38;
+}
+.a4-page.doc-lp-beneficiario .doc-lista-anexos {
+  margin-left: 1.4rem;
+  margin-top: 0.2rem;
+}
+.a4-page.doc-lp-beneficiario .doc-lista-anexos li {
+  margin-bottom: 1.5px;
+  text-align: justify;
+}
+.a4-page.doc-lp-beneficiario .doc-fecho {
+  margin: 0.6rem 0 0.35rem 0;
+}
+.a4-page.doc-lp-beneficiario .doc-data-local {
+  margin: 0.5rem 0 1.0rem 0;
+}
+.a4-page.doc-lp-beneficiario .doc-assinatura-area {
+  margin-top: 0;
+  padding-top: 0.8rem;
+  margin-bottom: 0.4rem;
+}
+.a4-page.doc-lp-beneficiario .doc-assinatura-cargo {
+  display: none !important;
+}
+
+/* Área De Acordo/Visto */
+.a4-page.doc-lp-beneficiario #doc-bloco-de-acordo {
+  margin-top: auto !important;
+  margin-bottom: 2.4rem !important; /* Espaçamento padrão para 1-3 blocos */
+  text-align: left;
+}
+.doc-de-acordo-area {
+  margin: 1rem 0 3rem 0;
+  text-align: left;
+}
+.doc-de-acordo-titulo {
+  font-family: inherit;
+  font-size: 10.5pt;
+  font-weight: 700; /* Em negrito conforme solicitação */
+  color: #000000;
+  margin-bottom: 1.8rem; /* Espaço para visto ou rubrica */
+}
+.a4-page.doc-lp-beneficiario .doc-de-acordo-titulo {
+  font-family: inherit;
+  font-size: 10.5pt;
+  font-weight: 700; /* Em negrito conforme solicitação */
+  color: #000000;
+  margin-bottom: 1.1rem;
+}
+.doc-de-acordo-cargo,
+.a4-page.doc-lp-beneficiario .doc-de-acordo-cargo {
+  font-family: inherit;
+  font-size: 10.5pt; /* Mesma fonte e mesmo tamanho de De Acordo/Visto */
+  font-weight: 400;
+  color: #000000;
+}
+
+/* Quadro de Informações da Área de Gestão de Pessoas (Calibrado para legibilidade e múltiplos blocos) */
+.doc-gp-secao {
+  margin-top: 0.8rem;
+}
+.a4-page.doc-lp-beneficiario #doc-bloco-gestao-pessoas {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+.doc-gp-titulo {
+  font-size: 9pt;
+  font-style: italic;
+  font-weight: 600;
+  color: #000000;
+  margin-bottom: 2px;
+}
+.doc-gp-box {
+  border: 1px solid #000000;
+  padding: 6px 10px;
+  background-color: #ffffff;
+  font-size: 8.5pt;
+  line-height: 1.25;
+}
+.doc-gp-lead {
+  font-weight: 600;
+  font-size: 8.5pt;
+  margin-bottom: 3px;
+  text-align: justify;
+}
+.doc-gp-linhas {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.doc-gp-linha-item {
+  margin-bottom: 1.5px;
+  font-size: 8.5pt;
+  text-align: justify;
+}
+
+/* Adaptação progressiva para 4 e 5 blocos */
+.a4-page.doc-lp-beneficiario.lp-compacto {
+  font-size: 10.2pt;
+  line-height: 1.45;
+}
+.a4-page.doc-lp-beneficiario.lp-compacto .doc-destinatario {
+  margin-bottom: 1.5rem;
+}
+.a4-page.doc-lp-beneficiario.lp-compacto .doc-paragrafo {
+  margin-bottom: 0.45rem;
+}
+.a4-page.doc-lp-beneficiario.lp-compacto #doc-bloco-de-acordo {
+  margin-bottom: 1.4rem !important;
+}
+.a4-page.doc-lp-beneficiario.lp-compacto .doc-de-acordo-titulo {
+  margin-bottom: 0.85rem;
+}
+.a4-page.doc-lp-beneficiario.lp-compacto .doc-assinatura-area {
+  padding-top: 0.55rem;
+  margin-bottom: 0.3rem;
+}
+.a4-page.doc-lp-beneficiario.lp-compacto .doc-data-local {
+  margin: 0.4rem 0 0.65rem 0;
+}
+
+/* Adaptação progressiva para 6 a 8 blocos */
+.a4-page.doc-lp-beneficiario.lp-muito-compacto {
+  font-size: 9.8pt;
+  line-height: 1.35;
+}
+.a4-page.doc-lp-beneficiario.lp-muito-compacto .doc-destinatario {
+  margin-bottom: 1.0rem;
+}
+.a4-page.doc-lp-beneficiario.lp-muito-compacto .doc-paragrafo {
+  margin-bottom: 0.35rem;
+}
+.a4-page.doc-lp-beneficiario.lp-muito-compacto .doc-anexos-bloco {
+  margin: 0.25rem 0;
+  font-size: 8.5pt;
+  line-height: 1.22;
+}
+.a4-page.doc-lp-beneficiario.lp-muito-compacto .doc-fecho {
+  margin: 0.35rem 0 0.2rem 0;
+}
+.a4-page.doc-lp-beneficiario.lp-muito-compacto .doc-data-local {
+  margin: 0.3rem 0 0.5rem 0;
+}
+.a4-page.doc-lp-beneficiario.lp-muito-compacto .doc-assinatura-area {
+  padding-top: 0.35rem;
+  margin-bottom: 0.2rem;
+}
+.a4-page.doc-lp-beneficiario.lp-muito-compacto #doc-bloco-de-acordo {
+  margin-bottom: 0.85rem !important;
+}
+.a4-page.doc-lp-beneficiario.lp-muito-compacto .doc-de-acordo-titulo {
+  margin-bottom: 0.65rem;
+}
+.a4-page.doc-lp-beneficiario.lp-muito-compacto .doc-gp-box {
+  padding: 4px 8px;
+  font-size: 8pt;
+  line-height: 1.18;
+}
+.a4-page.doc-lp-beneficiario.lp-muito-compacto .doc-gp-lead,
+.a4-page.doc-lp-beneficiario.lp-muito-compacto .doc-gp-linha-item {
+  font-size: 8pt;
+  margin-bottom: 1px;
+}
+
+/* ============================================================
+   ESTILOS DE IMPRESSÃO REFINADOS (Ctrl+P / Imprimir Nativo)
+   ============================================================ */
+@media print {
+  @page {
+    size: A4 portrait;
+    /* Margens oficiais UNESP: Superior 20mm, Direita 20mm, Inferior 10mm, Esquerda 20mm */
+    margin: 20mm 20mm 10mm 20mm;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  html,
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-size: 11pt !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    min-width: 100% !important;
+    height: auto !important;
+  }
+
+  /* 1. Ocultação estrutural e universal de elementos web e de interface */
+  body > *:not(.main-container),
+  .form-section,
+  .preview-section > *:not(.a4-wrapper),
+  .a4-wrapper > *:not(.a4-scale-container),
+  .a4-scale-container > *:not(#documento-pdf),
+  .unesp-top-bar,
+  .app-header,
+  .top-nav-back-bar,
+  .btn-back-stgp,
+  .mobile-view-tabs,
+  .nav-back-container,
+  .preview-toolbar,
+  .preview-mobile-actions,
+  .app-footer,
+  .action-buttons-card,
+  .preview-status,
+  .preview-toolbar-actions,
+  .preview-hint,
+  .btn-zoom,
+  .pulse-dot,
+  .no-print,
+  .nao-imprimir,
+  .screen-only,
+  .somente-tela {
+    display: none !important;
+  }
+
+  /* 2. Container Principal e Seção de Documento: Exibição garantida em 100% */
+  .main-container {
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block !important;
+    max-width: none !important;
+    width: 100% !important;
+    border: none !important;
+  }
+
+  /* Garante a exibição do preview e do documento independente do modo mobile/desktop da tela */
+  body.view-mode-form .preview-section,
+  body.view-mode-preview .preview-section,
+  .preview-section {
+    display: block !important;
+    position: static !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+    overflow: visible !important;
+    border: none !important;
+  }
+
+  body.view-mode-form .form-section,
+  body.view-mode-preview .form-section,
+  .form-section {
+    display: none !important;
+  }
+
+  .a4-wrapper {
+    background: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    overflow: visible !important;
+    max-height: none !important;
+    height: auto !important;
+    width: 100% !important;
+    display: block !important;
+  }
+
+  .a4-scale-container {
+    transform: none !important;
+    position: static !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow: visible !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    display: block !important;
+  }
+
+  /* 3. Folha Oficial A4: Padrão Oficial UNESP para QUALQUER modelo de requerimento */
+  .a4-page {
+    box-shadow: none !important;
+    border: none !important;
+    background: #ffffff !important;
+    margin: 0 !important;
+    padding: 0 !important; /* Margens físicas 20mm/20mm/10mm/20mm controladas pela diretiva @page */
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    height: auto !important;
+    min-height: 260mm !important;
+    max-height: none !important;
+    overflow: visible !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    box-sizing: border-box !important;
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    color: #000000 !important;
+    font-family: 'Merriweather', Georgia, serif !important;
+    font-size: 11pt !important;
+    line-height: 1.55 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* 4. Tipografia e Cores: Aplicação universal a todos os elementos do documento */
+  .a4-page,
+  .a4-page * {
+    color: #000000 !important;
+  }
+
+  .a4-page a {
+    color: #000000 !important;
+    text-decoration: none !important;
+  }
+
+  /* 5. Prevenção de quebra de página indesejada em blocos internos */
+  .a4-page > div,
+  .a4-page > section,
+  .a4-page p,
+  .a4-page table,
+  .a4-page tr,
+  .a4-page .doc-destinatario,
+  .a4-page .doc-paragrafo,
+  .a4-page .doc-box-pedido,
+  .a4-page .doc-anexos-bloco,
+  .a4-page .doc-fecho,
+  .a4-page .doc-data-local,
+  .a4-page .doc-assinatura-area,
+  .a4-page .doc-chefia-area,
+  .a4-page .doc-de-acordo-area,
+  .a4-page .doc-gp-secao {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  /* 6. Preservação de bordas e fundos técnicos em caixas, tabelas e pedidos */
+  .a4-page table,
+  .a4-page th,
+  .a4-page td,
+  .a4-page .doc-box-pedido,
+  .a4-page .doc-gp-box,
+  .a4-page [class*="box"],
+  .a4-page [class*="quadro"],
+  .a4-page [class*="card"] {
+    border-color: #94a3b8 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .doc-box-pedido {
+    border: 1px solid #94a3b8 !important;
+    background-color: #f8fafc !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Caso especial de modelo com múltiplos blocos fixos (Licença-Prêmio Beneficiários) */
+  .a4-page.doc-lp-beneficiario {
+    min-height: 260mm !important;
+    height: auto !important;
+    max-height: 267mm !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .a4-page.doc-lp-beneficiario #doc-bloco-de-acordo {
+    margin-top: auto !important;
+    margin-bottom: 2.4rem !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .a4-page.doc-lp-beneficiario.lp-compacto #doc-bloco-de-acordo {
+    margin-bottom: 1.4rem !important;
+  }
+
+  .a4-page.doc-lp-beneficiario.lp-muito-compacto #doc-bloco-de-acordo {
+    margin-bottom: 0.85rem !important;
+  }
+
+  .a4-page.doc-lp-beneficiario #doc-bloco-gestao-pessoas {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+}
+

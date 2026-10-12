@@ -1,0 +1,1403 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preenchimento de Requerimento | STGP FCT UNESP</title>
+  <link rel="shortcut icon" href="unesp.ico" type="image/x-icon">
+  <link rel="icon" href="unesp.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <!-- pdfmake para geração de PDF 100% vetorial, nítido e pesquisável -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.10/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.10/vfs_fonts.js"></script>
+</head>
+<body>
+  <!-- Barra Superior Institucional UNESP (Padrão Portal Unesp) -->
+  <div class="unesp-top-bar">
+    <div class="top-bar-content">
+      <div class="top-bar-brand">
+        <a href="https://www.unesp.br" target="_blank" title="Universidade Estadual Paulista Júlio de Mesquita Filho">
+          <img src="unesp-logo-white.svg" alt="Logotipo UNESP" class="unesp-logo-svg">
+        </a>
+        <span class="top-bar-sep">|</span>
+        <span class="top-bar-campus">Câmpus de Presidente Prudente</span>
+      </div>
+      <div class="top-bar-links">
+        <a href="https://www.fct.unesp.br/" target="_blank" class="top-link" title="Acessar o portal oficial da FCT">Portal FCT Unesp</a>
+        <span class="top-bar-dot">•</span>
+        <a href="https://www.fct.unesp.br/#!/administracao/recursos-humanos/" target="_blank" class="top-link" title="Seção Técnica de Gestão de Pessoas (Recursos Humanos)">Página da STGP</a>
+        <span class="top-bar-dot">•</span>
+        <a href="../index.html" class="top-link" title="Portal STGP Digital">STGP Digital</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cabeçalho Principal da Aplicação -->
+  <header class="app-header">
+    <div class="header-content">
+      <div class="brand">
+        <a href="https://www.fct.unesp.br/" target="_blank" title="Faculdade de Ciências e Tecnologia - FCT UNESP">
+          <img src="fct-logo.png" alt="Logotipo FCT" class="brand-fct-logo">
+        </a>
+        <div class="brand-titles">
+          <h1>STGP Digital — Portal de Modelos de Documentos</h1>
+          <p>Faculdade de Ciências e Tecnologia — Seção Técnica de Gestão de Pessoas (STGP)</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <span class="badge-status">Câmpus de Presidente Prudente</span>
+      </div>
+    </div>
+  </header>
+ 
+  <!-- Barra Superior de Retorno e Localização (Modelo B) -->
+  <div class="top-nav-back-bar">
+    <div class="top-nav-back-inner">
+      <a href="../index.html" class="btn-back-stgp" title="Voltar para a página inicial">
+        <svg class="back-arrow-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        <span>Voltar para Início</span>
+      </a>
+      <span class="breadcrumb-sep">/</span>
+      <a href="index.html" class="breadcrumb-link" title="Voltar para a seleção de perfil">Requerimentos</a>
+      <span class="breadcrumb-sep">/</span>
+      <a href="servidor.html" id="breadcrumb-perfil-link" class="breadcrumb-link" title="Voltar ao catálogo">Servidores</a>
+      <span class="breadcrumb-sep">/</span>
+      <span class="breadcrumb-current" id="breadcrumb-doc-title">Preenchimento</span>
+    </div>
+  </div>
+
+  <!-- Seletor de Abas para Celulares e Tablets (Mobile View Switcher) -->
+  <nav class="mobile-view-tabs" aria-label="Navegação mobile de visualização">
+    <div class="mobile-view-tabs-inner">
+      <button type="button" class="mobile-view-tab active" id="tab-view-form">
+        <span>📝</span> Preenchimento
+      </button>
+      <button type="button" class="mobile-view-tab" id="tab-view-preview">
+        <span>👁️</span> Ver Documento (A4)
+      </button>
+    </div>
+  </nav>
+
+  <main class="main-container">
+    <!-- Coluna Esquerda: Formulário de Preenchimento -->
+    <section class="form-section">
+
+      <!-- Banner Dinâmico do Requerimento Ativo -->
+      <div class="selected-req-banner" id="selected-req-banner">
+        <div class="selected-req-info">
+          <div class="selected-req-icon" id="banner-req-icon">🏦</div>
+          <div class="selected-req-titles">
+            <h3 id="banner-req-title">Alteração de Dados Bancários</h3>
+            <p id="banner-req-profile">Perfil: Servidor(a) / Aposentado(a)</p>
+          </div>
+        </div>
+        <div class="selected-req-actions">
+          <a href="servidor.html" id="btn-trocar-requerimento" class="btn-switch-req" title="Escolher outro modelo no catálogo">
+            <span>← Trocar de Requerimento</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Seletor de Tipo Manual (Colapsável para manter o foco no preenchimento) -->
+      <details class="card" id="card-selecao-tipo" style="margin-bottom: 0.25rem;">
+        <summary class="card-header" style="cursor: pointer; display: flex; justify-content: space-between; align-items: center; list-style: none;">
+          <div>
+            <h2 style="font-size: 0.96rem; margin-bottom: 0.15rem; color: var(--dark-blue);">Alternar Tipo de Requerimento Nesta Tela</h2>
+            <p class="subtitle" style="font-size: 0.78rem; margin-bottom: 0;">Clique aqui caso deseje selecionar outro modelo sem sair desta página.</p>
+          </div>
+          <span style="font-size: 0.78rem; color: var(--primary); font-weight: 700; background: var(--primary-light); padding: 0.3rem 0.6rem; border-radius: 4px; border: 1px solid var(--primary-border-subtle);">Expandir Opções ▾</span>
+        </summary>
+        <div style="padding: 1.25rem; padding-top: 0.5rem;">
+
+        <!-- Abas de Seleção de Perfil -->
+        <div class="profile-tabs">
+          <button type="button" class="profile-tab active" id="tab-btn-servidor" data-tab="servidor">
+            <span class="tab-icon">🏢</span>
+            <span class="tab-label">Servidor(a) / Aposentado(a)</span>
+          </button>
+          <button type="button" class="profile-tab" id="tab-btn-externo" data-tab="externo">
+            <span class="tab-icon">👥</span>
+            <span class="tab-label">Familiar / Terceiro (Externo)</span>
+          </button>
+        </div>
+
+        <!-- Requerimentos: Servidores e Aposentados -->
+        <div id="grid-servidor" class="profile-tab-content">
+          <div class="tipo-grid">
+            <!-- 1. Adicional de Insalubridade (Celetista - CLT) -->
+            <label class="tipo-card">
+              <input type="radio" name="tipoRequerimento" value="insalubridade">
+              <div class="tipo-card-inner">
+                <div class="tipo-icon">☣️</div>
+                <div class="tipo-title">Adicional de Insalubridade (Celetista - CLT)</div>
+                <div class="tipo-desc">Exclusivo para servidores celetistas (CLT). Estatutários: solicitação diretamente via SisRH (<a href="https://sistemas.unesp.br/rh/" target="_blank" onclick="event.stopPropagation();" style="color: inherit; text-decoration: underline;">https://sistemas.unesp.br/rh/</a>).</div>
+              </div>
+            </label>
+
+            <!-- Contagem e Averbação de Tempo de Serviço/Contribuição -->
+            <label class="tipo-card">
+              <input type="radio" name="tipoRequerimento" value="contagem_tempo">
+              <div class="tipo-card-inner">
+                <div class="tipo-icon">⏱️</div>
+                <div class="tipo-title">Contagem e Averbação de Tempo de Serviço/Contribuição</div>
+                <div class="tipo-desc">Averbação e cômputo de tempo de serviço/contribuição prestado a outros órgãos públicos ou empresas privadas.</div>
+              </div>
+            </label>
+
+            <!-- 2. Alteração de Dados Bancários -->
+            <label class="tipo-card">
+              <input type="radio" name="tipoRequerimento" value="banco" checked>
+              <div class="tipo-card-inner">
+                <div class="tipo-icon">🏦</div>
+                <div class="tipo-title">Alteração de Dados Bancários</div>
+                <div class="tipo-desc">Atualização de agência e conta para crédito de vencimentos / salário (dispensa visto de chefia).</div>
+              </div>
+            </label>
+
+            <!-- 2. Isenção de Imposto de Renda (Aposentados) -->
+            <label class="tipo-card">
+              <input type="radio" name="tipoRequerimento" value="isencao_ir">
+              <div class="tipo-card-inner">
+                <div class="tipo-icon">⚖️</div>
+                <div class="tipo-title">Isenção de Imposto de Renda</div>
+                <div class="tipo-desc">Exclusivo para servidores aposentados portadores de moléstia grave (Lei nº 7.713/88, art. 6º, XIV).</div>
+              </div>
+            </label>
+
+            <!-- 3. Licença Gestante/Maternidade (Antes do nascimento) -->
+            <label class="tipo-card">
+              <input type="radio" name="tipoRequerimento" value="gestante_antes">
+              <div class="tipo-card-inner">
+                <div class="tipo-icon">🤰</div>
+                <div class="tipo-title">Licença Gestante/Maternidade (Antes do nascimento)</div>
+                <div class="tipo-desc">Estatutária: a partir da 32ª semana. Celetista (CLT): a partir de 28 dias antes do parto (ou 8º mês).</div>
+              </div>
+            </label>
+
+            <!-- 3. Licença Gestante/Maternidade (Após o nascimento) -->
+            <label class="tipo-card">
+              <input type="radio" name="tipoRequerimento" value="gestante_apos">
+              <div class="tipo-card-inner">
+                <div class="tipo-icon">👶</div>
+                <div class="tipo-title">Licença Gestante/Maternidade (Após o nascimento)</div>
+                <div class="tipo-desc">A contar da data do nascimento, mediante juntada da Certidão de Nascimento.</div>
+              </div>
+            </label>
+
+            <!-- 4. Licença para Tratamento de Saúde -->
+            <label class="tipo-card">
+              <input type="radio" name="tipoRequerimento" value="saude">
+              <div class="tipo-card-inner">
+                <div class="tipo-icon">🩺</div>
+                <div class="tipo-title">Licença para Tratamento de Saúde (Celetista - CLT)</div>
+                <div class="tipo-desc">Exclusivo para celetistas (CLT). Estatutários: falta médica via SisRH (<a href="https://sistemas.unesp.br/rh/" target="_blank" onclick="event.stopPropagation();" style="color: inherit; text-decoration: underline;">https://sistemas.unesp.br/rh/</a>) ou entrega direta do atestado na STGP.</div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Requerimentos: Terceiros e Familiares (Público Externo) -->
+        <div id="grid-externo" class="profile-tab-content" style="display: none;">
+          <div class="tipo-grid">
+            <!-- Auxílio Funeral -->
+            <label class="tipo-card">
+              <input type="radio" name="tipoRequerimento" value="auxilio_funeral">
+              <div class="tipo-card-inner">
+                <div class="tipo-icon">🕊️</div>
+                <div class="tipo-title">Auxílio Funeral</div>
+                <div class="tipo-desc">Ressarcimento das despesas com funeral de servidor(a) da UNESP falecido(a).</div>
+              </div>
+            </label>
+
+            <!-- Indenização de Licença-Prêmio de Beneficiários -->
+            <label class="tipo-card">
+              <input type="radio" name="tipoRequerimento" value="licenca_premio_beneficiario">
+              <div class="tipo-card-inner">
+                <div class="tipo-icon">📜</div>
+                <div class="tipo-title">Indenização de Licença-Prêmio de Beneficiários</div>
+                <div class="tipo-desc">Indenização de saldos de licença-prêmio a beneficiários/herdeiros de ex-servidor(a) falecido(a).</div>
+              </div>
+            </label>
+          </div>
+        </div>
+        </div>
+      </details>
+
+      <!-- Identificação do Requerente -->
+      <div class="card" id="card-identificacao">
+        <div class="card-header">
+          <h2 id="identificacao-title">2. Identificação do(a) Servidor(a)</h2>
+          <p class="subtitle" id="identificacao-subtitle">Insira seus dados funcionais completos para constar no documento oficial.</p>
+        </div>
+
+        <!-- Bloco de Identificação: Servidor da UNESP -->
+        <div id="bloco-identificacao-servidor" class="form-grid">
+          <div class="form-group col-span-2">
+            <label for="nome">Nome Completo *</label>
+            <input type="text" id="nome" placeholder="Ex: Maria da Silva Souza" autocomplete="off">
+          </div>
+
+          <div class="form-group">
+            <label for="categoria">Categoria do Servidor *</label>
+            <select id="categoria">
+              <option value="" disabled selected>Selecione a categoria...</option>
+              <option value="Docente">Docente</option>
+              <option value="Pesquisador">Pesquisador</option>
+              <option value="Técnico Administrativo">Técnico Administrativo</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="funcao">Função *</label>
+            <select id="funcao" disabled>
+              <option value="" disabled selected>Selecione primeiro a categoria...</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="matricula">Matrícula Funcional *</label>
+            <input type="text" id="matricula" placeholder="123456-7" maxlength="10" autocomplete="off">
+            <span id="matricula-status" class="field-feedback"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="cpf">CPF *</label>
+            <input type="text" id="cpf" placeholder="123.456.789-10" maxlength="14" autocomplete="off">
+            <span id="cpf-status" class="field-feedback"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="regime">Regime Jurídico * 
+              <span id="regime-hint-isencao" style="display:none; font-size: 0.78rem; color: #b91c1c; font-weight: normal; margin-left: 4px;">(Exclusivo para Autárquico ou Efetivo)</span>
+              <span id="regime-hint-insalubridade" style="display:none; font-size: 0.78rem; color: #15803d; font-weight: normal; margin-left: 4px;">(Exclusivo para Celetista - CLT)</span>
+            </label>
+            <select id="regime">
+              <option value="" disabled selected>Selecione o regime...</option>
+              <option value="Autárquico">Autárquico</option>
+              <option value="CLT">CLT</option>
+              <option value="Efetivo">Efetivo</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="lotacao">Lotação / Departamento / Seção *</label>
+            <select id="lotacao">
+              <option value="" disabled selected>Selecione a lotação...</option>
+              <option value="Centro de Educação Infantil">Centro de Educação Infantil</option>
+              <option value="Departamento de Cartografia">Departamento de Cartografia</option>
+              <option value="Departamento de Educação">Departamento de Educação</option>
+              <option value="Departamento de Educação Física">Departamento de Educação Física</option>
+              <option value="Departamento de Estatística">Departamento de Estatística</option>
+              <option value="Departamento de Física">Departamento de Física</option>
+              <option value="Departamento de Fisioterapia">Departamento de Fisioterapia</option>
+              <option value="Departamento de Geografia">Departamento de Geografia</option>
+              <option value="Departamento de Matemática e Computação">Departamento de Matemática e Computação</option>
+              <option value="Departamento de Planejamento, Urbanismo e Ambiente">Departamento de Planejamento, Urbanismo e Ambiente</option>
+              <option value="Departamento de Química e Bioquímica">Departamento de Química e Bioquímica</option>
+              <option value="Diretoria Técnica de Informática">Diretoria Técnica de Informática</option>
+              <option value="Diretoria Técnica de Serviços">Diretoria Técnica de Serviços</option>
+              <option value="Seção de Atividades Auxiliares">Seção de Atividades Auxiliares</option>
+              <option value="Seção de Conservação e Manutenção">Seção de Conservação e Manutenção</option>
+              <option value="Seção Técnica Acadêmica">Seção Técnica Acadêmica</option>
+              <option value="Seção Técnica de Apoio ao Ensino, Pesquisa e Extensão">Seção Técnica de Apoio ao Ensino, Pesquisa e Extensão</option>
+              <option value="Seção Técnica de Aquisição e Tratamento da Informação">Seção Técnica de Aquisição e Tratamento da Informação</option>
+              <option value="Seção Técnica de Comunicações">Seção Técnica de Comunicações</option>
+              <option value="Seção Técnica de Contabilidade">Seção Técnica de Contabilidade</option>
+              <option value="Seção Técnica de Finanças">Seção Técnica de Finanças</option>
+              <option value="Seção Técnica de Gestão de Pessoas">Seção Técnica de Gestão de Pessoas</option>
+              <option value="Seção Técnica de Graduação">Seção Técnica de Graduação</option>
+              <option value="Seção Técnica de Materiais">Seção Técnica de Materiais</option>
+              <option value="Seção Técnica de Nutrição">Seção Técnica de Nutrição</option>
+              <option value="Seção Técnica de Pós-Graduação">Seção Técnica de Pós-Graduação</option>
+              <option value="Seção Técnica de Referência, Atendimento ao Usuário e Documentação">Seção Técnica de Referência, Atendimento ao Usuário e Documentação</option>
+              <option value="Seção Técnica de Saúde">Seção Técnica de Saúde</option>
+              <option value="Setor de Transporte">Setor de Transporte</option>
+              <option value="Setor de Vigilância">Setor de Vigilância</option>
+            </select>
+          </div>
+
+          <div class="form-group col-span-2">
+            <label for="email" id="lbl-email">E-mail Institucional *</label>
+            <input type="email" id="email" placeholder="nome.sobrenome@unesp.br" autocomplete="off">
+          </div>
+
+          <!-- Campos de Endereço Residencial do Servidor Aposentado (Isenção IR) -->
+          <div id="servidor-endereco-container" class="col-span-2 form-grid" style="display: none; margin-top: 0.5rem; padding-top: 0.85rem; border-top: 1px dashed var(--border-color);">
+            <div class="form-group col-span-2" style="margin-bottom: 0;">
+              <label style="font-weight: 700; color: var(--darker-blue);">Endereço Residencial Completo do(a) Servidor(a) Aposentado(a):</label>
+            </div>
+
+            <div class="form-group col-span-2">
+              <label for="srv_end_cep">CEP * <span style="font-weight: normal; font-size: 0.8rem; color: var(--brand-blue);">(preenchimento automático via CEP)</span></label>
+              <div class="cep-input-group">
+                <input type="text" id="srv_end_cep" placeholder="00000-000" maxlength="9" autocomplete="off" style="max-width: 200px;">
+                <span id="srv_end_cep-status" class="field-feedback"></span>
+              </div>
+              <p class="field-hint" style="margin-top: 2px;">*Digitar apenas números (máscara automática). Os campos de endereço serão preenchidos automaticamente.</p>
+            </div>
+
+            <div class="form-group">
+              <label for="srv_end_tipo_logradouro">Tipo de logradouro *</label>
+              <select id="srv_end_tipo_logradouro">
+                <option value="" disabled selected>-</option>
+                <option value="Alameda">Alameda</option>
+                <option value="Avenida">Avenida</option>
+                <option value="Beco">Beco</option>
+                <option value="Buraco">Buraco</option>
+                <option value="Chácara">Chácara</option>
+                <option value="Condomínio">Condomínio</option>
+                <option value="Estância">Estância</option>
+                <option value="Estrada">Estrada</option>
+                <option value="Estrada Municipal">Estrada Municipal</option>
+                <option value="Estrada Vicinal">Estrada Vicinal</option>
+                <option value="Fazenda">Fazenda</option>
+                <option value="Granja">Granja</option>
+                <option value="Largo">Largo</option>
+                <option value="Lote">Lote</option>
+                <option value="Outros">Outros</option>
+                <option value="Passeio">Passeio</option>
+                <option value="Praça">Praça</option>
+                <option value="Prolongamento">Prolongamento</option>
+                <option value="Quadra">Quadra</option>
+                <option value="Rodovia">Rodovia</option>
+                <option value="Rua">Rua</option>
+                <option value="Sítio">Sítio</option>
+                <option value="Travessa">Travessa</option>
+                <option value="Via">Via</option>
+                <option value="Via de Acesso">Via de Acesso</option>
+                <option value="Viela">Viela</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="srv_end_logradouro">Logradouro *</label>
+              <input type="text" id="srv_end_logradouro" placeholder="Ex: das Acácias" autocomplete="off">
+            </div>
+
+            <div class="form-group">
+              <label for="srv_end_numero">Número</label>
+              <input type="text" id="srv_end_numero" placeholder="Ex: 450" autocomplete="off">
+            </div>
+
+            <div class="form-group">
+              <label for="srv_end_complemento">Complemento</label>
+              <input type="text" id="srv_end_complemento" placeholder="Ex: Apto 12" autocomplete="off">
+            </div>
+
+            <div class="form-group">
+              <label for="srv_end_bairro">Bairro</label>
+              <input type="text" id="srv_end_bairro" placeholder="Ex: Vila Santa Helena" autocomplete="off">
+            </div>
+
+            <div class="form-group">
+              <label for="srv_end_cidade">Cidade/UF *</label>
+              <input type="text" id="srv_end_cidade" placeholder="Ex: Presidente Prudente/SP" autocomplete="off">
+            </div>
+
+            <div class="form-group col-span-2">
+              <label for="srv_telefone">Telefones de Contato (Celular / WhatsApp / Fixo) *</label>
+              <input type="text" id="srv_telefone" placeholder="(18) 99876-5432 / (18) 3221-0000" autocomplete="off">
+            </div>
+          </div>
+        </div>
+
+        <!-- Bloco de Identificação: Familiar / Terceiro (Público Externo) -->
+        <div id="bloco-identificacao-externo" class="form-grid" style="display: none;">
+          <div class="form-group col-span-2">
+            <label for="ext_nome">Nome Completo do(a) Solicitante (Requerente) *</label>
+            <input type="text" id="ext_nome" placeholder="Ex: Carlos Eduardo de Oliveira" autocomplete="off">
+          </div>
+
+          <div class="form-group">
+            <label for="ext_cpf">CPF do(a) Solicitante (CIN) *</label>
+            <input type="text" id="ext_cpf" placeholder="000.000.000-00" maxlength="14" autocomplete="off">
+            <span id="ext_cpf-status" class="field-feedback"></span>
+          </div>
+
+          <div class="form-group" id="grupo-ext-vinculo">
+            <label for="ext_vinculo">Vínculo / Grau de Parentesco com o(a) Servidor(a) Falecido(a) *</label>
+            <select id="ext_vinculo">
+              <option value="" disabled selected>Selecione o parentesco/vínculo...</option>
+              <option value="Cônjuge">Cônjuge (Esposo / Esposa)</option>
+              <option value="Companheiro(a) em união estável">Companheiro(a) em união estável</option>
+              <option value="Filho(a)">Filho(a)</option>
+              <option value="Pai / Mãe">Pai / Mãe</option>
+              <option value="Irmão / Irmã">Irmão / Irmã</option>
+              <option value="Neto(a)">Neto(a)</option>
+              <option value="Tio(a)">Tio(a)</option>
+              <option value="Sobrinho(a)">Sobrinho(a)</option>
+              <option value="Outro Familiar">Outro Familiar</option>
+              <option value="Herdeiro(a) / Sucessor(a) Legal">Herdeiro(a) / Sucessor(a) Legal</option>
+              <option value="Beneficiário(a) Indicado(a)">Beneficiário(a) Indicado(a)</option>
+              <option value="Terceiro Responsável pelo Funeral">Terceiro sem parentesco (Responsável que custeou o funeral)</option>
+            </select>
+          </div>
+
+          <!-- Campos de Endereço Residencial (Auxílio Funeral) -->
+          <div id="externo-endereco-container" class="col-span-2 form-grid" style="margin-top: 0; padding-top: 0;">
+            <div class="form-group col-span-2" style="margin-bottom: 0; margin-top: 0.5rem; padding-top: 0.85rem; border-top: 1px dashed var(--border-color);">
+              <label style="font-weight: 700; color: var(--darker-blue);">Endereço Residencial do(a) Solicitante (Requerente):</label>
+            </div>
+
+            <div class="form-group col-span-2">
+              <label for="ext_end_cep">CEP * <span style="font-weight: normal; font-size: 0.8rem; color: var(--brand-blue);">(preenchimento automático via CEP)</span></label>
+              <div class="cep-input-group">
+                <input type="text" id="ext_end_cep" placeholder="00000-000" maxlength="9" autocomplete="off" style="max-width: 200px;">
+                <span id="ext_end_cep-status" class="field-feedback"></span>
+              </div>
+              <p class="field-hint" style="margin-top: 2px;">*Digitar apenas números (máscara automática). Os campos de endereço serão preenchidos automaticamente.</p>
+            </div>
+
+            <div class="form-group">
+              <label for="ext_end_tipo_logradouro">Tipo de logradouro *</label>
+              <select id="ext_end_tipo_logradouro">
+                <option value="" disabled selected>-</option>
+                <option value="Alameda">Alameda</option>
+                <option value="Avenida">Avenida</option>
+                <option value="Beco">Beco</option>
+                <option value="Buraco">Buraco</option>
+                <option value="Chácara">Chácara</option>
+                <option value="Condomínio">Condomínio</option>
+                <option value="Estância">Estância</option>
+                <option value="Estrada">Estrada</option>
+                <option value="Estrada Municipal">Estrada Municipal</option>
+                <option value="Estrada Vicinal">Estrada Vicinal</option>
+                <option value="Fazenda">Fazenda</option>
+                <option value="Granja">Granja</option>
+                <option value="Largo">Largo</option>
+                <option value="Lote">Lote</option>
+                <option value="Outros">Outros</option>
+                <option value="Passeio">Passeio</option>
+                <option value="Praça">Praça</option>
+                <option value="Prolongamento">Prolongamento</option>
+                <option value="Quadra">Quadra</option>
+                <option value="Rodovia">Rodovia</option>
+                <option value="Rua">Rua</option>
+                <option value="Sítio">Sítio</option>
+                <option value="Travessa">Travessa</option>
+                <option value="Via">Via</option>
+                <option value="Via de Acesso">Via de Acesso</option>
+                <option value="Viela">Viela</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="ext_end_logradouro">Logradouro *</label>
+              <input type="text" id="ext_end_logradouro" placeholder="Ex: das Flores" autocomplete="off">
+            </div>
+
+            <div class="form-group">
+              <label for="ext_end_numero">Número</label>
+              <input type="text" id="ext_end_numero" placeholder="Ex: 120" autocomplete="off">
+            </div>
+
+            <div class="form-group">
+              <label for="ext_end_complemento">Complemento</label>
+              <input type="text" id="ext_end_complemento" placeholder="Ex: Apto 32" autocomplete="off">
+            </div>
+
+            <div class="form-group">
+              <label for="ext_end_bairro">Bairro</label>
+              <input type="text" id="ext_end_bairro" placeholder="Ex: Jardim das Rosas" autocomplete="off">
+            </div>
+
+            <div class="form-group">
+              <label for="ext_end_cidade">Cidade/UF *</label>
+              <input type="text" id="ext_end_cidade" placeholder="Ex: Presidente Prudente/SP" autocomplete="off">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="ext_telefone">Telefones de Contato (Celular / WhatsApp / Fixo) *</label>
+            <input type="text" id="ext_telefone" placeholder="(18) 99876-5432 / (18) 3221-0000" autocomplete="off">
+          </div>
+
+          <div class="form-group">
+            <label for="ext_email">E-mail para Contato (Opcional)</label>
+            <input type="email" id="ext_email" placeholder="exemplo@email.com" autocomplete="off">
+          </div>
+        </div>
+      </div>
+
+      <!-- Detalhes Específicos do Pedido -->
+      <div class="card" id="card-especifico">
+        <div class="card-header">
+          <h2 id="especifico-title">3. Detalhes da Licença para Tratamento de Saúde</h2>
+          <p class="subtitle" id="especifico-subtitle">Informe a quantidade de dias e a data de início do afastamento.</p>
+        </div>
+
+        <!-- Campos: Licença Saúde -->
+        <div id="fields-saude" class="form-grid dynamic-fields">
+          <!-- Banner de Dispensa de Requerimento para Estatutários -->
+          <div class="info-box col-span-2" style="background-color: #fefce8; border-left: 4px solid #ca8a04;">
+            <strong style="color: #854d0e; font-size: 0.95rem; display: block; margin-bottom: 4px;">📢 Servidor(a) Estatutário(a) (Autárquico / Efetivo) — DISPENSA DE REQUERIMENTO:</strong>
+            <p style="margin: 0 0 6px 0; color: #713f12; font-size: 0.84rem; line-height: 1.45;">
+              O(A) servidor(a) público(a) estatutário(a) <strong>NÃO precisa apresentar requerimento</strong> para ausências médicas ou licença saúde:
+            </p>
+            <ul style="margin: 0; padding-left: 1.2rem; color: #713f12; font-size: 0.83rem; line-height: 1.45;">
+              <li><strong>Falta médica de 1 apenas dia de ausência:</strong> É limitada a <strong>1 por mês e 6 por ano</strong>. O pedido é feito <strong>diretamente via SisRH (<a href="https://sistemas.unesp.br/rh/" target="_blank" style="color: #1e3a8a; text-decoration: underline;">https://sistemas.unesp.br/rh/</a>)</strong>, que já está preparado para esse lançamento diretamente por lá, <u>sendo totalmente desnecessária a apresentação de requerimento</u>.</li>
+              <li><strong>Atestados médicos de 2 ou mais dias:</strong> São entregues diretamente na Seção Técnica de Gestão de Pessoas - STGP no prazo legal de <strong>até um dia útil</strong> (conforme legislação estadual aplicável). Para cumprir esse prazo tempestivamente, os servidores estatutários podem digitalizar e enviar pelos canais oficiais:
+                <div style="margin-top: 4px; padding: 4px 8px; background: rgba(255,255,255,0.7); border-radius: 4px; font-weight: 500;">
+                  📱 <strong>WhatsApp STGP:</strong> (18) 3229-5452 / (18) 3229-5454 / (18) 3229-5453<br>
+                  ✉️ <strong>E-mail STGP:</strong> <a href="mailto:rh.fct@unesp.br" style="color: #1e3a8a; font-weight: 700;">rh.fct@unesp.br</a>
+                </div>
+                <div style="margin-top: 6px; padding: 6px 10px; background: #fef08a; border-left: 3px solid #ca8a04; border-radius: 4px; color: #854d0e; font-size: 0.82rem; line-height: 1.4;">
+                  <strong>⚠️ Apresentação do Documento Original:</strong> O envio do atestado via WhatsApp ou e-mail <strong>NÃO dispensa a apresentação posterior do documento original</strong> na STGP. Ficam dispensados da apresentação do original <u>apenas os atestados médicos emitidos com assinatura digital válida, enviados em formato PDF</u>.
+                </div>
+              </li>
+            </ul>
+            <p style="margin: 6px 0 0 0; color: #854d0e; font-size: 0.82rem; font-weight: 600;">
+              ℹ️ Este requerimento é emitido <u>exclusivamente para os servidores celetistas (CLT)</u>.
+            </p>
+          </div>
+
+          <!-- Orientações para Celetistas -->
+          <div class="info-box col-span-2" style="background-color: #eff6ff; border-left: 4px solid #1e3a8a;">
+            <strong style="color: #1e3a8a;">💼 Procedimentos para Servidores Celetistas (CLT):</strong>
+            <ul style="margin: 4px 0 0 0; padding-left: 1.2rem; color: #1e3a8a; font-size: 0.83rem; line-height: 1.45;">
+              <li><strong>Até 15 dias de afastamento:</strong> Pagamento integral do salário pela UNESP (Ofício Circular nº 31/2008 - PRAd), sem necessidade de perícia do INSS. Apresentar este requerimento assinado e com visto da chefia à STGP em até 24 horas úteis.</li>
+              <li><strong>Superior a 15 dias:</strong> Primeiros 15 dias pagos pela UNESP e, a contar do 16º dia, encaminhamento à perícia do INSS para concessão de <strong>Auxílio por Incapacidade Temporária</strong> (Lei nº 8.213/1991).</li>
+              <li><strong>Ciência da Chefia Imediata:</strong> Obrigatória neste requerimento (assinatura e visto indispensáveis).</li>
+            </ul>
+          </div>
+
+          <div class="form-group">
+            <label for="saude_dias">Quantidade de Dias *</label>
+            <input type="number" id="saude_dias" min="1" max="180" placeholder="Ex: 5" value="3">
+          </div>
+
+          <div class="form-group">
+            <label for="saude_data_inicio">Data de Início do Afastamento *</label>
+            <input type="date" id="saude_data_inicio">
+          </div>
+
+          <div class="form-group col-span-2">
+            <label for="saude_data_fim">Data de Término (calculada automaticamente)</label>
+            <input type="date" id="saude_data_fim" readonly class="input-readonly">
+          </div>
+
+          <div class="col-span-2" id="saude-alerta-regime" style="font-size: 0.85rem; padding: 8px 12px; border-radius: 6px; margin-top: -4px; margin-bottom: 6px; display: none;"></div>
+
+          <div class="form-group">
+            <label for="saude_medico_nome">Nome do Profissional Assistente (Médico ou Dentista - Opcional)</label>
+            <input type="text" id="saude_medico_nome" placeholder="Ex: Dr. João Silveira" autocomplete="off">
+          </div>
+
+          <div class="form-group">
+            <label for="saude_medico_crm">CRM ou CRO (Opcional)</label>
+            <input type="text" id="saude_medico_crm" placeholder="Ex: CRM/SP 123456 ou CRO/SP 78910" autocomplete="off">
+          </div>
+        </div>
+
+        <!-- Campos: Licença Gestante (Antes do nascimento) -->
+        <div id="fields-gestante-antes" class="form-grid dynamic-fields" style="display: none;">
+          <div class="info-box col-span-2">
+            <strong>ℹ️ Afastamento e Prazo Automático de 180 Dias:</strong>
+            <p style="margin-top: 4px; margin-bottom: 6px;">A licença gestante contempla automaticamente o período total de <strong>180 dias</strong> (120 + 60 dias adicionais) no requerimento oficial, sem necessidade de pedido apartado:</p>
+            <ul>
+              <li><strong>Servidora Estatutária (Efetivo / Autárquico):</strong> Início a partir da <strong>32ª semana</strong> de gestação. Ampliação para 180 dias fundamentada na <strong>Lei Complementar Estadual nº 1.054/2008</strong> (que alterou o art. 198 da Lei nº 10.261/1968 - Estatuto).</li>
+              <li><strong>Servidora Celetista (CLT):</strong> Início a partir de <strong>28 dias antes da data provável do parto</strong> (ou 8º mês). Extensão para 180 dias regulamentada na UNESP pelo <strong>Ofício Circular nº 16/2008 - PRAd</strong> (120 dias via INSS + 60 dias custeados pela UNESP).</li>
+            </ul>
+          </div>
+
+          <div class="form-group">
+            <label for="gestante_antes_inicio">Data de Início do Afastamento *</label>
+            <input type="date" id="gestante_antes_inicio">
+          </div>
+
+          <div class="form-group">
+            <label for="gestante_antes_dpp">Data Prevista do Parto (DPP) *</label>
+            <input type="date" id="gestante_antes_dpp">
+          </div>
+
+          <div class="form-group">
+            <label for="gestante_antes_medico_nome">Nome do(a) Médico(a) Assistente (Opcional)</label>
+            <input type="text" id="gestante_antes_medico_nome" placeholder="Ex: Dra. Ana Costa" autocomplete="off">
+          </div>
+
+          <div class="form-group">
+            <label for="gestante_antes_medico_crm">CRM do(a) Médico(a) Assistente (Opcional)</label>
+            <input type="text" id="gestante_antes_medico_crm" placeholder="Ex: CRM/SP 987654" autocomplete="off">
+          </div>
+
+          <div class="form-group col-span-2">
+            <label class="checkbox-container">
+              <input type="checkbox" id="gestante_antes_anexo" checked>
+              <span>Declaro que anexo o Laudo/Atestado Médico Obstétrico com a indicação da idade gestacional e Data Provável do Parto (DPP).</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Campos: Licença Gestante (Após o nascimento) -->
+        <div id="fields-gestante-apos" class="form-grid dynamic-fields" style="display: none;">
+          <div class="info-box col-span-2">
+            <strong>ℹ️ Concessão Automática de 180 Dias:</strong>
+            <p style="margin-top: 4px; margin-bottom: 6px;">O requerimento já inclui automaticamente a totalidade de <strong>180 dias</strong> de licença-maternidade fundamentada conforme o regime jurídico:</p>
+            <ul>
+              <li><strong>Servidora Estatutária (Efetivo / Autárquico):</strong> Prorrogação de 60 dias pela <strong>Lei Complementar Estadual nº 1.054/2008</strong> (art. 198 da Lei nº 10.261/1968 - Estatuto).</li>
+              <li><strong>Servidora Celetista (CLT):</strong> Extensão de 60 dias pela UNESP via <strong>Ofício Circular nº 16/2008 - PRAd</strong> (120 dias de salário-maternidade INSS + 60 dias custeados pela UNESP).</li>
+            </ul>
+          </div>
+
+          <div class="form-group">
+            <label for="gestante_apos_nascimento">Data do Parto / Nascimento *</label>
+            <input type="date" id="gestante_apos_nascimento">
+          </div>
+
+          <div class="form-group">
+            <label for="gestante_apos_nome_crianca">Nome da Criança *</label>
+            <input type="text" id="gestante_apos_nome_crianca" placeholder="Ex: Lucas da Silva Souza">
+          </div>
+
+          <div class="form-group col-span-2">
+            <label class="checkbox-container">
+              <input type="checkbox" id="gestante_apos_anexo" checked>
+              <span>Declaro que anexo cópia legível da Certidão de Nascimento da criança.</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Campos: Alteração de Dados Bancários -->
+        <div id="fields-banco" class="form-grid dynamic-fields" style="display: none;">
+          <div class="info-box col-span-2">
+            <strong>ℹ️ Orientações para Alteração de Dados Bancários:</strong>
+            <p style="margin-top: 4px; margin-bottom: 6px;">O crédito de vencimentos, proventos e salários é efetuado em conta de <strong>titularidade exclusiva do(a) servidor(a)</strong>.</p>
+            <ul style="margin-top: 4px;">
+              <li><strong>Instituição Financeira Oficial:</strong> A UNESP realiza o crédito de vencimentos, salários e proventos exclusivamente no <strong>Banco do Brasil (001)</strong>.</li>
+              <li><strong>Titularidade Obrigatória:</strong> A conta deve ser de titularidade exclusiva do(a) servidor(a). Não são aceitas contas conjuntas com terceiros ou em nome de outra pessoa física.</li>
+              <li><strong>Comprovante Obrigatório:</strong> É indispensável apresentar comprovante bancário (cópia do cartão, extrato bancário ou comprovante do aplicativo contendo nome, agência e conta).</li>
+              <li><strong>Chefia Imediata:</strong> Por tratar-se de dado particular/sigiloso, este requerimento <strong>não necessita</strong> de visto ou ciência da chefia imediata.</li>
+            </ul>
+          </div>
+
+          <div class="form-group">
+            <label for="banco_nome">Instituição Financeira *</label>
+            <input type="text" id="banco_nome" value="Banco do Brasil (001)" readonly style="background-color: #f1f5f9; cursor: not-allowed; font-weight: 600; color: #1e293b;">
+            <p class="field-hint" style="margin-top: 4px;">Instituição exclusiva para crédito de folha de pagamento da UNESP.</p>
+          </div>
+
+          <div class="form-group">
+            <label for="banco_tipo_conta">Tipo de Conta *</label>
+            <select id="banco_tipo_conta" required>
+              <option value="Conta Corrente" selected>Conta Corrente</option>
+              <option value="Conta Salário">Conta Salário</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="banco_agencia">Número da Agência (com dígito) *</label>
+            <input type="text" id="banco_agencia" placeholder="Ex: 0098-1" required autocomplete="off">
+          </div>
+
+          <div class="form-group">
+            <label for="banco_conta">Número da Conta (com dígito) *</label>
+            <input type="text" id="banco_conta" placeholder="Ex: 12345-6" required autocomplete="off">
+          </div>
+
+          <div class="form-group col-span-2">
+            <label class="checkbox-container">
+              <input type="checkbox" id="banco_anexo_comprovante" checked>
+              <span>Declaro que anexo comprovante dos dados bancários (extrato bancário, cópia do cartão ou documento da instituição financeira onde constem nome, agência e conta).</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Campos: Adicional de Insalubridade (Celetista - CLT) -->
+        <div id="fields-insalubridade" class="form-grid dynamic-fields" style="display: none;">
+          <!-- Banner Informativo Institucional -->
+          <div class="info-box col-span-2" style="background-color: #fefce8; border-left: 4px solid #ca8a04;">
+            <strong style="color: #854d0e; font-size: 0.95rem; display: block; margin-bottom: 4px;">📢 Servidor(a) Celetista (CLT) — Orientações e Regramento Institucional:</strong>
+            <p style="margin: 0 0 6px 0; color: #713f12; font-size: 0.84rem; line-height: 1.45;">
+              A concessão do Adicional de Insalubridade aos servidores celetistas é fundamentada nos <strong>Artigos 189 e 192 da CLT</strong>, na <strong>NR-15 do MTE</strong> e na <strong>Portaria UNESP nº 490/2015, alterada pela Portaria UNESP nº 86/2026</strong>:
+            </p>
+            <ul style="margin: 0; padding-left: 1.2rem; color: #713f12; font-size: 0.83rem; line-height: 1.45;">
+              <li><strong>Efeitos Pecuniários Retroativos (Portaria UNESP nº 86/2026):</strong> Os efeitos financeiros são devidos a contar da homologação do laudo técnico, <u>com efeitos retroativos à data de início de exercício na atividade ou local insalubre</u>.</li>
+              <li><strong>Graus e Percentuais:</strong> 40% (grau máximo), 20% (grau médio) ou 10% (grau mínimo), calculados sobre o salário mínimo.</li>
+              <li><strong>Não Cumulatividade:</strong> Os adicionais de insalubridade e periculosidade não são acumuláveis (Art. 193, §2º da CLT). Havendo exposição a ambos, o servidor deverá firmar Termo de Opção.</li>
+              <li><strong>Ciência da Chefia Imediata:</strong> Obrigatória. O superior imediato deve atestar as condições de trabalho e instruir o formulário de riscos ambientais.</li>
+            </ul>
+            <div style="margin-top: 8px; padding: 6px 10px; background: #eff6ff; border-left: 3px solid #1e3a8a; border-radius: 4px; color: #1e3a8a; font-size: 0.82rem; line-height: 1.4;">
+              <strong>ℹ️ Servidor(a) Estatutário(a) (Autárquico / Efetivo):</strong> Não utiliza este formulário! Conforme as normas da UNESP (Instrução CGP/PROPEG nº 02/2021 e Decreto Estadual nº 69.234/2024), servidores estatutários solicitam a concessão ou revisão de insalubridade <strong>diretamente no módulo de Insalubridade do SisRH (<a href="https://sistemas.unesp.br/rh/" target="_blank" style="color: #1e3a8a; text-decoration: underline; font-weight: 700;">https://sistemas.unesp.br/rh/</a>)</strong> para encaminhamento ao DPME.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="insalubridade_motivo">Motivo da Solicitação *</label>
+            <select id="insalubridade_motivo" required>
+              <option value="Pedido inicial" selected>Pedido inicial (primeira concessão)</option>
+              <option value="Pedido de revisão de grau de insalubridade">Pedido de revisão de grau de insalubridade</option>
+              <option value="Alteração de função">Alteração de função</option>
+              <option value="Mudança de unidade administrativa">Mudança de unidade administrativa</option>
+              <option value="Mudança de local de trabalho">Mudança de local de trabalho</option>
+              <option value="Designação/nomeação">Designação / nomeação</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="insalubridade_data_inicio">Data de Início de Exercício na Atividade/Local *</label>
+            <input type="date" id="insalubridade_data_inicio" required>
+            <p class="field-hint" style="margin-top: 3px; font-size: 0.76rem; color: #64748b;">Marco para apuração dos efeitos pecuniários retroativos (Portaria UNESP nº 86/2026).</p>
+          </div>
+
+          <div class="form-group col-span-2">
+            <label for="insalubridade_local">Local / Ambiente Específico de Trabalho *</label>
+            <input type="text" id="insalubridade_local" placeholder="Ex: Laboratório de Bioquímica e Toxicologia - Bloco Didático II" required autocomplete="off">
+          </div>
+
+          <!-- Documentos Comprobatórios Anexos -->
+          <div class="form-group col-span-2" style="margin-top: 0.25rem;">
+            <label style="font-weight: 700; color: var(--darker-blue); margin-bottom: 6px; display: block;">Documentos Anexos a serem apresentados juntamente com este requerimento:</label>
+          </div>
+
+          <div class="form-group col-span-2">
+            <label class="checkbox-container">
+              <input type="checkbox" id="insalubridade_anexo_rol" checked>
+              <span>Rol de Atividades do(a) servidor(a), devidamente detalhado e assinado.</span>
+            </label>
+          </div>
+
+          <div class="form-group col-span-2">
+            <label class="checkbox-container">
+              <input type="checkbox" id="insalubridade_anexo_riscos" checked>
+              <span>Formulário de Reconhecimento dos Riscos Ambientais no Trabalho, preenchido, datado, carimbado e assinado conjuntamente com o(a) superior imediato(a).</span>
+            </label>
+          </div>
+
+          <div class="form-group col-span-2" id="grupo-anexo-laudo-ant" style="display: none;">
+            <label class="checkbox-container">
+              <input type="checkbox" id="insalubridade_anexo_laudo_ant">
+              <span>Cópia do Laudo Técnico Pericial anterior (obrigatório em caso de pedido de revisão de grau).</span>
+            </label>
+          </div>
+
+          <div class="form-group col-span-2">
+            <label class="checkbox-container">
+              <input type="checkbox" id="insalubridade_anexo_opcao">
+              <span>Termo de Opção entre Adicional de Insalubridade e Periculosidade (Artigo 193, § 2º da CLT), caso haja exposição cumulativa.</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Campos: Auxílio Funeral (Público Externo / Terceiros) -->
+        <div id="fields-auxilio-funeral" class="form-grid dynamic-fields" style="display: none;">
+          <div class="info-box col-span-2">
+            <strong>ℹ️ Orientações e Fundamentação Legal (Portaria UNESP nº 281/1997 e Artigo 95 do ESUNESP):</strong>
+            <p style="margin-top: 4px; margin-bottom: 6px;">O <strong>Auxílio Funeral</strong> é um benefício assistencial devido em virtude do falecimento de <strong>servidor estatutário (ativo ou inativo)</strong>, de valor correspondente a <strong>1 (um) mês da respectiva remuneração ou provento</strong> à época do falecimento.</p>
+            <ul style="margin-top: 4px;">
+              <li><strong>Ordem de Preferência:</strong> Concedido ao <strong>cônjuge</strong>, <strong>companheiro(a)</strong> ou, na falta destes, à pessoa que comprovar ter suportado as despesas com o funeral.</li>
+              <li><strong>Dispensa para Cônjuge/Companheiro:</strong> Quando requerido pelo cônjuge ou companheiro(a), este fica <strong>dispensado da comprovação da despesa de funeral</strong> (Art. 2º, Parágrafo único, da Portaria UNESP nº 281/97), devendo juntar Certidão de Casamento ou Comprovação de União Estável.</li>
+              <li><strong>Planos Funerários / Terceiros:</strong> Caso as despesas tenham sido custeadas por terceiros em virtude da contratação de planos funerários, o pagamento do benefício <strong>somente será efetivado mediante apresentação de alvará judicial</strong>.</li>
+              <li><strong>Servidores Celetistas (CLT):</strong> Conforme o Artigo 6º da Portaria UNESP nº 281/1997, tratando-se de servidor regido pela CLT, o benefício de funeral deverá ser requerido diretamente junto ao INSS.</li>
+            </ul>
+          </div>
+
+          <!-- Dados do Servidor Falecido -->
+          <div class="form-group col-span-2">
+            <label for="funeral_falecido_nome">Nome Completo do(a) Servidor(a) Falecido(a) *</label>
+            <input type="text" id="funeral_falecido_nome" placeholder="Ex: Antônio Marcos de Oliveira" autocomplete="off">
+          </div>
+
+          <div class="form-group col-span-2">
+            <label for="funeral_falecido_data">Data do Falecimento (Óbito) *</label>
+            <input type="date" id="funeral_falecido_data" class="responsive-date-input">
+          </div>
+
+          <!-- Forma de Recebimento do Benefício -->
+          <div class="form-group col-span-2" style="margin-top: 0.5rem;">
+            <label style="font-weight: 700; color: var(--darker-blue);">Forma de Pagamento: Possui conta corrente no Banco do Brasil em seu nome? *</label>
+            <div class="radio-options-row">
+              <label class="checkbox-container" style="cursor: pointer;">
+                <input type="radio" name="funeral_tem_bb" id="funeral_bb_sim" value="sim" checked>
+                <span><strong>Sim</strong>, possuo conta corrente no Banco do Brasil</span>
+              </label>
+              <label class="checkbox-container" style="cursor: pointer;">
+                <input type="radio" name="funeral_tem_bb" id="funeral_bb_nao" value="nao">
+                <span><strong>Não</strong> possuo conta corrente no Banco do Brasil</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Dados Bancários se POSSUIR Banco do Brasil -->
+          <div id="funeral-dados-bb" class="col-span-2 form-grid-2cols">
+            <div class="form-group">
+              <label for="funeral_agencia">Número da Agência BB (com dígito) *</label>
+              <input type="text" id="funeral_agencia" placeholder="Ex: 0098-1" autocomplete="off">
+            </div>
+
+            <div class="form-group">
+              <label for="funeral_conta">Número da Conta Corrente BB (com dígito) *</label>
+              <input type="text" id="funeral_conta" placeholder="Ex: 12345-6" autocomplete="off">
+              <p class="field-hint" style="margin-top: 4px; color: #b91c1c; font-weight: 600;">Atenção: Deve ser Conta Corrente (não é aceita conta salário).</p>
+            </div>
+          </div>
+
+          <!-- Aviso de Pagamento em Cheque se NÃO POSSUIR Banco do Brasil -->
+          <div id="funeral-aviso-cheque" class="col-span-2" style="display: none;">
+            <div class="info-box" style="background-color: #fef2f2; border-left: 4px solid #ef4444; border-color: #fca5a5;">
+              <label class="checkbox-container" style="align-items: flex-start;">
+                <input type="checkbox" id="funeral_ciente_cheque" checked>
+                <span style="font-size: 0.88rem; line-height: 1.45; color: #991b1b;">
+                  <strong>Declaração de Ciência Obrigatória:</strong><br>
+                  Declaro estar ciente de que, por não possuir conta corrente em meu nome no Banco do Brasil, o pagamento do Auxílio Funeral (caso seja deferido) será efetuado por meio de <strong>cheque nominal</strong> a ser retirado presencialmente na <strong>Seção Técnica de Finanças da FCT UNESP</strong>.
+                </span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Documentos Necessários e Anexos -->
+          <div class="form-group col-span-2">
+            <label style="font-weight: 700; color: var(--darker-blue); margin-bottom: 6px; display: block;">Documentos Anexos a serem apresentados juntamente com o requerimento:</label>
+          </div>
+
+          <div class="form-group col-span-2">
+            <label class="checkbox-container">
+              <input type="checkbox" id="funeral_anexo_certidao" checked>
+              <span>Cópia legível da <strong>Certidão de Óbito</strong> do(a) servidor(a) falecido(a).</span>
+            </label>
+          </div>
+
+          <div class="form-group col-span-2">
+            <label class="checkbox-container">
+              <input type="checkbox" id="funeral_anexo_documento" checked>
+              <span>Cópia legível do <strong>documento de identificação oficial com foto e CPF (RG / CPF / CNH / CIN)</strong> do(a) requerente.</span>
+            </label>
+          </div>
+
+          <div class="form-group col-span-2" id="grupo-anexo-casamento" style="display: none;">
+            <label class="checkbox-container">
+              <input type="checkbox" id="funeral_anexo_casamento">
+              <span>Cópia da <strong>Certidão de Casamento ou Declaração/Escritura de União Estável</strong> (para comprovação de cônjuge ou companheiro).</span>
+            </label>
+          </div>
+
+          <div class="form-group col-span-2" id="grupo-anexo-nf">
+            <label class="checkbox-container">
+              <input type="checkbox" id="funeral_anexo_nf" checked>
+              <span id="texto-anexo-nf">Comprovante das despesas de funeral (<strong>notas fiscais/recibos originais</strong> em nome do(a) requerente).</span>
+            </label>
+          </div>
+
+          <div class="form-group col-span-2" id="grupo-anexo-alvara">
+            <label class="checkbox-container">
+              <input type="checkbox" id="funeral_anexo_alvara">
+              <span><strong>Alvará Judicial</strong> (obrigatório caso as despesas tenham sido custeadas por terceiros em razão de plano funerário).</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Campos: Indenização de Licença-Prêmio de Beneficiários (Público Externo) -->
+        <div id="fields-lp-beneficiario" class="form-grid dynamic-fields" style="display: none;">
+          <!-- Orientações do Modelo Oficial -->
+          <div class="info-box col-span-2" style="background-color: #eff6ff; border-left: 4px solid #1e3a8a;">
+            <strong style="color: #1e3a8a; font-size: 0.95rem; display: block; margin-bottom: 4px;">📜 Modelo 03 — Indenização de Licença-Prêmio por Beneficiários:</strong>
+            <p style="margin: 0; color: #1e3a8a; font-size: 0.84rem; line-height: 1.45;">
+              Requerimento formal de indenização de saldos de licença-prêmio não usufruídos em vida por ex-servidor(a) falecido(a), endereçado ao(à) <strong>Diretor(a) da Divisão Técnica Administrativa da FCT UNESP</strong>.
+            </p>
+          </div>
+
+          <!-- Dados do(a) Ex-Servidor(a) Falecido(a) -->
+          <div class="form-group col-span-2" style="margin-top: 0.25rem;">
+            <label style="font-weight: 700; color: var(--darker-blue); margin-bottom: 4px; display: block;">Dados do(a) Ex-Servidor(a) Falecido(a):</label>
+          </div>
+
+          <div class="form-group col-span-2">
+            <label for="lp_falecido_nome">Nome Completo do(a) Ex-Servidor(a) Falecido(a) *</label>
+            <input type="text" id="lp_falecido_nome" placeholder="Ex: José Carlos dos Santos" autocomplete="off">
+          </div>
+
+          <div class="form-group col-span-2">
+            <label for="lp_falecido_data">Data do Falecimento (Óbito) *</label>
+            <input type="date" id="lp_falecido_data" class="responsive-date-input">
+          </div>
+
+          <!-- Forma de Pagamento / Informações Bancárias do(a) Requerente -->
+          <div class="form-group col-span-2" style="margin-top: 0.5rem; padding-top: 0.85rem; border-top: 1px dashed var(--border-color);">
+            <label style="font-weight: 700; color: var(--darker-blue);">Possui conta corrente no Banco do Brasil em seu nome? *</label>
+            <div class="radio-options-row">
+              <label class="checkbox-container" style="cursor: pointer;">
+                <input type="radio" name="lp_tem_bb" id="lp_bb_sim" value="sim" checked>
+                <span><strong>Sim</strong>, possuo conta no Banco do Brasil</span>
+              </label>
+              <label class="checkbox-container" style="cursor: pointer;">
+                <input type="radio" name="lp_tem_bb" id="lp_bb_nao" value="nao">
+                <span><strong>Não</strong> possuo conta no Banco do Brasil</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Dados Bancários se POSSUIR Banco do Brasil -->
+          <div id="lp-dados-bb" class="col-span-2 form-grid-2cols">
+            <div class="form-group">
+              <label for="lp_tipo_conta">Tipo de Conta *</label>
+              <select id="lp_tipo_conta" required>
+                <option value="Conta Corrente" selected>Conta Corrente</option>
+                <option value="Conta Poupança">Conta Poupança</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="lp_agencia">Número da Agência BB (com dígito) *</label>
+              <input type="text" id="lp_agencia" placeholder="Ex: 0098-1" autocomplete="off" required>
+            </div>
+
+            <div class="form-group">
+              <label for="lp_conta">Número da Conta BB (com dígito) *</label>
+              <input type="text" id="lp_conta" placeholder="Ex: 12345-6" autocomplete="off" required>
+            </div>
+          </div>
+
+          <!-- Informações da Área de Gestão de Pessoas (Blocos de Licença-Prêmio) -->
+          <div class="form-group col-span-2" style="margin-top: 0.5rem; padding-top: 0.85rem; border-top: 1px dashed var(--border-color);">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+              <label style="font-weight: 700; color: var(--darker-blue); margin-bottom: 0;">Informações da Área de Gestão de Pessoas — Saldos de Licença-Prêmio:</label>
+              <span class="badge" style="background-color: #e0f2fe; color: #0369a1; font-size: 0.78rem; padding: 2px 8px; border-radius: 4px; font-weight: 600;">Inclusão Dinâmica de Blocos</span>
+            </div>
+            <p class="field-hint" style="margin-top: 4px;">
+              Inclua as informações de cada bloco de licença-prêmio a ser indenizado (total de dias numeral e por extenso, período aquisitivo e data de publicação da Portaria no DOE). Você pode adicionar quantas linhas forem necessárias.
+            </p>
+          </div>
+
+          <!-- Container dinâmico dos blocos -->
+          <div id="lp-blocos-container" class="col-span-2" style="display: flex; flex-direction: column; gap: 14px;">
+            <!-- Renderizado dinamicamente via JS -->
+          </div>
+
+          <div class="col-span-2" style="margin-top: 4px;">
+            <button type="button" id="btn-adicionar-bloco-lp" class="btn btn-outline" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 6px; border: 1.5px dashed var(--primary); color: var(--primary); font-weight: 600; padding: 0.65rem 1rem;">
+              <span>➕ Adicionar Outro Bloco de Licença-Prêmio</span>
+            </button>
+          </div>
+
+          <!-- Documentos Comprobatórios Anexos -->
+          <div class="form-group col-span-2" style="margin-top: 0.75rem; padding-top: 0.85rem; border-top: 1px dashed var(--border-color);">
+            <label style="font-weight: 700; color: var(--darker-blue); margin-bottom: 6px; display: block;">Documentos Comprobatórios Anexos a serem apresentados juntamente com o requerimento:</label>
+          </div>
+
+          <div class="form-group col-span-2">
+            <label class="checkbox-container">
+              <input type="checkbox" id="lp_anexo_identidade" checked>
+              <span>Cópia de documento de identidade (RG com CPF / CIN / CNH)</span>
+            </label>
+          </div>
+
+          <div class="form-group col-span-2">
+            <label class="checkbox-container">
+              <input type="checkbox" id="lp_anexo_obito" checked>
+              <span>Cópia da certidão de óbito do servidor falecido</span>
+            </label>
+          </div>
+
+          <div class="form-group col-span-2">
+            <label class="checkbox-container">
+              <input type="checkbox" id="lp_anexo_alvara" checked>
+              <span>Alvará Judicial, Escritura Pública de Inventário/Adjudicação, Formal de Partilha ou documento jurídico equivalente que conceda poderes específicos ao(s) beneficiário(s) para o recebimento da indenização da licença-prêmio não usufruída pelo(a) ex-servidor(a).</span>
+            </label>
+          </div>
+
+          <div class="form-group col-span-2" id="grupo-lp-anexo-banco">
+            <label class="checkbox-container">
+              <input type="checkbox" id="lp_anexo_banco" checked>
+              <span>Comprovante dos dados bancários da conta no Banco do Brasil em nome do(a) requerente.</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Campos Específicos: Isenção de Imposto de Renda (Aposentados) -->
+        <div id="fields-isencao-ir" class="form-grid" style="display: none;">
+          <!-- Caixa Informativa das Normas Oficiais -->
+          <div class="col-span-2 info-box" style="border-left: 4px solid #1e3a8a; background-color: #eff6ff;">
+            <p style="margin: 0; color: #1e3a8a; font-size: 0.85rem; line-height: 1.45;">
+              <strong>ℹ️ Benefício Exclusivo para Servidores Aposentados:</strong><br>
+              A isenção do Imposto de Renda Retido na Fonte (IRRF) é restrita aos <strong>proventos de aposentadoria e pensão</strong> percebidos por portadores de moléstia grave especificada no <strong>inciso XIV do art. 6º da Lei Federal nº 7.713/1988</strong> e no <strong>art. 30 da Lei Federal nº 9.250/1995</strong>. Servidores em atividade não fazem jus a esta isenção.<br>
+              <span style="color: #991b1b; font-weight: 600;">⚖️ Regime Jurídico Aplicável:</span> Somente servidores aposentados vinculados aos regimes <strong>Autárquico</strong> ou <strong>Efetivo</strong> (SPPREV) podem solicitar este serviço pela UNESP. O regime jurídico <strong>CLT</strong> não é elegível (aposentadoria vinculada ao RGPS/INSS).
+            </p>
+          </div>
+
+          <!-- Documentos Comprobatórios Anexos -->
+          <div class="form-group col-span-2" style="margin-top: 0.5rem;">
+            <label style="font-weight: 700; color: var(--darker-blue); margin-bottom: 6px; display: block;">Documentos Anexos a serem apresentados juntamente com o requerimento:</label>
+          </div>
+
+          <div class="form-group col-span-2">
+            <label class="checkbox-container">
+              <input type="checkbox" id="ir_anexo_documento" checked>
+              <span>Cópia legível de <strong>documento oficial de identificação com foto e CPF (RG / CPF / CNH / CIN)</strong> do(a) servidor(a) aposentado(a).</span>
+            </label>
+          </div>
+
+          <div class="form-group col-span-2">
+            <label class="checkbox-container">
+              <input type="checkbox" id="ir_anexo_aposentadoria" checked>
+              <span>Cópia legível da <strong>publicação da aposentadoria no DOE</strong>.</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Campos Específicos: Contagem e Averbação de Tempo de Serviço/Contribuição -->
+        <div id="fields-contagem-tempo" class="form-grid dynamic-fields" style="display: none;">
+          <!-- Aviso / Caixa de Ajuda ao Servidor -->
+          <div class="info-box col-span-2" style="background-color: #eff6ff; border-left: 4px solid #1e3a8a;">
+            <strong style="color: #1e3a8a; font-size: 0.95rem; display: block; margin-bottom: 4px;">ℹ️ Orientações e Enquadramento Legal da STGP/CRH:</strong>
+            <p style="margin: 0; color: #1e3a8a; font-size: 0.85rem; line-height: 1.45;">
+              <strong>Atenção:</strong> A STGP/CRH analisará os documentos apresentados e definirá o enquadramento legal do cômputo (adicional por tempo de serviço, sexta-parte, licença-prêmio e/ou fins exclusivos de aposentadoria). Junte sempre a certidão original ou documento emitido eletronicamente com validação de autenticidade.
+            </p>
+          </div>
+
+          <div class="form-group col-span-2">
+            <label for="contagem_orgao_origem">Nome do Órgão Empregador / Empresa de Origem *</label>
+            <input type="text" id="contagem_orgao_origem" placeholder="Ex: Prefeitura Municipal de Presidente Prudente" autocomplete="off" required>
+          </div>
+
+          <div class="form-group col-span-2">
+            <label for="contagem_tipo_orgao">Tipo de Órgão *</label>
+            <select id="contagem_tipo_orgao" required>
+              <option value="" disabled selected>Selecione o tipo de órgão...</option>
+              <option value="Empresa Privada">Empresa Privada</option>
+              <option value="Órgão Federal">Órgão Federal</option>
+              <option value="Outro Estado/Município">Outro Estado/Município</option>
+              <option value="Órgão do Estado de SP / Unesp">Órgão do Estado de SP / Unesp</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="contagem_data_inicio">Data Inicial *</label>
+            <input type="date" id="contagem_data_inicio" required>
+          </div>
+
+          <div class="form-group">
+            <label for="contagem_data_fim">Data Final *</label>
+            <input type="date" id="contagem_data_fim" required>
+          </div>
+
+          <!-- Documentos Comprobatórios Apresentados -->
+          <div class="form-group col-span-2" style="margin-top: 0.25rem;">
+            <label style="font-weight: 700; color: var(--darker-blue); margin-bottom: 6px; display: block;">Documentos Comprobatórios Apresentados em Anexo:</label>
+          </div>
+
+          <div class="form-group col-span-2">
+            <label class="checkbox-container">
+              <input type="checkbox" id="contagem_doc_ctc_inss">
+              <span>Certidão de Tempo de Contribuição (CTC) emitida pelo INSS</span>
+            </label>
+          </div>
+
+          <div class="form-group col-span-2">
+            <label class="checkbox-container">
+              <input type="checkbox" id="contagem_doc_certidao_orgao">
+              <span>Certidão de Tempo de Serviço / Frequência emitida pelo Órgão de Origem</span>
+            </label>
+          </div>
+
+          <div class="form-group col-span-2">
+            <label class="checkbox-container">
+              <input type="checkbox" id="contagem_doc_dtci">
+              <span>Declaração de Tempo de Contribuição Intrarregime (DTCI)</span>
+            </label>
+          </div>
+
+          <div class="form-group col-span-2">
+            <label class="checkbox-container">
+              <input type="checkbox" id="contagem_doc_outro">
+              <span>Outro documento comprovatório (especificar)</span>
+            </label>
+          </div>
+
+          <div class="form-group col-span-2" id="grupo-contagem-doc-outro-texto" style="display: none;">
+            <label for="contagem_doc_outro_texto">Especificação do Outro Documento Comprovatório *</label>
+            <input type="text" id="contagem_doc_outro_texto" placeholder="Ex: Carteira de Trabalho e Previdência Social (CTPS)" autocomplete="off">
+          </div>
+
+          <!-- Observações / Informações Adicionais -->
+          <div class="form-group col-span-2">
+            <label for="contagem_observacoes">Observações / Informações Adicionais (Opcional)</label>
+            <textarea id="contagem_observacoes" rows="3" placeholder="Informações adicionais, número de processo anterior, ressalvas ou detalhes complementares..." style="resize: vertical;"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ciência da Chefia Imediata -->
+      <div class="card" id="card-chefia">
+        <div class="card-header">
+          <h2>4. Ciência da Chefia Imediata</h2>
+        </div>
+        <div class="form-group" style="margin-bottom: 0;">
+          <label class="checkbox-container" id="lbl-chefia-container">
+            <input type="checkbox" id="chefia_obrigatoria">
+            <span id="txt-chefia-label"><strong>É obrigatória a ciência / visto da chefia imediata neste requerimento</strong></span>
+          </label>
+          <p class="field-hint" id="hint-chefia" style="margin-top: 6px;">Se selecionado, o documento incluirá o campo formal de visto ("Ciente") da chefia imediata da lotação indicada.</p>
+        </div>
+      </div>
+
+
+      <!-- Botões de Ação -->
+      <div class="action-buttons-card">
+        <button type="button" id="btn-ver-previa-mobile" class="btn btn-preview-jump mobile-only">
+          <span class="btn-icon">👁️</span> Visualizar Documento (A4)
+        </button>
+        <button id="btn-gerar-pdf" class="btn btn-primary">
+          <span class="btn-icon">📄</span> Baixar Requerimento em PDF
+        </button>
+        <button id="btn-imprimir" class="btn btn-secondary">
+          <span class="btn-icon">🖨️</span> Imprimir / Visualizar Impressão
+        </button>
+        <button id="btn-preencher-exemplo" class="btn btn-outline">
+          <span class="btn-icon">✨</span> Preencher Exemplo
+        </button>
+      </div>
+    </section>
+
+    <!-- Coluna Direita: Pré-visualização em Tempo Real (Folha A4) -->
+    <section class="preview-section">
+      <div class="preview-toolbar">
+        <div class="preview-status">
+          <span class="pulse-dot"></span> Visualização em Tempo Real (Padrão Oficial A4)
+        </div>
+        <div class="preview-toolbar-actions">
+          <div class="preview-zoom-controls">
+            <button type="button" class="btn-zoom active" id="btn-zoom-fit" title="Ajustar à largura da tela">
+              <span>📱</span> Ajustar à Tela
+            </button>
+            <button type="button" class="btn-zoom" id="btn-zoom-100" title="Ver em tamanho real (100%)">
+              <span>🔍</span> 100%
+            </button>
+          </div>
+          <div class="preview-hint">O PDF gerado será idêntico a esta pré-visualização.</div>
+        </div>
+      </div>
+
+      <div class="a4-wrapper mode-fit-screen" id="a4-wrapper">
+        <div class="a4-scale-container" id="a4-scale-container">
+          <div id="documento-pdf" class="a4-page">
+          <!-- Cabeçalho Oficial: Apenas o Destinatário/Vocativo Solicitado -->
+          <div class="doc-destinatario">
+            <strong id="doc-destinatario-texto">ILMO(A) SENHOR(A) SUPERVISOR(A) DA SEÇÃO TÉCNICA DE GESTÃO DE PESSOAS DA FACULDADE DE CIÊNCIAS E TECNOLOGIA DA UNESP - CÂMPUS DE PRESIDENTE PRUDENTE</strong>
+          </div>
+
+          <!-- Qualificação do Requerente: Servidor(a) -->
+          <div class="doc-paragrafo" id="doc-qualificacao-servidor">
+            Eu, <strong class="doc-val" id="prev-nome">[Nome do(a) Servidor(a)]</strong>, 
+            matrícula funcional nº <strong class="doc-val" id="prev-matricula">[Matrícula]</strong>, 
+            inscrito(a) no CPF sob o nº <strong class="doc-val" id="prev-cpf">[000.000.000-00]</strong>, 
+            regime jurídico <span class="doc-val" id="prev-regime">[Regime Jurídico]</span>, 
+            <span class="doc-val" id="prev-cargo">[Função]</span>, 
+            lotado(a) no(a) <span class="doc-val" id="prev-lotacao">[Lotação / Departamento]</span>, 
+            e-mail institucional <span class="doc-val" id="prev-email">[e-mail institucional]</span>, 
+            venho respeitosamente à presença de Vossa Senhoria requerer:
+          </div>
+
+          <!-- Qualificação do Requerente: Familiar / Terceiro (Externo) -->
+          <div class="doc-paragrafo" id="doc-qualificacao-externo" style="display: none;">
+            Eu, <strong class="doc-val" id="prev-ext-nome">[Nome do(a) Requerente]</strong>, 
+            inscrito(a) no CPF sob o nº <strong class="doc-val" id="prev-ext-cpf">[000.000.000-00]</strong>, 
+            residente e domiciliado(a) em <span class="doc-val" id="prev-ext-endereco">[Endereço Residencial Completo]</span>, 
+            telefone(s) <span class="doc-val" id="prev-ext-telefone">[Telefone de Contato]</span><span id="prev-ext-email-container">, e-mail <span class="doc-val" id="prev-ext-email">[E-mail]</span></span>, 
+            na qualidade de <strong class="doc-val" id="prev-ext-vinculo">[Vínculo com o(a) falecido(a)]</strong> do(a) servidor(a) falecido(a), 
+            venho mui respeitosamente à presença de Vossa Senhoria requerer:
+          </div>
+
+          <!-- Informações Bancárias para Pagamento (Licença-Prêmio Beneficiários) -->
+          <div class="doc-paragrafo" id="doc-banco-externo" style="display: none;">
+            <!-- Conteúdo gerado dinamicamente via JS -->
+          </div>
+
+          <!-- Corpo do Pedido Especificado -->
+          <div class="doc-box-pedido">
+            <div id="doc-especificacao-corpo">
+              <!-- Conteúdo gerado dinamicamente -->
+            </div>
+          </div>
+
+          <!-- Declaração de Anexos -->
+          <div class="doc-anexos-bloco">
+            <strong>Documentos Comprobatórios Anexos:</strong>
+            <ul id="doc-anexos-lista" class="doc-lista-anexos">
+              <!-- Preenchido via JS -->
+            </ul>
+          </div>
+
+          <!-- Fecho Oficial -->
+          <div class="doc-fecho">
+            <p>Nestes termos,</p>
+            <p>Pede deferimento.</p>
+          </div>
+
+          <!-- Local e Data -->
+          <div class="doc-data-local">
+            Presidente Prudente - SP, <span id="prev-data-extenso">02 de setembro de 2026</span>.
+          </div>
+
+          <!-- Bloco de Assinatura do Requerente (sem linha horizontal) -->
+          <div class="doc-assinatura-area">
+            <div class="doc-assinatura-nome" id="prev-assinatura-nome">[Nome do(a) Servidor(a)]</div>
+            <div class="doc-assinatura-cargo" id="prev-assinatura-cargo">[Função]</div>
+            <div class="doc-assinatura-contato" id="prev-assinatura-contato" style="display: none;">
+              <div id="prev-assinatura-telefone">Telefone(s): [Telefone de Contato]</div>
+              <div id="prev-assinatura-email">E-mail: [E-mail]</div>
+            </div>
+          </div>
+
+          <!-- Bloco De Acordo/Visto para Modelo 03 -->
+          <div id="doc-bloco-de-acordo" class="doc-de-acordo-area" style="display: none;">
+            <div class="doc-de-acordo-titulo">De Acordo/Visto.</div>
+            <div class="doc-de-acordo-cargo">Diretor da Unidade</div>
+          </div>
+
+          <!-- Quadro Oficial: Informações da Área de Gestão de Pessoas -->
+          <div id="doc-bloco-gestao-pessoas" class="doc-gp-secao" style="display: none;">
+            <div class="doc-gp-titulo">Informações da Área de Gestão de Pessoas</div>
+            <div class="doc-gp-box">
+              <div class="doc-gp-lead">O ex-servidor conta com os seguintes saldos de Licença-Prêmio:</div>
+              <div id="doc-gp-linhas" class="doc-gp-linhas">
+                <!-- Linhas inseridas dinamicamente -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Bloco de Ciência da Chefia Imediata (sem linha horizontal) -->
+          <div id="doc-bloco-chefia" class="doc-chefia-area" style="display: none;">
+            <div class="doc-chefia-ciente">Ciente.</div>
+            <div class="doc-chefia-responsavel" id="prev-chefia-lotacao">Responsável pelo(a) [Lotação / Departamento]</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+      <!-- Ações Rápidas no Modo Mobile (Visualização) -->
+      <div class="preview-mobile-actions mobile-only">
+        <button type="button" class="btn btn-primary" id="btn-gerar-pdf-preview">
+          <span class="btn-icon">📄</span> Baixar Requerimento em PDF
+        </button>
+        <button type="button" class="btn btn-secondary" id="btn-imprimir-preview">
+          <span class="btn-icon">🖨️</span> Imprimir / Visualizar Impressão
+        </button>
+        <button type="button" class="btn btn-outline" id="btn-voltar-form-mobile">
+          <span class="btn-icon">✏️</span> Voltar ao Formulário
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Rodapé Institucional Oficial UNESP -->
+  <footer class="app-footer">
+    <div class="footer-grid">
+      <!-- Coluna 1: FUNDAÇÕES -->
+      <div class="footer-group">
+        <h3>FUNDAÇÕES</h3>
+        <ul>
+          <li><a href="https://editoraunesp.com.br/" target="_blank">Editora Unesp</a></li>
+          <li><a href="https://www.fundunesp.org.br/" target="_blank">Fundunesp</a></li>
+          <li><a href="https://www.vunesp.com.br/" target="_blank">Fundação Vunesp</a></li>
+        </ul>
+      </div>
+
+      <!-- Coluna 2: GOVERNO -->
+      <div class="footer-group">
+        <h3>GOVERNO</h3>
+        <ul>
+          <li><a href="https://www.saopaulo.sp.gov.br/" target="_blank">Governo de São Paulo</a></li>
+          <li><a href="https://www.cruesp.sp.gov.br/" target="_blank">Conselho de Reitores</a></li>
+          <li><a href="https://unesp.br/transparencia/" target="_blank">Transparência Unesp</a></li>
+        </ul>
+      </div>
+
+      <!-- Coluna 3: SISTEMAS -->
+      <div class="footer-group">
+        <h3>SISTEMAS</h3>
+        <ul>
+          <li><a href="https://sistemas.unesp.br/" target="_blank">Sistemas Online</a></li>
+          <li><a href="https://www2.unesp.br/eduroam" target="_blank">EDUROAM</a></li>
+          <li><a href="https://www2.unesp.br/vpn" target="_blank">VPN</a></li>
+          <li><a href="https://email.unesp.br/" target="_blank">Webmail</a></li>
+        </ul>
+      </div>
+
+      <!-- Coluna 4: SAÚDE -->
+      <div class="footer-group">
+        <h3>SAÚDE</h3>
+        <ul>
+          <li><a href="https://www.unesp.br/unespsaude/" target="_blank">Unesp Saúde</a></li>
+          <li><a href="https://www.ecaresentinela.com.br/" target="_blank">e-Care Sentinela</a></li>
+          <li><a href="https://www.unesp.br/numis" target="_blank">NUMIS</a></li>
+        </ul>
+      </div>
+
+      <!-- Coluna 5: INFORMAÇÕES -->
+      <div class="footer-group">
+        <h3>INFORMAÇÕES</h3>
+        <ul>
+          <li><a href="https://www2.unesp.br/secgeral/manuais/legislacao-unesp/" target="_blank">Legislação Unesp</a></li>
+          <li><a href="https://www.unesp.br/ai/documentos/lgpd/legislacao/" target="_blank">Política de Privacidade</a></li>
+          <li><a href="https://www.fct.unesp.br/lib/modals/modal-preferencias-privacidade.php" target="_blank">Preferências de Privacidade</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bloco Central do Rodapé (Logo, Endereço Oficial e Redes Sociais) -->
+    <div class="footer-central-block">
+      <a href="https://www.unesp.br" target="_blank" title="Universidade Estadual Paulista Júlio de Mesquita Filho">
+        <img src="unesp-logo.svg" alt="Logotipo UNESP" class="footer-unesp-logo-center">
+      </a>
+      <div class="footer-address-text">
+        <p class="footer-unit-title"><strong>Faculdade de Ciências e Tecnologia - Câmpus de Presidente Prudente</strong></p>
+        <p>Rua Roberto Simonsen, 305 - Centro Educacional</p>
+        <p>P. Prudente/SP - CEP 19060-900</p>
+        <p>Telefone: (18) 3229-5388</p>
+      </div>
+      <div class="footer-social-icons">
+        <a href="https://www.facebook.com/UnespPrudente/" target="_blank" title="Facebook - FCT UNESP" aria-label="Facebook">
+          <svg viewBox="0 0 36 36" width="36" height="36">
+            <circle cx="18" cy="18" r="18" fill="#1877F2"/>
+            <path d="M22.68 18.53l.65-4.23h-4.05v-2.75c0-1.16.57-2.28 2.38-2.28h1.84V5.67s-1.67-.28-3.27-.28c-3.33 0-5.52 2.02-5.52 5.69v3.22h-3.76v4.23h3.76v10.25c.75.12 1.53.18 2.31.18s1.56-.06 2.31-.18V18.53h3.35z" fill="#fff"/>
+          </svg>
+        </a>
+        <a href="https://www.instagram.com/fctunesp/" target="_blank" title="Instagram - FCT UNESP" aria-label="Instagram">
+          <svg viewBox="0 0 36 36" width="36" height="36">
+            <defs>
+              <linearGradient id="igGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#FFDD55"/>
+                <stop offset="50%" stop-color="#E1306C"/>
+                <stop offset="100%" stop-color="#C13584"/>
+              </linearGradient>
+            </defs>
+            <rect width="36" height="36" rx="9" fill="url(#igGrad)"/>
+            <rect x="7" y="7" width="22" height="22" rx="6" fill="none" stroke="#fff" stroke-width="2.2"/>
+            <circle cx="18" cy="18" r="4.8" fill="none" stroke="#fff" stroke-width="2.2"/>
+            <circle cx="24.5" cy="11.5" r="1.5" fill="#fff"/>
+          </svg>
+        </a>
+        <a href="https://www.youtube.com/@fct_unesp" target="_blank" title="YouTube - FCT UNESP" aria-label="YouTube">
+          <svg viewBox="0 0 46 34" width="44" height="32">
+            <rect width="46" height="34" rx="8" fill="#FF0000"/>
+            <polygon points="19,10 31,17 19,24" fill="#fff"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Módulos de Catálogo -->
+  <script src="assets/js/catalog/funcoes.js"></script>
+  <script src="assets/js/catalog/lotacoes.js"></script>
+  <script src="assets/js/catalog/requerimentos.js"></script>
+
+  <!-- Módulos Utilitários de Validação e Formatação -->
+  <script src="assets/js/modules/validators.js"></script>
+  <script src="assets/js/modules/formatters.js"></script>
+  <script src="assets/js/modules/masks.js"></script>
+  <script src="assets/js/modules/cep-service.js"></script>
+
+  <!-- Camada de Templates -->
+  <script src="assets/js/templates/preview-templates.js"></script>
+  <script src="assets/js/templates/pdf-templates.js"></script>
+
+  <!-- Orquestrador da Aplicação -->
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+# Sistema Operacional
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+
+# Editores e IDEs
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Logs e temporários
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
