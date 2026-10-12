@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STGP Digital — Seção Técnica de Gestão de Pessoas | FCT UNESP</title>
+  <meta name="description" content="Portal oficial de serviços digitais e modelos de documentos da Seção Técnica de Gestão de Pessoas (STGP) da FCT UNESP Câmpus de Presidente Prudente.">
+  <link rel="shortcut icon" href="unesp.ico" type="image/x-icon">
+  <link rel="icon" href="unesp.ico" type="image/x-icon">
+  
+  <!-- Fontes Oficiais UNESP -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Barra Superior Institucional UNESP (Padrão Portal Unesp) -->
+  <div class="unesp-top-bar">
+    <div class="top-bar-content">
+      <div class="top-bar-brand">
+        <a href="https://www.unesp.br" target="_blank" title="Universidade Estadual Paulista Júlio de Mesquita Filho">
+          <img src="unesp-logo-white.svg" alt="Logotipo UNESP" class="unesp-logo-svg">
+        </a>
+        <span class="top-bar-sep">|</span>
+        <span class="top-bar-campus">Câmpus de Presidente Prudente</span>
+      </div>
+      <div class="top-bar-links">
+        <a href="https://www.fct.unesp.br/" target="_blank" class="top-link" title="Acessar o portal oficial da FCT">Portal FCT Unesp</a>
+        <span class="top-bar-dot">•</span>
+        <a href="https://www.fct.unesp.br/#!/administracao/recursos-humanos/" target="_blank" class="top-link" title="Seção Técnica de Gestão de Pessoas (Recursos Humanos)">Página da STGP</a>
+        <span class="top-bar-dot">•</span>
+        <a href="index.html" class="top-link" title="Portal STGP Digital">STGP Digital</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cabeçalho Principal da Aplicação -->
+  <header class="app-header">
+    <div class="header-content">
+      <a href="index.html" class="brand" title="Início — STGP Digital">
+        <img src="fct-logo.png" alt="Logotipo FCT UNESP" class="brand-fct-logo">
+        <div class="brand-titles">
+          <h1>STGP Digital — Portal de Modelos de Documentos</h1>
+          <p>Faculdade de Ciências e Tecnologia — Seção Técnica de Gestão de Pessoas (STGP)</p>
+        </div>
+      </a>
+      <div class="header-actions">
+        <span class="badge-status">Câmpus de Presidente Prudente</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Seção Hero / Apresentação e Busca -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <h2 class="hero-title">Serviços e Documentos Digitais da STGP</h2>
+      <p class="hero-subtitle">
+        Acesse os geradores e modelos oficiais com preenchimento assistido, validações automáticas e emissão padronizada para servidores docentes e técnico-administrativos da FCT UNESP.
+      </p>
+
+      <!-- Barra de Filtragem Rápida -->
+      <div class="search-wrapper">
+        <div class="search-input-group">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input 
+            type="text" 
+            id="service-search" 
+            class="search-input" 
+            placeholder="Pesquise por serviço ou documento (ex: endereço, dependentes, escala, insalubridade...)"
+            autocomplete="off"
+            aria-label="Pesquisar serviços da STGP"
+          >
+          <button type="button" id="search-clear" class="search-clear-btn" title="Limpar busca" aria-label="Limpar busca">&times;</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Conteúdo Principal -->
+  <main class="portal-main">
+
+    <!-- Alerta Global de Manutenção -->
+    <div class="alert-maintenance-global" role="alert">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <line x1="12" y1="8" x2="12" y2="12"></line>
+        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+      </svg>
+      <div>
+        <strong>Aviso de Manutenção:</strong> Os formulários de <strong>Declaração de Dependentes</strong> e <strong>Atualização de Endereço Residencial</strong> estão temporariamente indisponíveis para reformulação e melhorias no sistema. Em caso de dúvidas ou demandas urgentes, contate a STGP pelo e-mail <a href="mailto:rh.fct@unesp.br">rh.fct@unesp.br</a>.
+      </div>
+    </div>
+
+    <!-- Cabeçalho da Seção de Serviços Ativos -->
+    <div class="section-header">
+      <div class="section-header-left">
+        <h2>
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary);">
+            <rect x="3" y="3" width="7" height="7"></rect>
+            <rect x="14" y="3" width="7" height="7"></rect>
+            <rect x="14" y="14" width="7" height="7"></rect>
+            <rect x="3" y="14" width="7" height="7"></rect>
+          </svg>
+          Serviços da STGP
+        </h2>
+        <p>Selecione abaixo o módulo desejado para preenchimento, orientações ou consulta</p>
+      </div>
+      <span class="section-counter" id="active-count">2 serviços ativos · 2 em manutenção</span>
+    </div>
+
+    <!-- Grid dos Serviços Ativos -->
+    <div class="services-grid" id="services-container">
+
+      <!-- Serviço 1: Modelos de Requerimentos -->
+      <a href="./requerimentos/index.html" class="service-card" data-tags="requerimentos solicitacoes insalubridade tempo servico dados bancarios licenca gestante licenca saude isencao ir irpf auxilio funeral administrativo servidor">
+        <div class="service-card-body">
+          <div class="service-card-header">
+            <div class="service-icon-box" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+              </svg>
+            </div>
+            <span class="service-badge badge-available">
+              <span class="badge-available-dot"></span>
+              Disponível
+            </span>
+          </div>
+          <h3 class="service-title">Modelos de Requerimentos</h3>
+          <p class="service-desc">
+            Emissão digital de requerimentos administrativos com seleção por perfil (Servidores e Público Externo), pré-visualização em tempo real na folha A4, validações automáticas de CPF e Matrícula UNESP, busca de CEP e exportação em PDF vetorial.
+          </p>
+          <div class="service-tags">
+            <span class="service-tag" style="background: #e0f2fe; color: #0369a1; border-color: #bae6fd;">🏢 Servidores & Aposentados</span>
+            <span class="service-tag" style="background: #f5f3ff; color: #6d28d9; border-color: #ddd6fe;">👥 Familiares & Terceiros</span>
+            <span class="service-tag">Adicional de Insalubridade</span>
+            <span class="service-tag">Averbação de Tempo</span>
+            <span class="service-tag">Dados Bancários</span>
+            <span class="service-tag">Licença Gestante & Saúde</span>
+            <span class="service-tag">Auxílio Funeral</span>
+          </div>
+        </div>
+        <div class="service-card-footer">
+          <span class="btn-access">
+            Acessar Requerimentos
+            <svg class="btn-access-arrow" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </span>
+          <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 500;">requerimentos/</span>
+        </div>
+      </a>
+
+      <!-- Serviço 2: Modelos de Memorandos -->
+      <a href="./memorandos/index.html" class="service-card" data-tags="memorandos memorando escala alteracao escala chefias substitutos quadro sigad papel timbrado oficial">
+        <div class="service-card-body">
+          <div class="service-card-header">
+            <div class="service-icon-box" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+                <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+                <path d="M9 12h6"></path>
+                <path d="M9 16h6"></path>
+              </svg>
+            </div>
+            <span class="service-badge badge-available">
+              <span class="badge-available-dot"></span>
+              Disponível
+            </span>
+          </div>
+          <h3 class="service-title">Modelos de Memorandos</h3>
+          <p class="service-desc">
+            Gerador oficial de Memorando e Quadro de Alteração da Escala de Substituição de Chefias da FCT UNESP, com integração direta ao catálogo de Unidades Administrativas (SIGAD) e exportação em papel timbrado oficial.
+          </p>
+          <div class="service-tags">
+            <span class="service-tag">Alteração de Escala</span>
+            <span class="service-tag">Substitutos de Chefia</span>
+            <span class="service-tag">Catálogo SIGAD Integrado</span>
+            <span class="service-tag">Papel Timbrado UNESP</span>
+            <span class="service-tag">Geração de PDF & Impressão</span>
+          </div>
+        </div>
+        <div class="service-card-footer">
+          <span class="btn-access">
+            Acessar Memorandos
+            <svg class="btn-access-arrow" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </span>
+          <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 500;">memorandos/</span>
+        </div>
+      </a>
+
+      <!-- Serviço 3: Declaração de Dependentes (EM MANUTENÇÃO) -->
+      <a href="./dependentes/index.html" class="service-card is-maintenance" data-tags="declaracao dependentes ir irrf salario familia plano saude odonto encargos familia filhos conjuge manutencao reforma">
+        <div class="service-card-body">
+          <div class="service-card-header">
+            <div class="service-icon-box" aria-hidden="true" style="background-color: #fff7ed; color: #ea580c; border-color: #fed7aa;">
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </div>
+            <span class="service-badge badge-maintenance">
+              <span class="badge-maintenance-dot"></span>
+              Em Manutenção
+            </span>
+          </div>
+          <h3 class="service-title">Declaração de Dependentes</h3>
+          <p class="service-desc">
+            Sistema eletrônico para declaração e atualização de encargos de família para fins de dedução do IRRF, concessão de Salário-Família e adesão a planos de saúde. <em>(Formulário temporariamente em manutenção para reformulação da plataforma)</em>.
+          </p>
+          <div class="service-tags">
+            <span class="service-tag">Dedução IRRF</span>
+            <span class="service-tag">Salário-Família</span>
+            <span class="service-tag">Plano de Saúde & Odonto</span>
+            <span class="service-tag" style="background: #fff7ed; color: #c2410c; border-color: #fed7aa;">Em Reformulação</span>
+          </div>
+        </div>
+        <div class="service-card-footer">
+          <span class="btn-access" style="color: #c2410c;">
+            Ver Orientações & Status
+            <svg class="btn-access-arrow" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </span>
+          <span style="font-size: 0.8rem; color: #c2410c; font-weight: 700;">Em Manutenção</span>
+        </div>
+      </a>
+
+      <!-- Serviço 4: Atualização de Endereço Residencial (EM MANUTENÇÃO) -->
+      <a href="./endereco/index.html" class="service-card is-maintenance" data-tags="atualizacao endereco cadastro residencia comprovante viacep cep logradouro domicilio mudanca manutencao reforma">
+        <div class="service-card-body">
+          <div class="service-card-header">
+            <div class="service-icon-box" aria-hidden="true" style="background-color: #fff7ed; color: #ea580c; border-color: #fed7aa;">
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+            </div>
+            <span class="service-badge badge-maintenance">
+              <span class="badge-maintenance-dot"></span>
+              Em Manutenção
+            </span>
+          </div>
+          <h3 class="service-title">Atualização de Endereço Residencial</h3>
+          <p class="service-desc">
+            Espaço digital seguro para atualização de endereço nos assentamentos funcionais da FCT UNESP, com consulta de CEP e upload de comprovante. <em>(Formulário temporariamente em manutenção para reformulação da plataforma)</em>.
+          </p>
+          <div class="service-tags">
+            <span class="service-tag">Comprovante Digital</span>
+            <span class="service-tag">Busca Automática ViaCEP</span>
+            <span class="service-tag" style="background: #fff7ed; color: #c2410c; border-color: #fed7aa;">Em Reformulação</span>
+          </div>
+        </div>
+        <div class="service-card-footer">
+          <span class="btn-access" style="color: #c2410c;">
+            Ver Orientações & Status
+            <svg class="btn-access-arrow" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </span>
+          <span style="font-size: 0.8rem; color: #c2410c; font-weight: 700;">Em Manutenção</span>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- Mensagem de Nenhum Resultado Encontrado -->
+    <div class="no-results-msg" id="no-results-msg">
+      <h3>Nenhum serviço correspondente encontrado</h3>
+      <p>Tente buscar por outro termo, como "endereço", "dependentes", "requerimento", "escala" ou "insalubridade".</p>
+    </div>
+
+    <!-- Banner de Suporte e Atendimento STGP -->
+    <div class="support-banner">
+      <div class="support-info">
+        <h3>
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary);">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+          </svg>
+          Dúvidas ou Orientações sobre Processos?
+        </h3>
+        <p>
+          A Seção Técnica de Gestão de Pessoas (STGP) da FCT UNESP está pronta para auxiliar você em procedimentos funcionais, prazos e instrução documental.
+        </p>
+        <div class="support-contacts">
+          <div class="contact-item">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            <span>E-mail: <a href="mailto:rh.fct@unesp.br">rh.fct@unesp.br</a></span>
+          </div>
+          <div class="contact-item">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            </svg>
+            <span>Telefones e Ramais: <a href="https://www.fct.unesp.br/#!/administracao/recursos-humanos/apresentacao/equipe/" target="_blank" rel="noopener" title="Consulte os telefones e e-mails individuais de cada servidor">Consulte a Equipe <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display: inline-block; vertical-align: -1px; margin-left: 2px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a></span>
+          </div>
+          <div class="contact-item">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            <span>Horário de Atendimento: 08h às 12h | 14h às 17h</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <a href="mailto:rh.fct@unesp.br?subject=Dúvida%20Portal%20STGP%20Digital" class="support-action-btn">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+          Contatar a STGP
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Rodapé Institucional Oficial UNESP (Padrão Oficial Portal Unesp) -->
+  <footer class="app-footer">
+    <div class="footer-grid">
+      <!-- Coluna 1: FUNDAÇÕES -->
+      <div class="footer-group">
+        <h3>FUNDAÇÕES</h3>
+        <ul>
+          <li><a href="https://editoraunesp.com.br/" target="_blank" rel="noopener">Editora Unesp</a></li>
+          <li><a href="https://www.fundunesp.org.br/" target="_blank" rel="noopener">Fundunesp</a></li>
+          <li><a href="https://www.vunesp.com.br/" target="_blank" rel="noopener">Fundação Vunesp</a></li>
+        </ul>
+      </div>
+
+      <!-- Coluna 2: GOVERNO -->
+      <div class="footer-group">
+        <h3>GOVERNO</h3>
+        <ul>
+          <li><a href="https://www.saopaulo.sp.gov.br/" target="_blank" rel="noopener">Governo de São Paulo</a></li>
+          <li><a href="https://www.cruesp.sp.gov.br/" target="_blank" rel="noopener">Conselho de Reitores</a></li>
+          <li><a href="https://unesp.br/transparencia/" target="_blank" rel="noopener">Transparência Unesp</a></li>
+        </ul>
+      </div>
+
+      <!-- Coluna 3: SISTEMAS -->
+      <div class="footer-group">
+        <h3>SISTEMAS</h3>
+        <ul>
+          <li><a href="https://sistemas.unesp.br/" target="_blank" rel="noopener">Sistemas Online</a></li>
+          <li><a href="https://www2.unesp.br/eduroam" target="_blank" rel="noopener">EDUROAM</a></li>
+          <li><a href="https://www2.unesp.br/vpn" target="_blank" rel="noopener">VPN</a></li>
+          <li><a href="https://email.unesp.br/" target="_blank" rel="noopener">Webmail</a></li>
+        </ul>
+      </div>
+
+      <!-- Coluna 4: SAÚDE -->
+      <div class="footer-group">
+        <h3>SAÚDE</h3>
+        <ul>
+          <li><a href="https://www.unesp.br/unespsaude/" target="_blank" rel="noopener">Unesp Saúde</a></li>
+          <li><a href="https://www.ecaresentinela.com.br/" target="_blank" rel="noopener">e-Care Sentinela</a></li>
+          <li><a href="https://www.unesp.br/numis" target="_blank" rel="noopener">NUMIS</a></li>
+        </ul>
+      </div>
+
+      <!-- Coluna 5: INFORMAÇÕES -->
+      <div class="footer-group">
+        <h3>INFORMAÇÕES</h3>
+        <ul>
+          <li><a href="https://www2.unesp.br/secgeral/manuais/legislacao-unesp/" target="_blank" rel="noopener">Legislação Unesp</a></li>
+          <li><a href="https://www.unesp.br/ai/documentos/lgpd/legislacao/" target="_blank" rel="noopener">Política de Privacidade</a></li>
+          <li><a href="https://www.fct.unesp.br/lib/modals/modal-preferencias-privacidade.php" target="_blank" rel="noopener">Preferências de Privacidade</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bloco Central do Rodapé (Logo, Endereço Oficial e Redes Sociais) -->
+    <div class="footer-central-block">
+      <a href="https://www.unesp.br" target="_blank" title="Universidade Estadual Paulista Júlio de Mesquita Filho" rel="noopener">
+        <img src="unesp-logo.svg" alt="Logotipo UNESP" class="footer-unesp-logo-center">
+      </a>
+      <div class="footer-address-text">
+        <p class="footer-unit-title"><strong>Faculdade de Ciências e Tecnologia - Câmpus de Presidente Prudente</strong></p>
+        <p>Rua Roberto Simonsen, 305 - Centro Educacional</p>
+        <p>P. Prudente/SP - CEP 19060-900</p>
+        <p>Telefone: (18) 3229-5388</p>
+      </div>
+      <div class="footer-social-icons">
+        <a href="https://www.facebook.com/UnespPrudente/" target="_blank" title="Facebook - FCT UNESP" aria-label="Facebook" rel="noopener">
+          <svg viewBox="0 0 36 36" width="36" height="36">
+            <circle cx="18" cy="18" r="18" fill="#1877F2"/>
+            <path d="M22.68 18.53l.65-4.23h-4.05v-2.75c0-1.16.57-2.28 2.38-2.28h1.84V5.67s-1.67-.28-3.27-.28c-3.33 0-5.52 2.02-5.52 5.69v3.22h-3.76v4.23h3.76v10.25c.75.12 1.53.18 2.31.18s1.56-.06 2.31-.18V18.53h3.35z" fill="#fff"/>
+          </svg>
+        </a>
+        <a href="https://www.instagram.com/fctunesp/" target="_blank" title="Instagram - FCT UNESP" aria-label="Instagram" rel="noopener">
+          <svg viewBox="0 0 36 36" width="36" height="36">
+            <defs>
+              <linearGradient id="igGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#FFDD55"/>
+                <stop offset="50%" stop-color="#E1306C"/>
+                <stop offset="100%" stop-color="#C13584"/>
+              </linearGradient>
+            </defs>
+            <rect width="36" height="36" rx="9" fill="url(#igGrad)"/>
+            <rect x="7" y="7" width="22" height="22" rx="6" fill="none" stroke="#fff" stroke-width="2.2"/>
+            <circle cx="18" cy="18" r="4.8" fill="none" stroke="#fff" stroke-width="2.2"/>
+            <circle cx="24.5" cy="11.5" r="1.5" fill="#fff"/>
+          </svg>
+        </a>
+        <a href="https://www.youtube.com/@fct_unesp" target="_blank" title="YouTube - FCT UNESP" aria-label="YouTube" rel="noopener">
+          <svg viewBox="0 0 46 34" width="44" height="32">
+            <rect width="46" height="34" rx="8" fill="#FF0000"/>
+            <polygon points="19,10 31,17 19,24" fill="#fff"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script Leve de Filtragem Rápida em Tempo Real -->
+  <script>
+    (function () {
+      const searchInput = document.getElementById('service-search');
+      const clearBtn = document.getElementById('search-clear');
+      const allCards = document.querySelectorAll('.service-card');
+      const noResultsMsg = document.getElementById('no-results-msg');
+      const activeCount = document.getElementById('active-count');
+
+      function normalizeText(text) {
+        return (text || '')
+          .toLowerCase()
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '');
+      }
+
+      function filterServices() {
+        const query = normalizeText(searchInput.value.trim());
+        clearBtn.style.display = query ? 'block' : 'none';
+
+        let visibleActiveCount = 0;
+        let anyVisible = false;
+
+        allCards.forEach(card => {
+          const cardText = normalizeText(card.innerText + ' ' + (card.getAttribute('data-tags') || ''));
+          const matches = !query || cardText.includes(query);
+
+          if (matches) {
+            card.style.display = '';
+            anyVisible = true;
+            if (card.classList.contains('service-card') && !card.classList.contains('service-card-upcoming')) {
+              visibleActiveCount++;
+            }
+          } else {
+            card.style.display = 'none';
+          }
+        });
+
+        if (noResultsMsg) {
+          noResultsMsg.style.display = anyVisible ? 'none' : 'block';
+        }
+
+        if (activeCount) {
+          if (query) {
+            activeCount.textContent = visibleActiveCount === 1 
+              ? '1 serviço correspondente' 
+              : `${visibleActiveCount} serviços correspondentes`;
+          } else {
+            activeCount.textContent = '2 serviços ativos · 2 em manutenção';
+          }
+        }
+      }
+
+      searchInput.addEventListener('input', filterServices);
+
+      clearBtn.addEventListener('click', function () {
+        searchInput.value = '';
+        searchInput.focus();
+        filterServices();
+      });
+
+      // Atalho de teclado '/' para focar na busca rapidamente
+      document.addEventListener('keydown', function (e) {
+        if (e.key === '/' && document.activeElement !== searchInput) {
+          e.preventDefault();
+          searchInput.focus();
+          searchInput.select();
+        } else if (e.key === 'Escape' && document.activeElement === searchInput) {
+          searchInput.value = '';
+          filterServices();
+          searchInput.blur();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

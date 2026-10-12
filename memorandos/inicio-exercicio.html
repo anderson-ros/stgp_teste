@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Início de Exercício de Novos Servidores | Memorandos STGP FCT UNESP</title>
+  <link rel="shortcut icon" href="unesp.ico" type="image/x-icon">
+  <link rel="icon" href="unesp.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <!-- Papel Timbrado Oficial em Base64 para exportação de PDF no cliente sem taint no canvas -->
+  <script src="papel_timbrado_data.js"></script>
+  <!-- Fontes Raleway em Base64 para incorporação direta e offline no jsPDF -->
+  <script src="raleway_fonts_data.js"></script>
+  <!-- jsPDF local para geração de PDFs com texto vetorial nativo de alta definição -->
+  <script src="jspdf.umd.min.js"></script>
+  <!-- html2pdf.js local e fallback CDN -->
+  <script src="html2pdf.bundle.min.js"></script>
+  <script>
+    if (typeof html2pdf === 'undefined') {
+      document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"><\/script>');
+    }
+  </script>
+</head>
+<body>
+  <!-- Barra Superior Institucional UNESP (Padrão Portal Unesp) -->
+  <div class="unesp-top-bar">
+    <div class="top-bar-content">
+      <div class="top-bar-brand">
+        <a href="https://www.unesp.br" target="_blank" title="Universidade Estadual Paulista Júlio de Mesquita Filho">
+          <img src="unesp-logo-white.svg" alt="Logotipo UNESP" class="unesp-logo-svg">
+        </a>
+        <span class="top-bar-sep">|</span>
+        <span class="top-bar-campus">Câmpus de Presidente Prudente</span>
+      </div>
+      <div class="top-bar-links">
+        <a href="https://www.fct.unesp.br/" target="_blank" class="top-link" title="Acessar o portal oficial da FCT">Portal FCT Unesp</a>
+        <span class="top-bar-dot">•</span>
+        <a href="https://www.fct.unesp.br/#!/administracao/recursos-humanos/" target="_blank" class="top-link" title="Seção Técnica de Gestão de Pessoas (Recursos Humanos)">Página da STGP</a>
+        <span class="top-bar-dot">•</span>
+        <a href="../index.html" class="top-link" title="Portal STGP Digital">STGP Digital</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cabeçalho Principal da Aplicação -->
+  <header class="app-header">
+    <div class="header-content">
+      <div class="brand">
+        <a href="https://www.fct.unesp.br/" target="_blank" title="Faculdade de Ciências e Tecnologia - FCT UNESP">
+          <img src="fct-logo.png" alt="Logotipo FCT" class="brand-fct-logo">
+        </a>
+        <div class="brand-titles">
+          <h1>STGP Digital — Portal de Modelos de Documentos</h1>
+          <p>Faculdade de Ciências e Tecnologia — Seção Técnica de Gestão de Pessoas (STGP)</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <span class="badge-status">Câmpus de Presidente Prudente</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Barra Superior de Retorno e Localização (Modelo B) -->
+  <div class="top-nav-back-bar">
+    <div class="top-nav-back-inner">
+      <a href="../index.html" class="btn-back-stgp" title="Voltar para a página inicial">
+        <svg class="back-arrow-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        <span>Voltar para Início</span>
+      </a>
+      <span class="breadcrumb-sep">/</span>
+      <a href="index.html" class="breadcrumb-link" title="Voltar aos modelos de memorandos">Memorandos</a>
+      <span class="breadcrumb-sep">/</span>
+      <span class="breadcrumb-current">Início de Exercício de Novos Servidores</span>
+    </div>
+  </div>
+
+  <!-- Seletor de Abas para Celulares e Tablets (Mobile View Switcher) -->
+  <nav class="mobile-view-tabs" aria-label="Navegação mobile de visualização">
+    <div class="mobile-view-tabs-inner">
+      <button type="button" class="mobile-view-tab active" id="tab-view-form">
+        <span>📝</span> Preenchimento
+      </button>
+      <button type="button" class="mobile-view-tab" id="tab-view-preview">
+        <span>👁️</span> Ver Documento (A4)
+      </button>
+    </div>
+  </nav>
+
+  <main class="main-container">
+    <!-- Coluna Esquerda: Formulário de Preenchimento -->
+    <section class="form-section">
+
+      <!-- Card 1: Identificação do Memorando -->
+      <div class="card">
+        <div class="card-header">
+          <h2>1. Identificação do Memorando</h2>
+          <p class="subtitle">Numeração gerada no SIGAD, ano e data do documento oficial.</p>
+        </div>
+
+        <!-- Alerta informativo do SIGAD -->
+        <div class="info-box">
+          <strong>ℹ️ Número do Memorando (SIGAD UNESP):</strong>
+          <p style="margin-top: 4px; margin-bottom: 4px;">
+            O número do memorando deverá ser obtido previamente no <strong>SIGAD (Sistema Informatizado de Gestão Arquivística de Documentos)</strong>.
+          </p>
+          <p style="margin: 0;">
+            Acesse o sistema oficial para obter o número: <a href="https://sistemas.unesp.br/sigad/" target="_blank" style="color: #1e3a8a; text-decoration: underline; font-weight: 700;">https://sistemas.unesp.br/sigad/</a>
+          </p>
+        </div>
+
+        <div class="form-grid">
+          <!-- Número do Memorando -->
+          <div class="form-group">
+            <label for="memo_numero">Número do Memorando *</label>
+            <input type="text" id="memo_numero" placeholder="Ex: 01" value="01" autocomplete="off" autofocus>
+            <span class="field-hint">Padrão: MEMORANDO Nº [num]/[ano] [sigla]/FCT/PP</span>
+          </div>
+
+          <!-- Ano do Documento (Travado / Vinculado à Data) -->
+          <div class="form-group">
+            <label for="memo_ano">Ano do Documento (Vinculado à Data)</label>
+            <input type="number" id="memo_ano" readonly class="input-readonly" title="Campo travado, sincronizado automaticamente com o ano da data de emissão escolhida">
+            <span class="field-hint">Sincronizado automaticamente com a data.</span>
+          </div>
+
+          <!-- Data de Emissão -->
+          <div class="form-group">
+            <label for="memo_data">Data de Emissão *</label>
+            <input type="date" id="memo_data" title="Preenchido por padrão com a data atual">
+          </div>
+
+          <!-- Assunto Oficial (Fixo) -->
+          <div class="form-group">
+            <label for="memo_assunto">Assunto Oficial *</label>
+            <input type="text" id="memo_assunto" value="INÍCIO DE EXERCÍCIO" readonly class="input-readonly" title="Assunto fixo institucional">
+            <span class="field-hint">Assunto padronizado obrigatório.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Remetente e Destinatário -->
+      <div class="card">
+        <div class="card-header">
+          <h2>2. Remetente e Destinatário</h2>
+          <p class="subtitle">Endereçamento fixo para a STGP e seleção da UA de procedência (lotação).</p>
+        </div>
+
+        <!-- Alerta informativo de Endereçamento à STGP -->
+        <div class="info-box">
+          <strong>⚖️ Endereçamento Institucional Fixo:</strong>
+          <p style="margin-top: 4px; margin-bottom: 0;">
+            A comunicação de início de exercício de novos servidores é obrigatoriamente endereçada à <strong>Seção Técnica de Gestão de Pessoas (STGP)</strong> para fins de cadastro funcional, abertura de prontuário e inclusão em folha de pagamento.
+          </p>
+        </div>
+
+        <div class="form-grid">
+          <!-- Seleção da Unidade Administrativa de Procedência -->
+          <div class="form-group col-span-2">
+            <label for="remetente_select">Unidade Administrativa de Procedência (Lotação) *</label>
+            <select id="remetente_select">
+              <!-- Opções injetadas do catálogo de UAs em ordem alfabética -->
+            </select>
+            <span class="field-hint">Setor ou Departamento onde o servidor exercerá suas funções.</span>
+          </div>
+
+          <!-- Campo Unidade Administrativa de Destino (Fixo STGP) -->
+          <div class="form-group">
+            <label for="destinatario_input">Unidade Administrativa de Destino *</label>
+            <input type="text" id="destinatario_input" value="Seção Técnica de Gestão de Pessoas (STGP)" readonly class="input-readonly">
+            <span class="field-hint">Fixo: STGP FCT UNESP.</span>
+          </div>
+
+          <!-- Seleção do Nome do Destinatário da STGP -->
+          <div class="form-group">
+            <label for="destinatario_pessoa_select">Autoridade Destinatária (STGP) *</label>
+            <select id="destinatario_pessoa_select" title="Escolha o supervisor(a) titular ou substituto(a)">
+              <!-- Opções da STGP injetadas via JS -->
+            </select>
+            <span class="field-hint">Titular ou Substituto(a) da STGP.</span>
+          </div>
+
+          <!-- Responsável / Signatário Emitente -->
+          <div class="form-group">
+            <label for="signatario_nome">Identificação do signatário (nome do emitente) *</label>
+            <input type="text" id="signatario_nome" placeholder="Digite o nome completo do(a) assinante..." value="" autocomplete="off">
+            <span class="field-hint">Nome de quem assina o memorando (Chefia/Direção).</span>
+          </div>
+
+          <!-- Função do Emitente -->
+          <div class="form-group">
+            <label for="signatario_cargo">Função do Emitente *</label>
+            <select id="signatario_cargo" title="Escolha a opção de assinatura do emitente">
+              <!-- Opções dinâmicas conforme a UA -->
+            </select>
+            <span class="field-hint">Função de quem assina (conforme UA de Procedência).</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Dados do Servidor e Dados Bancários -->
+      <div class="card">
+        <div class="card-header">
+          <h2>3. Dados do Servidor e Dados Bancários</h2>
+          <p class="subtitle">Identificação do servidor recém-empossado, categoria e conta bancária para pagamento.</p>
+        </div>
+
+        <!-- Seletor da Categoria do(a) Servidor(a) -->
+        <div class="form-group">
+          <label style="font-weight: 700; color: var(--dark-blue);">Categoria do(a) Servidor(a) *</label>
+          <div class="category-toggle-group">
+            <label class="category-toggle-label active" id="label_cat_tecnico">
+              <input type="radio" name="categoria_servidor" id="cat_tecnico" value="tecnico" checked>
+              <span>🏢 Técnico-Administrativo</span>
+            </label>
+            <label class="category-toggle-label" id="label_cat_docente">
+              <input type="radio" name="categoria_servidor" id="cat_docente" value="docente">
+              <span>🎓 Docente</span>
+            </label>
+            <label class="category-toggle-label" id="label_cat_pesquisador">
+              <input type="radio" name="categoria_servidor" id="cat_pesquisador" value="pesquisador">
+              <span>🔬 Pesquisador</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Alerta Informativo Dinâmico da Categoria -->
+        <div class="info-box-categoria" id="info_categoria_box">
+          <strong>ℹ️ Exigência de Horário de Trabalho:</strong> Para a categoria <strong>Técnico-Administrativo</strong> é obrigatório o preenchimento e controle do horário de trabalho (jornada de horário fixo ou escala de trabalho).
+        </div>
+
+        <div class="form-grid">
+          <!-- Nome Completo do Servidor -->
+          <div class="form-group col-span-2">
+            <label for="servidor_nome">Nome Completo do(a) Servidor(a) *</label>
+            <input type="text" id="servidor_nome" placeholder="Ex: Maria de Oliveira Santos" autocomplete="off">
+            <span class="field-hint">Nome completo sem abreviações.</span>
+          </div>
+
+          <!-- CPF do Servidor -->
+          <div class="form-group">
+            <label for="servidor_cpf">CPF do(a) Servidor(a) *</label>
+            <input type="text" id="servidor_cpf" placeholder="000.000.000-00" maxlength="14" autocomplete="off">
+            <span class="field-feedback" id="feedback_servidor_cpf"></span>
+          </div>
+
+          <!-- Data de Início do Exercício -->
+          <div class="form-group">
+            <label for="data_exercicio">Data do Início do Exercício / Admissão *</label>
+            <input type="date" id="data_exercicio" title="Data efetiva do início das atividades">
+            <span class="field-feedback" id="feedback_data_exercicio"></span>
+            <span class="field-hint">Não pode ser posterior à data atual nem à data do memorando.</span>
+          </div>
+
+          <!-- Cargo / Função do Servidor -->
+          <div class="form-group">
+            <label for="servidor_cargo">Cargo / Função *</label>
+            <select id="servidor_cargo" title="Escolha o cargo ou função pública de ingresso conforme a categoria">
+              <!-- Opções dinâmicas carregadas com base na categoria selecionada -->
+            </select>
+            <span class="field-hint">Denominação oficial conforme a categoria selecionada (Plano de Carreiras UNESP).</span>
+          </div>
+
+          <!-- Jornada de Trabalho do Servidor (Regulamentar) -->
+          <div class="form-group" id="group_servidor_jornada">
+            <label for="servidor_jornada">Jornada de Trabalho *</label>
+            <select id="servidor_jornada">
+              <option value="40 horas semanais" selected>40 horas semanais</option>
+              <option value="36 horas semanais">36 horas semanais</option>
+              <option value="30 horas semanais">30 horas semanais</option>
+              <option value="20 horas semanais">20 horas semanais</option>
+            </select>
+            <span class="field-hint" id="hint_servidor_jornada">Carga horária semanal regulamentar do cargo.</span>
+          </div>
+
+          <!-- Regime Jurídico -->
+          <div class="form-group col-span-2" id="group_servidor_regime">
+            <label for="servidor_regime">Regime Jurídico *</label>
+            <select id="servidor_regime">
+              <option value="Autárquico">Autárquico</option>
+              <option value="CLT" selected>CLT</option>
+              <option value="Efetivo">Efetivo</option>
+            </select>
+            <span class="field-hint" id="hint_servidor_regime">Regras aplicáveis: CLT / Súmula 110 TST para CLT; normas estatutárias (ESUNESP) para Autárquico e Efetivo.</span>
+          </div>
+        </div>
+
+        <!-- Seção: Dados Bancários -->
+        <div style="margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--border-color);">
+          <h3 style="font-size: 0.95rem; font-weight: 700; color: var(--dark-blue); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 6px;">
+            <span>🏦 Dados Bancários para Pagamento de Remuneração</span>
+          </h3>
+
+          <div class="form-grid">
+            <!-- Banco (Fixo Banco do Brasil) -->
+            <div class="form-group">
+              <label for="banco_nome">Banco *</label>
+              <input type="text" id="banco_nome" value="Banco do Brasil (001)" readonly class="input-readonly">
+              <span class="field-hint">Instituição bancária padrão da UNESP.</span>
+            </div>
+
+            <!-- Agência Bancária -->
+            <div class="form-group">
+              <label for="banco_agencia">Agência (com dígito verificador) *</label>
+              <input type="text" id="banco_agencia" placeholder="Ex: 0095-7" maxlength="10" autocomplete="off">
+              <span class="field-hint">Número da agência incluindo o DV.</span>
+            </div>
+
+            <!-- Conta Corrente -->
+            <div class="form-group">
+              <label for="banco_conta">Conta Corrente (com dígito verificador) *</label>
+              <input type="text" id="banco_conta" placeholder="Ex: 12345-6" maxlength="15" autocomplete="off">
+              <span class="field-hint">Número da conta corrente incluindo o DV.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4: Horário de Trabalho (Condicional para Técnico-Administrativo) -->
+      <div class="card" id="card_horario_trabalho">
+        <div class="card-header">
+          <h2>4. Horário de Trabalho</h2>
+          <p class="subtitle">Parametrização da jornada de trabalho para servidor técnico-administrativo.</p>
+        </div>
+
+        <!-- Seleção do Tipo de Horário -->
+        <div class="form-group">
+          <label style="font-weight: 700; color: var(--dark-blue);">Tipo de Horário de Trabalho *</label>
+          <div class="schedule-type-group">
+            <label class="schedule-type-btn active" id="label_tipo_fixo">
+              <input type="radio" name="tipo_horario" id="tipo_fixo" value="fixo" checked>
+              <span>📅 Jornada de Horário Fixo</span>
+            </label>
+            <label class="schedule-type-btn" id="label_tipo_escala">
+              <input type="radio" name="tipo_horario" id="tipo_escala" value="escala">
+              <span>🔄 Escala de Revezamento</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- OPÇÃO A: JORNADA DE HORÁRIO FIXO -->
+        <div id="bloco_horario_fixo">
+          
+          <div class="form-group" style="margin-bottom: 0.85rem;">
+            <label for="carga_semanal_select">Carga Horária Semanal Contratual *</label>
+            <select id="carga_semanal_select">
+              <option value="40 HORAS SEMANAIS" selected>40 HORAS SEMANAIS</option>
+              <option value="36 HORAS SEMANAIS">36 HORAS SEMANAIS</option>
+              <option value="30 HORAS SEMANAIS">30 HORAS SEMANAIS</option>
+              <option value="20 HORAS SEMANAIS">20 HORAS SEMANAIS</option>
+            </select>
+          </div>
+
+          <!-- Barra de Atalhos / Preenchimento Rápido -->
+          <div class="quick-presets-container">
+            <span class="quick-presets-label">⚡ Preenchimento Rápido:</span>
+            <button type="button" class="btn-preset" id="preset_40h_padrao" title="Segunda a Sexta das 08h às 12h e das 14h às 18h (40h)">Seg-Sex 08h-12h e 14h-18h (40h)</button>
+            <button type="button" class="btn-preset" id="preset_40h_13h" title="Segunda a Sexta das 08h às 12h e das 13h às 17h (40h)">Seg-Sex 08h-12h e 13h-17h (40h)</button>
+            <button type="button" class="btn-preset" id="preset_36h" title="Segunda a Sábado das 07h às 10h e das 10h15 às 13h15 (36h)">Seg-Sáb 07h-13h15 (36h)</button>
+            <button type="button" class="btn-preset" id="preset_30h" title="Segunda a Sexta das 08h às 11h e das 11h15 às 14h15 (30h)">Seg-Sex 08h-14h15 (30h)</button>
+            <button type="button" class="btn-preset" id="preset_20h" title="Segunda a Sexta das 08h às 12h (20h)">Seg-Sex 08h-12h (20h)</button>
+            <button type="button" class="btn-preset btn-preset-clear" id="preset_limpar" title="Limpar todos os horários da tabela">Limpar</button>
+          </div>
+
+          <!-- Tabela Semanal de Horários (Segunda a Domingo) -->
+          <div class="schedule-table-wrapper">
+            <table class="schedule-table" id="tabela_horario_semanal">
+              <thead>
+                <tr>
+                  <th style="width: 22%;">Dia</th>
+                  <th style="width: 18%;">Entrada</th>
+                  <th style="width: 18%;">Saída Intervalo</th>
+                  <th style="width: 18%;">Retorno</th>
+                  <th style="width: 18%;">Saída Final</th>
+                  <th style="width: 16%;">Carga Diária</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Segunda-feira -->
+                <tr data-dia="seg">
+                  <td>Segunda-Feira</td>
+                  <td><input type="time" class="time-input" data-col="e1" value="08:00"></td>
+                  <td><input type="time" class="time-input" data-col="s1" value="12:00"></td>
+                  <td><input type="time" class="time-input" data-col="e2" value="14:00"></td>
+                  <td><input type="time" class="time-input" data-col="s2" value="18:00"></td>
+                  <td><span class="day-duration-badge active" data-dia-dur="seg">8h00</span></td>
+                </tr>
+                <!-- Terça-feira -->
+                <tr data-dia="ter">
+                  <td>Terça-Feira</td>
+                  <td><input type="time" class="time-input" data-col="e1" value="08:00"></td>
+                  <td><input type="time" class="time-input" data-col="s1" value="12:00"></td>
+                  <td><input type="time" class="time-input" data-col="e2" value="14:00"></td>
+                  <td><input type="time" class="time-input" data-col="s2" value="18:00"></td>
+                  <td><span class="day-duration-badge active" data-dia-dur="ter">8h00</span></td>
+                </tr>
+                <!-- Quarta-feira -->
+                <tr data-dia="qua">
+                  <td>Quarta-Feira</td>
+                  <td><input type="time" class="time-input" data-col="e1" value="08:00"></td>
+                  <td><input type="time" class="time-input" data-col="s1" value="12:00"></td>
+                  <td><input type="time" class="time-input" data-col="e2" value="14:00"></td>
+                  <td><input type="time" class="time-input" data-col="s2" value="18:00"></td>
+                  <td><span class="day-duration-badge active" data-dia-dur="qua">8h00</span></td>
+                </tr>
+                <!-- Quinta-feira -->
+                <tr data-dia="qui">
+                  <td>Quinta-Feira</td>
+                  <td><input type="time" class="time-input" data-col="e1" value="08:00"></td>
+                  <td><input type="time" class="time-input" data-col="s1" value="12:00"></td>
+                  <td><input type="time" class="time-input" data-col="e2" value="14:00"></td>
+                  <td><input type="time" class="time-input" data-col="s2" value="18:00"></td>
+                  <td><span class="day-duration-badge active" data-dia-dur="qui">8h00</span></td>
+                </tr>
+                <!-- Sexta-feira -->
+                <tr data-dia="sex">
+                  <td>Sexta-Feira</td>
+                  <td><input type="time" class="time-input" data-col="e1" value="08:00"></td>
+                  <td><input type="time" class="time-input" data-col="s1" value="12:00"></td>
+                  <td><input type="time" class="time-input" data-col="e2" value="14:00"></td>
+                  <td><input type="time" class="time-input" data-col="s2" value="18:00"></td>
+                  <td><span class="day-duration-badge active" data-dia-dur="sex">8h00</span></td>
+                </tr>
+                <!-- Sábado -->
+                <tr data-dia="sab">
+                  <td>Sábado</td>
+                  <td><input type="time" class="time-input" data-col="e1"></td>
+                  <td><input type="time" class="time-input" data-col="s1"></td>
+                  <td><input type="time" class="time-input" data-col="e2"></td>
+                  <td><input type="time" class="time-input" data-col="s2"></td>
+                  <td><span class="day-duration-badge" data-dia-dur="sab">-</span></td>
+                </tr>
+                <!-- Domingo -->
+                <tr data-dia="dom">
+                  <td>Domingo</td>
+                  <td><input type="time" class="time-input" data-col="e1"></td>
+                  <td><input type="time" class="time-input" data-col="s1"></td>
+                  <td><input type="time" class="time-input" data-col="e2"></td>
+                  <td><input type="time" class="time-input" data-col="s2"></td>
+                  <td><span class="day-duration-badge" data-dia-dur="dom">-</span></td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr class="schedule-footer-row">
+                  <td colspan="4" style="text-align: right; font-weight: 700;">Carga Horária Semanal Total:</td>
+                  <td colspan="2" style="text-align: center;">
+                    <div class="total-hours-display" id="total_horas_semanais">40h00</div>
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+
+          <!-- Alerta de Validação de Limite de Carga Horária -->
+          <div id="alerta_excesso_horas" style="display: none; margin-top: 0.65rem; padding: 0.65rem 0.85rem; background-color: #fef2f2; border: 1.5px solid #ef4444; border-radius: 6px; color: #b91c1c; font-size: 0.85rem; font-weight: 600; align-items: center; gap: 8px;">
+            <span style="font-size: 1.1rem;">⚠️</span>
+            <span id="texto_excesso_horas">A soma das cargas diárias ultrapassa a carga horária semanal contratual permitida.</span>
+          </div>
+
+        </div>
+
+        <!-- OPÇÃO B: ESCALA DE TRABALHO -->
+        <div id="bloco_horario_escala" style="display: none;">
+          
+          <!-- Dropdown da Escala de Trabalho -->
+          <div class="form-group">
+            <label for="escala_select">* Escala de trabalho:</label>
+            <select id="escala_select">
+              <option value="12x36" selected>12×36- A cada 12 horas trabalhadas (está incluído o intervalo de 1 hora), o colaborador tem direito a 36 horas de descanso</option>
+              <option value="18x36">18×36- A cada 18 horas trabalhadas (está incluído o intervalo de 1 hora), o colaborar deve folgar 36 horas</option>
+              <option value="24x48">24×48- A cada 24 horas trabalhadas, o colaborador tem direito a 48 horas de descanso</option>
+            </select>
+            <span class="field-hint">Opções normativas oficiais de regime de escala.</span>
+          </div>
+
+          <div class="form-group" style="margin-top: 0.75rem;">
+            <label for="escala_turno_horario">Horário do Turno / Plantão (Opcional)</label>
+            <input type="text" id="escala_turno_horario" placeholder="Ex: das 07:00 às 19:00 (ou das 19:00 às 07:00)">
+            <span class="field-hint">Indique o horário de início e término do plantão caso aplicável.</span>
+          </div>
+
+        </div>
+
+
+        <!-- Painel de Conformidade Trabalhista e Estatutária -->
+        <div class="clt-compliance-card" id="painel_conformidade_clt">
+          <div class="clt-compliance-header">
+            <span class="clt-compliance-title" id="titulo_painel_conformidade">⚖️ Auditoria de Conformidade Trabalhista (CLT / TST)</span>
+            <span class="clt-badge clt-badge-info" id="badge_status_clt">Auditoria Ativa</span>
+          </div>
+
+          <div class="clt-checks-list">
+            <!-- Item 1: Intervalo Intrajornada -->
+            <div class="clt-check-item ok" id="check_clt_intrajornada">
+              <span class="clt-check-icon" id="icon_clt_intrajornada">✓</span>
+              <div class="clt-check-content">
+                <div class="clt-check-title" id="title_clt_intrajornada">Intervalo para Repouso e Alimentação (Art. 71 CLT)</div>
+                <div class="clt-check-desc" id="desc_clt_intrajornada">Mínimo de 1h para jornadas acima de 6h e 15min para jornadas entre 4h e 6h.</div>
+              </div>
+            </div>
+
+            <!-- Item 2: Intervalo Interjornadas -->
+            <div class="clt-check-item ok" id="check_clt_interjornada">
+              <span class="clt-check-icon" id="icon_clt_interjornada">✓</span>
+              <div class="clt-check-content">
+                <div class="clt-check-title" id="title_clt_interjornada">Intervalo entre Jornadas (Art. 66 CLT)</div>
+                <div class="clt-check-desc" id="desc_clt_interjornada">Mínimo de 11 horas consecutivas de descanso entre duas jornadas diárias.</div>
+              </div>
+            </div>
+
+            <!-- Item 3: Descanso Semanal e Interjornada -->
+            <div class="clt-check-item ok" id="check_clt_semanal35h">
+              <span class="clt-check-icon" id="icon_clt_semanal35h">✓</span>
+              <div class="clt-check-content">
+                <div class="clt-check-title" id="title_clt_semanal35h">Descanso Semanal e Interjornada de 35h (Art. 67 CLT / Súmula 110 TST)</div>
+                <div class="clt-check-desc" id="desc_clt_semanal35h">Mínimo de 35 horas consecutivas de paralisação (24h de repouso semanal + 11h de intervalo entre jornadas).</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Nota Oficial para a Área de Gestão de Pessoas (STGP) -->
+          <div class="clt-compliance-footer" id="texto_rodape_conformidade">
+            <strong>📌 Acompanhamento pela STGP:</strong> A Área de Gestão de Pessoas deverá acompanhar as escalas de trabalho elaboradas, para estrito cumprimento à legislação. O descumprimento ao intervalo entre jornadas acarretará o pagamento das horas respectivas como extraordinárias, nos termos da <strong>Súmula nº 110 do TST</strong>.
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Botões de Ação -->
+      <div class="action-buttons-card">
+        <button id="btn-gerar-memo-pdf" class="btn btn-primary" type="button">
+          <span class="btn-icon">📄</span> Baixar Memorando em PDF
+        </button>
+        <button id="btn-imprimir-tudo" class="btn btn-outline" type="button">
+          <span class="btn-icon">🖨️</span> Imprimir / Visualizar Impressão
+        </button>
+        <button id="btn-ver-previa-mobile" class="btn btn-secondary mobile-only" type="button">
+          <span class="btn-icon">👁️</span> Visualizar Documento (A4)
+        </button>
+      </div>
+    </section>
+
+    <!-- Coluna Direita: Pré-visualização em Tempo Real (Folha A4 Oficial) -->
+    <section class="preview-section">
+      <div class="preview-toolbar">
+        <div class="preview-status">
+          <span class="pulse-dot"></span> <span>Visualização em Tempo Real (Padrão Oficial A4)</span>
+        </div>
+        <div class="preview-zoom-controls">
+          <button type="button" class="btn-zoom active" id="btn-zoom-fit" title="Ajustar largura da folha à tela do celular">
+            <span>📐</span> Ajustar à Tela
+          </button>
+          <button type="button" class="btn-zoom" id="btn-zoom-100" title="Exibir em tamanho real 100% (com rolagem lateral)">
+            <span>🔍</span> 100%
+          </button>
+        </div>
+      </div>
+
+      <div class="a4-wrapper mode-fit-screen" id="a4-wrapper">
+        <div class="a4-scale-container" id="a4-scale-container">
+          <div id="documento-pdf" class="a4-page">
+          <!-- Imagem de Fundo em Alta Definição do Papel Timbrado Oficial UNESP 50 Anos FCT -->
+          <img id="papel-timbrado-img" src="papel-timbrado-2026.png" alt="Papel Timbrado Oficial UNESP FCT" class="papel-timbrado-bg">
+          <script>
+            if (window.PAPEL_TIMBRADO_BASE64) {
+              document.getElementById('papel-timbrado-img').src = window.PAPEL_TIMBRADO_BASE64;
+            }
+          </script>
+          
+          <!-- Conteúdo do Memorando Oficial (A4 Retrato) -->
+          <div class="doc-view active" id="view-memorando">
+            <div>
+              <!-- Identificação do Documento: alinhada à esquerda, maiúsculas, sem negrito -->
+              <div class="memo-identificacao-linha">
+                MEMORANDO Nº <span id="prev-memo-num">01</span>/<span id="prev-memo-ano">2026</span> <span id="prev-memo-sigla">DCART</span>/FCT/PP
+              </div>
+
+              <!-- Data: alinhada à direita, linha imediatamente inferior à identificação -->
+              <div class="memo-data-linha" id="prev-memo-data-extenso">
+                Presidente Prudente, 21 de setembro de 2026.
+              </div>
+
+              <!-- Destinatário: alinhado à esquerda, logo abaixo da data -->
+              <div class="memo-destinatario-bloco" id="prev-memo-destinatario-bloco">
+                <div class="memo-dest-linha">A(o) Senhor(a)</div>
+                <div class="memo-dest-linha" id="prev-memo-dest-nome">ANDERSON LUIZ ROS DE SOUSA</div>
+                <div class="memo-dest-linha" id="prev-memo-dest-funcao">SUPERVISOR TÉCNICO DE SEÇÃO</div>
+                <div class="memo-dest-linha" id="prev-memo-dest-ua">SEÇÃO TÉCNICA DE GESTÃO DE PESSOAS</div>
+                <div class="memo-dest-linha">FACULDADE DE CIÊNCIAS E TECNOLOGIA - CÂMPUS DE PRESIDENTE PRUDENTE</div>
+              </div>
+
+              <!-- Assunto: alinhado à esquerda, resumo do teor do ato -->
+              <div class="memo-assunto-linha">
+                <strong>Assunto:</strong> <span id="prev-memo-assunto">INÍCIO DE EXERCÍCIO</span>
+              </div>
+
+              <!-- 3 quebras de linha entre o assunto e o corpo do texto -->
+              <br>
+              <br>
+              <br>
+
+              <!-- Parágrafo 1: Notificação do início do exercício do servidor -->
+              <div class="memo-paragrafo" id="prev-memo-corpo-p1">
+                Informamos a Vossa Senhoria, para as providências cabíveis, que o(a) servidor(a) <strong id="prev-servidor-nome">[Nome completo do servidor]</strong>, inscrito no CPF sob nº <strong id="prev-servidor-cpf">[Número do CPF]</strong>, entrou em exercício em <span id="prev-data-exercicio">[data de início]</span>, no cargo/função de <strong id="prev-servidor-cargo">[nome do cargo/função]</strong>, <span id="prev-servidor-jornada-wrapper">em jornada de <span id="prev-servidor-jornada">40 horas semanais</span></span>, junto a esta unidade administrativa.
+              </div>
+
+              <!-- Parágrafo 2: Introdução aos dados bancários (e horário se técnico) -->
+              <div class="memo-paragrafo" id="prev-memo-corpo-p2">
+                Para os devidos fins de cadastro e pagamento de remuneração, informamos abaixo os dados bancários apresentados pelo(a) servidor(a), bem como o seu horário de trabalho estabelecido:
+              </div>
+
+              <!-- Bloco de Dados Bancários -->
+              <div class="memo-subsecao-bloco" id="prev-bloco-bancario">
+                <div class="memo-subsecao-titulo">Dados Bancários:</div>
+                <div class="memo-subsecao-item">Banco: Banco do Brasil (001)</div>
+                <div class="memo-subsecao-item">Agência: <span id="prev-banco-agencia">0095-7</span> / Conta Corrente: <span id="prev-banco-conta">12345-6</span></div>
+              </div>
+
+              <!-- Bloco de Horário de Trabalho (Ocultado quando docente ou pesquisador) -->
+              <div class="memo-subsecao-bloco" id="prev-bloco-horario">
+                <div class="memo-subsecao-titulo">Horário de Trabalho:</div>
+                <div id="prev-conteudo-horario">
+                  <table class="memo-tabela-horario" id="memo_tabela_horario_prev">
+                    <thead>
+                      <tr>
+                        <th style="width: 25%; text-align: left;">Dia da Semana</th>
+                        <th style="width: 15%;">Entrada</th>
+                        <th style="width: 15%;">Saída Intervalo</th>
+                        <th style="width: 15%;">Retorno</th>
+                        <th style="width: 15%;">Saída Final</th>
+                        <th style="width: 15%;">Carga Diária</th>
+                      </tr>
+                    </thead>
+                    <tbody id="memo_tabela_horario_corpo">
+                      <!-- Linhas geradas dinamicamente -->
+                    </tbody>
+                    <tfoot>
+                      <tr class="memo-tabela-total-linha">
+                        <td colspan="5" class="total-label">Carga Horária Semanal Total:</td>
+                        <td class="total-valor" id="memo_tabela_total_semanal">40h00</td>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div>
+              </div>
+
+              <!-- Fecho Oficial (Atenciosamente,) -->
+              <div class="memo-fecho-linha" id="prev-memo-fecho">
+                Atenciosamente,
+              </div>
+
+              <!-- 3 quebras de linha entre o fecho e a identificação do signatário -->
+              <br>
+              <br>
+              <br>
+
+              <!-- Identificação do Signatário: centralizado com recuo de 2.5cm -->
+              <div class="memo-signatario-bloco">
+                <div class="memo-signatario-nome" id="prev-memo-sig-nome">Prof. Dr. João da Silva</div>
+                <div class="memo-signatario-cargo" id="prev-memo-sig-cargo">CHEFE DE DEPARTAMENTO</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Ações Rápidas da Prévia no Mobile -->
+    <div class="preview-mobile-actions mobile-only">
+      <button id="btn-voltar-form-mobile" class="btn btn-secondary" type="button">
+        <span>📝</span> Voltar ao Formulário
+      </button>
+      <button id="btn-gerar-pdf-preview" class="btn btn-primary" type="button">
+        <span>📄</span> Baixar PDF do Memorando
+      </button>
+      <button id="btn-imprimir-preview" class="btn btn-outline" type="button">
+        <span>🖨️</span> Imprimir Documento
+      </button>
+    </div>
+  </section>
+  </main>
+
+  <!-- Rodapé Institucional Oficial UNESP (Padrão Oficial Portal Unesp) -->
+  <footer class="app-footer">
+    <div class="footer-grid">
+      <div class="footer-group">
+        <h3>FUNDAÇÕES</h3>
+        <ul>
+          <li><a href="https://editoraunesp.com.br/" target="_blank">Editora Unesp</a></li>
+          <li><a href="https://www.fundunesp.org.br/" target="_blank">Fundunesp</a></li>
+          <li><a href="https://www.vunesp.com.br/" target="_blank">Fundação Vunesp</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-group">
+        <h3>GOVERNO</h3>
+        <ul>
+          <li><a href="https://www.saopaulo.sp.gov.br/" target="_blank">Governo de São Paulo</a></li>
+          <li><a href="https://www.cruesp.sp.gov.br/" target="_blank">Conselho de Reitores</a></li>
+          <li><a href="https://unesp.br/transparencia/" target="_blank">Transparência Unesp</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-group">
+        <h3>SISTEMAS</h3>
+        <ul>
+          <li><a href="https://sistemas.unesp.br/" target="_blank">Sistemas Online</a></li>
+          <li><a href="https://www2.unesp.br/eduroam" target="_blank">EDUROAM</a></li>
+          <li><a href="https://www2.unesp.br/vpn" target="_blank">VPN</a></li>
+          <li><a href="https://email.unesp.br/" target="_blank">Webmail</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-group">
+        <h3>SAÚDE</h3>
+        <ul>
+          <li><a href="https://www.unesp.br/unespsaude/" target="_blank">Unesp Saúde</a></li>
+          <li><a href="https://www.ecaresentinela.com.br/" target="_blank">e-Care Sentinela</a></li>
+          <li><a href="https://www.numis.unesp.br/" target="_blank">NUMIS</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-group">
+        <h3>INFORMAÇÕES</h3>
+        <ul>
+          <li><a href="https://www2.unesp.br/secgeral/manuais/legislacao-unesp/" target="_blank">Legislação Unesp</a></li>
+          <li><a href="https://www.unesp.br/ai/documentos/lgpd/legislacao/" target="_blank">Política de Privacidade</a></li>
+          <li><a href="https://www.fct.unesp.br/lib/modals/modal-preferencias-privacidade.php" target="_blank">Preferências de Privacidade</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-central-block">
+      <a href="https://www.unesp.br" target="_blank" title="Universidade Estadual Paulista Júlio de Mesquita Filho">
+        <img src="unesp-logo.svg" alt="Logotipo UNESP" class="footer-unesp-logo-center">
+      </a>
+      <div class="footer-address-text">
+        <p class="footer-unit-title"><strong>Faculdade de Ciências e Tecnologia - Câmpus de Presidente Prudente</strong></p>
+        <p>Rua Roberto Simonsen, 305 - Centro Educacional</p>
+        <p>P. Prudente/SP - CEP 19060-900</p>
+        <p>Telefone: (18) 3229-5388</p>
+      </div>
+      <div class="footer-social-icons">
+        <a href="https://www.facebook.com/UnespPrudente/" target="_blank" title="Facebook - FCT UNESP" aria-label="Facebook" rel="noopener">
+          <svg viewBox="0 0 36 36" width="36" height="36">
+            <circle cx="18" cy="18" r="18" fill="#1877F2"/>
+            <path d="M22.68 18.53l.65-4.23h-4.05v-2.75c0-1.16.57-2.28 2.38-2.28h1.84V5.67s-1.67-.28-3.27-.28c-3.33 0-5.52 2.02-5.52 5.69v3.22h-3.76v4.23h3.76v10.25c.75.12 1.53.18 2.31.18s1.56-.06 2.31-.18V18.53h3.35z" fill="#fff"/>
+          </svg>
+        </a>
+        <a href="https://www.instagram.com/fctunesp/" target="_blank" title="Instagram - FCT UNESP" aria-label="Instagram" rel="noopener">
+          <svg viewBox="0 0 36 36" width="36" height="36">
+            <defs>
+              <linearGradient id="igGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#FFDD55"/>
+                <stop offset="50%" stop-color="#E1306C"/>
+                <stop offset="100%" stop-color="#C13584"/>
+              </linearGradient>
+            </defs>
+            <rect width="36" height="36" rx="9" fill="url(#igGrad)"/>
+            <rect x="7" y="7" width="22" height="22" rx="6" fill="none" stroke="#fff" stroke-width="2.2"/>
+            <circle cx="18" cy="18" r="4.8" fill="none" stroke="#fff" stroke-width="2.2"/>
+            <circle cx="24.5" cy="11.5" r="1.5" fill="#fff"/>
+          </svg>
+        </a>
+        <a href="https://www.youtube.com/@fct_unesp" target="_blank" title="YouTube - FCT UNESP" aria-label="YouTube" rel="noopener">
+          <svg viewBox="0 0 46 34" width="44" height="32">
+            <rect width="46" height="34" rx="8" fill="#FF0000"/>
+            <polygon points="19,10 31,17 19,24" fill="#fff"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Catálogo de Dados de UAs e Funções -->
+  <script src="uas_catalogo.js"></script>
+  <!-- Catálogo Oficial de Cargos e Funções por Categoria (UNESP) -->
+  <script src="cargos_catalogo.js"></script>
+  <!-- Script Lógico da Aplicação -->
+  <script src="inicio-exercicio.js"></script>
+  <!-- Script Padrão de Responsividade e Escala Mobile -->
+  <script src="memorando-mobile.js"></script>
+</body>
+</html>

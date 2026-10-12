@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal de Memorandos | STGP FCT UNESP</title>
+  <link rel="shortcut icon" href="unesp.ico" type="image/x-icon">
+  <link rel="icon" href="unesp.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Barra Superior Institucional UNESP (Padrão Portal Unesp) -->
+  <div class="unesp-top-bar">
+    <div class="top-bar-content">
+      <div class="top-bar-brand">
+        <a href="https://www.unesp.br" target="_blank" title="Universidade Estadual Paulista Júlio de Mesquita Filho">
+          <img src="unesp-logo-white.svg" alt="Logotipo UNESP" class="unesp-logo-svg">
+        </a>
+        <span class="top-bar-sep">|</span>
+        <span class="top-bar-campus">Câmpus de Presidente Prudente</span>
+      </div>
+      <div class="top-bar-links">
+        <a href="https://www.fct.unesp.br/" target="_blank" class="top-link" title="Acessar o portal oficial da FCT">Portal FCT Unesp</a>
+        <span class="top-bar-dot">•</span>
+        <a href="https://www.fct.unesp.br/#!/administracao/recursos-humanos/" target="_blank" class="top-link" title="Seção Técnica de Gestão de Pessoas (Recursos Humanos)">Página da STGP</a>
+        <span class="top-bar-dot">•</span>
+        <a href="../index.html" class="top-link" title="Portal STGP Digital">STGP Digital</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cabeçalho Principal do Portal -->
+  <header class="app-header">
+    <div class="header-content">
+      <div class="brand">
+        <a href="https://www.fct.unesp.br/" target="_blank" title="Faculdade de Ciências e Tecnologia - FCT UNESP">
+          <img src="fct-logo.png" alt="Logotipo FCT" class="brand-fct-logo">
+        </a>
+        <div class="brand-titles">
+          <h1>STGP Digital — Portal de Modelos de Documentos</h1>
+          <p>Faculdade de Ciências e Tecnologia — Seção Técnica de Gestão de Pessoas (STGP)</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <span class="badge-status">Câmpus de Presidente Prudente</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Conteúdo Principal do Hub -->
+  <main class="hub-main">
+    
+    <!-- Barra Superior de Retorno e Localização (Modelo B) -->
+    <div class="nav-back-container" style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1.5rem;">
+      <a href="../index.html" class="btn-back-stgp" title="Voltar para a página inicial">
+        <svg class="back-arrow-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        <span>Voltar para Início</span>
+      </a>
+      <span class="breadcrumb-sep">/</span>
+      <span class="breadcrumb-current">Modelos de Memorandos</span>
+    </div>
+
+    <!-- Hero / Apresentação Institucional -->
+    <section class="hub-hero">
+      <div class="hub-hero-header">
+        <div class="hub-hero-text">
+          <h2>Emissão de Memorandos Oficiais</h2>
+          <p>
+            Plataforma institucional para redação, parametrização e emissão dos memorandos e expedientes da STGP FCT UNESP, com pré-visualização em tempo real e exportação em folha A4 timbrada de alta definição.
+          </p>
+        </div>
+      </div>
+
+      <!-- Aviso Institucional SIGAD -->
+      <div class="hub-notice-sigad">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="8" x2="12" y2="12"></line>
+          <line x1="12" y1="16" x2="12.01" y2="16"></line>
+        </svg>
+        <div>
+          <strong>Reserva prévia no SIGAD UNESP:</strong>
+          <span> Os números de memorando gerados por este sistema devem ser obtidos previamente no </span>
+          <a href="https://sistemas.unesp.br/sigad/" target="_blank" title="Acessar o SIGAD">SIGAD (Sistema Informatizado de Gestão Arquivística de Documentos)</a>.
+        </div>
+      </div>
+    </section>
+
+    <!-- Barra de Ferramentas: Busca e Filtros -->
+    <div class="hub-toolbar">
+      <div class="hub-search-box">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" id="hub-search-input" placeholder="Buscar tipo de memorando por nome ou palavra-chave..." aria-label="Buscar memorando">
+      </div>
+
+      <div class="hub-category-filters" role="group" aria-label="Filtrar por categoria">
+        <button type="button" class="hub-filter-btn active" data-category="all">Todos</button>
+        <button type="button" class="hub-filter-btn" data-category="escala">Escala de Substituição</button>
+        <button type="button" class="hub-filter-btn" data-category="admissao">Admissão & Exercício</button>
+        <button type="button" class="hub-filter-btn" data-category="estagio">Estágio Probatório</button>
+      </div>
+    </div>
+
+    <!-- Grid de Cards dos Memorandos -->
+    <section class="hub-grid" id="hub-cards-grid">
+      
+      <!-- Card 1: Alteração da Escala de Substituição -->
+      <article class="hub-card" data-category="escala" data-title="alteracao da escala de substituicao memorando quadro anexo">
+        <div>
+          <div class="hub-card-top">
+            <span class="badge-tag-category">Escala & Afastamentos</span>
+            <span class="badge-status-ready">Disponível</span>
+          </div>
+
+          <div class="hub-card-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+          </div>
+
+          <h3 class="hub-card-title">Alteração da Escala de Substituição</h3>
+          <p class="hub-card-desc">
+            Elaboração do Memorando Oficial e do Quadro Anexo com regras automáticas de destinatário (DTAd/STGP), seleção de UA remetente e controle dos períodos e servidores substituídos.
+          </p>
+
+          <div class="hub-card-docs">
+            <span class="doc-tag">📄 Memorando Oficial</span>
+            <span class="doc-tag">📋 Quadro Anexo (PDF)</span>
+            <span class="doc-tag">🏛️ Regra DTAd/STGP</span>
+          </div>
+        </div>
+
+        <div class="hub-card-footer">
+          <a href="alteracao-escala.html" class="btn-card-launch" title="Abrir Gerador de Alteração da Escala">
+            <span>Acessar Gerador</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+      </article>
+
+      <!-- Card 2: Início de Exercício de Novos Servidores -->
+      <article class="hub-card" data-category="admissao" data-title="inicio de exercicio de novos servidores admissao nomeacao posse horario banco">
+        <div>
+          <div class="hub-card-top">
+            <span class="badge-tag-category">Admissão & Provimento</span>
+            <span class="badge-status-ready">Disponível</span>
+          </div>
+
+          <div class="hub-card-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="8.5" cy="7" r="4"></circle>
+              <polyline points="17 11 19 13 23 9"></polyline>
+            </svg>
+          </div>
+
+          <h3 class="hub-card-title">Início de Exercício de Novos Servidores</h3>
+          <p class="hub-card-desc">
+            Comunicação oficial do início de efetivo exercício de servidores docentes, pesquisadores e técnico-administrativos à STGP, com dados bancários (BB) e horário/escala.
+          </p>
+
+          <div class="hub-card-docs">
+            <span class="doc-tag">📄 Memorando Oficial</span>
+            <span class="doc-tag">🏦 Dados Bancários (BB)</span>
+            <span class="doc-tag">⏱️ Horário / Escala</span>
+          </div>
+        </div>
+
+        <div class="hub-card-footer">
+          <a href="inicio-exercicio.html" class="btn-card-launch" title="Abrir Gerador de Início de Exercício">
+            <span>Acessar Gerador</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+      </article>
+
+      <!-- Card 3: Envio de Avaliações Especiais de Desempenho (Estágio Probatório) -->
+      <article class="hub-card disabled" data-category="estagio" data-title="envio das avaliacoes especiais de desempenho estagio probatorio avaliacao chefia">
+        <div>
+          <div class="hub-card-top">
+            <span class="badge-tag-category">Estágio Probatório</span>
+            <span class="badge-status-upcoming">Em Estruturação</span>
+          </div>
+
+          <div class="hub-card-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+              <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+          </div>
+
+          <h3 class="hub-card-title">Avaliações Especiais de Desempenho</h3>
+          <p class="hub-card-desc">
+            Encaminhamento oficial de relatórios, instrumentos e prazos de avaliação de estágio probatório às chefias imediatas de servidores docentes e técnico-administrativos.
+          </p>
+
+          <div class="hub-card-docs">
+            <span class="doc-tag">📄 Memorando Oficial</span>
+            <span class="doc-tag">📊 Etapas Avaliativas</span>
+            <span class="doc-tag">⏱️ Controle de Prazos</span>
+          </div>
+        </div>
+
+        <div class="hub-card-footer">
+          <button type="button" class="btn-card-pending" title="Aguardando modelo oficial e campos específicos" onclick="alert('Este memorando está em fase de estruturação. Envie o modelo de texto ou minuta para ser integrado ao sistema.')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            <span>Aguardando Modelo Oficial</span>
+          </button>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- Guia Rápido: Como Funciona -->
+    <section class="hub-guide-section">
+      <h3>Instruções para Expedição de Memorandos</h3>
+      <p class="guide-sub">Fluxo padrão adotado pela Seção Técnica de Gestão de Pessoas (STGP FCT UNESP):</p>
+      
+      <div class="guide-steps-grid">
+        <div class="guide-step-card">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h4>Reserva no SIGAD</h4>
+            <p>Acesse o SIGAD UNESP na sua Unidade Administrativa para gerar previamente o número sequencial do memorando.</p>
+          </div>
+        </div>
+
+        <div class="guide-step-card">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h4>Preenchimento Assistido</h4>
+            <p>Selecione o memorando desejado. O sistema aplica regras automáticas de destinatário, função do assinante e datas por extenso.</p>
+          </div>
+        </div>
+
+        <div class="guide-step-card">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h4>Emissão em PDF Vetorial</h4>
+            <p>Pré-visualize na folha A4 com o papel timbrado oficial 2026 e baixe o arquivo em alta definição ou envie para impressão.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Rodapé Institucional Oficial UNESP (Padrão Oficial Portal Unesp - 5 Colunas) -->
+  <footer class="app-footer">
+    <div class="footer-grid">
+      <!-- Coluna 1: FUNDAÇÕES -->
+      <div class="footer-group">
+        <h3>FUNDAÇÕES</h3>
+        <ul>
+          <li><a href="https://editoraunesp.com.br/" target="_blank">Editora Unesp</a></li>
+          <li><a href="https://www.fundunesp.org.br/" target="_blank">Fundunesp</a></li>
+          <li><a href="https://www.vunesp.com.br/" target="_blank">Fundação Vunesp</a></li>
+        </ul>
+      </div>
+
+      <!-- Coluna 2: GOVERNO -->
+      <div class="footer-group">
+        <h3>GOVERNO</h3>
+        <ul>
+          <li><a href="https://www.saopaulo.sp.gov.br/" target="_blank">Governo de São Paulo</a></li>
+          <li><a href="https://www.cruesp.sp.gov.br/" target="_blank">Conselho de Reitores</a></li>
+          <li><a href="https://unesp.br/transparencia/" target="_blank">Transparência Unesp</a></li>
+        </ul>
+      </div>
+
+      <!-- Coluna 3: SISTEMAS -->
+      <div class="footer-group">
+        <h3>SISTEMAS</h3>
+        <ul>
+          <li><a href="https://sistemas.unesp.br/" target="_blank">Sistemas Online</a></li>
+          <li><a href="https://www2.unesp.br/eduroam" target="_blank">EDUROAM</a></li>
+          <li><a href="https://www2.unesp.br/vpn" target="_blank">VPN</a></li>
+          <li><a href="https://email.unesp.br/" target="_blank">Webmail</a></li>
+        </ul>
+      </div>
+
+      <!-- Coluna 4: SAÚDE -->
+      <div class="footer-group">
+        <h3>SAÚDE</h3>
+        <ul>
+          <li><a href="https://www.unesp.br/unespsaude/" target="_blank">Unesp Saúde</a></li>
+          <li><a href="https://www.ecaresentinela.com.br/" target="_blank">e-Care Sentinela</a></li>
+          <li><a href="https://www.unesp.br/numis" target="_blank">NUMIS</a></li>
+        </ul>
+      </div>
+
+      <!-- Coluna 5: INFORMAÇÕES -->
+      <div class="footer-group">
+        <h3>INFORMAÇÕES</h3>
+        <ul>
+          <li><a href="https://www2.unesp.br/secgeral/manuais/legislacao-unesp/" target="_blank">Legislação Unesp</a></li>
+          <li><a href="https://www.unesp.br/ai/documentos/lgpd/legislacao/" target="_blank">Política de Privacidade</a></li>
+          <li><a href="https://www.fct.unesp.br/lib/modals/modal-preferencias-privacidade.php" target="_blank">Preferências de Privacidade</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bloco Central do Rodapé (Logo, Endereço Oficial e Redes Sociais) -->
+    <div class="footer-central-block">
+      <a href="https://www.unesp.br" target="_blank" title="Universidade Estadual Paulista Júlio de Mesquita Filho">
+        <img src="unesp-logo.svg" alt="Logotipo UNESP" class="footer-unesp-logo-center">
+      </a>
+      <div class="footer-address-text">
+        <p class="footer-unit-title"><strong>Faculdade de Ciências e Tecnologia - Câmpus de Presidente Prudente</strong></p>
+        <p>Rua Roberto Simonsen, 305 - Centro Educacional</p>
+        <p>P. Prudente/SP - CEP 19060-900</p>
+        <p>Telefone: (18) 3229-5388</p>
+      </div>
+      <div class="footer-social-icons">
+        <a href="https://www.facebook.com/UnespPrudente/" target="_blank" title="Facebook - FCT UNESP" aria-label="Facebook" rel="noopener">
+          <svg viewBox="0 0 36 36" width="36" height="36">
+            <circle cx="18" cy="18" r="18" fill="#1877F2"/>
+            <path d="M22.68 18.53l.65-4.23h-4.05v-2.75c0-1.16.57-2.28 2.38-2.28h1.84V5.67s-1.67-.28-3.27-.28c-3.33 0-5.52 2.02-5.52 5.69v3.22h-3.76v4.23h3.76v10.25c.75.12 1.53.18 2.31.18s1.56-.06 2.31-.18V18.53h3.35z" fill="#fff"/>
+          </svg>
+        </a>
+        <a href="https://www.instagram.com/fctunesp/" target="_blank" title="Instagram - FCT UNESP" aria-label="Instagram" rel="noopener">
+          <svg viewBox="0 0 36 36" width="36" height="36">
+            <defs>
+              <linearGradient id="igGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#FFDD55"/>
+                <stop offset="50%" stop-color="#E1306C"/>
+                <stop offset="100%" stop-color="#C13584"/>
+              </linearGradient>
+            </defs>
+            <rect width="36" height="36" rx="9" fill="url(#igGrad)"/>
+            <rect x="7" y="7" width="22" height="22" rx="6" fill="none" stroke="#fff" stroke-width="2.2"/>
+            <circle cx="18" cy="18" r="4.8" fill="none" stroke="#fff" stroke-width="2.2"/>
+            <circle cx="24.5" cy="11.5" r="1.5" fill="#fff"/>
+          </svg>
+        </a>
+        <a href="https://www.youtube.com/@fct_unesp" target="_blank" title="YouTube - FCT UNESP" aria-label="YouTube" rel="noopener">
+          <svg viewBox="0 0 46 34" width="44" height="32">
+            <rect width="46" height="34" rx="8" fill="#FF0000"/>
+            <polygon points="19,10 31,17 19,24" fill="#fff"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script para Busca e Filtros Dinâmicos dos Cards -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const searchInput = document.getElementById('hub-search-input');
+      const filterBtns = document.querySelectorAll('.hub-filter-btn');
+      const cards = document.querySelectorAll('.hub-card');
+
+      function filterCards() {
+        const query = (searchInput.value || '').toLowerCase().trim();
+        const activeBtn = document.querySelector('.hub-filter-btn.active');
+        const selectedCategory = activeBtn ? activeBtn.getAttribute('data-category') : 'all';
+
+        cards.forEach(card => {
+          const cardCategory = card.getAttribute('data-category');
+          const cardSearchText = (card.getAttribute('data-title') + ' ' + card.innerText).toLowerCase();
+
+          const matchesCategory = (selectedCategory === 'all' || cardCategory === selectedCategory);
+          const matchesQuery = !query || cardSearchText.includes(query);
+
+          if (matchesCategory && matchesQuery) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      }
+
+      if (searchInput) {
+        searchInput.addEventListener('input', filterCards);
+      }
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', function () {
+          filterBtns.forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          filterCards();
+        });
+      });
+    });
+  </script>
+</body>
+</html>

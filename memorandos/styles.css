@@ -1,0 +1,3212 @@
+/* ============================================================
+   ESTILOS - MEMORANDOS FCT UNESP
+   Identidade Visual baseada no Portal Oficial: https://www.fct.unesp.br/
+   ============================================================ */
+
+:root {
+  --primary: #00a3e3;           /* Azul Ciano Oficial UNESP */
+  --primary-dark: #0082b6;      /* Azul Ciano Hover */
+  --primary-light: #f0f9fd;     /* Azul Sutil Fundo */
+  --primary-border-subtle: #99daf4;
+  --dark-blue: #0e5374;        /* Azul Médio Institucional */
+  --darker-blue: #1b303b;      /* Azul Noturno UNESP (Topbar e Footer) */
+  --accent: #00a3e3;
+  --accent-hover: #0082b6;
+  --success: #00c853;          /* Verde Sucesso */
+  --danger: #ec5840;           /* Vermelho Alerta */
+  --text-main: #1a1a1a;        /* Texto padrão Portal Unesp */
+  --text-muted: #666666;       /* Texto secundário */
+  --bg-app: #f8f8f8;           /* Fundo da página */
+  --bg-card: #ffffff;          /* Fundo dos cartões */
+  --border-color: #dee2e6;      /* Bordas suaves */
+  --border-radius: 4px;        /* Bordas padrão UNESP */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+body {
+  font-family: 'Raleway', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--bg-app);
+  color: var(--text-main);
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Barra Superior Institucional UNESP (Topbar) */
+.unesp-top-bar {
+  background-color: var(--darker-blue);
+  color: #ffffff;
+  padding: 0.45rem 2rem;
+  border-bottom: 2px solid var(--primary);
+  font-size: 0.8rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.top-bar-content {
+  max-width: 1600px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.top-bar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.unesp-logo-svg {
+  height: 24px;
+  width: auto;
+  display: block;
+}
+
+.top-bar-sep {
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 300;
+}
+
+.top-bar-campus {
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: #ffffff;
+}
+
+.top-bar-links {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.top-link {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  transition: color 0.15s;
+  font-weight: 500;
+}
+
+.top-link:hover {
+  color: var(--primary);
+}
+
+.top-bar-dot {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* Header Principal do Sistema */
+.app-header {
+  background: #ffffff;
+  color: var(--text-main);
+  padding: 1.25rem 2rem;
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.header-content {
+  max-width: 1600px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.brand-fct-logo {
+  height: 52px;
+  width: auto;
+  max-width: 110px;
+  object-fit: contain;
+  display: block;
+  transition: transform 0.2s ease;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.08));
+}
+
+.brand-fct-logo:hover {
+  transform: scale(1.04);
+}
+
+.brand-titles h1 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--darker-blue);
+  line-height: 1.2;
+}
+
+.brand-titles p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 0.15rem;
+}
+
+.badge-status {
+  background: var(--primary-light);
+  color: var(--dark-blue);
+  border: 1px solid var(--primary-border-subtle);
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--border-radius);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+/* Barra de Alternância de Visão no Celular / Tablet (Formulário vs Pré-visualização A4) */
+.mobile-view-tabs {
+  display: none; /* Oculto por padrão em Desktop (> 992px) */
+  position: sticky;
+  top: 0;
+  z-index: 99;
+  background: #ffffff;
+  padding: 0.45rem 0.75rem;
+  border-bottom: 2px solid var(--primary);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.mobile-view-tabs-inner {
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem;
+  background: #f1f5f9;
+  padding: 0.25rem;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  box-sizing: border-box;
+}
+
+.mobile-view-tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 0.55rem 0.5rem;
+  border: none;
+  border-radius: var(--border-radius);
+  background: transparent;
+  color: var(--dark-blue);
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 40px;
+  -webkit-tap-highlight-color: transparent;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+.mobile-view-tab.active {
+  background: var(--primary);
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 163, 227, 0.3);
+}
+
+.mobile-view-tab:hover:not(.active) {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.mobile-only {
+  display: none !important;
+}
+
+/* Barra Superior de Retorno ao Hub de Memorandos e Portal STGP */
+.top-nav-back-bar {
+  max-width: 1600px;
+  width: 100%;
+  margin: 1.25rem auto 0;
+  padding: 0 1.5rem;
+  box-sizing: border-box;
+}
+
+.top-nav-back-inner {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+/* Trilha de Navegação (Breadcrumb) */
+.breadcrumb-trail {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  flex-wrap: wrap;
+}
+
+.breadcrumb-sep {
+  color: #94a3b8;
+  font-weight: 300;
+  font-size: 1rem;
+  user-select: none;
+}
+
+.breadcrumb-link {
+  color: var(--dark-blue);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.15s ease;
+}
+
+.breadcrumb-link:hover {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+.breadcrumb-current {
+  color: #334155;
+  font-weight: 600;
+}
+
+@media screen and (max-width: 992px) {
+  .top-nav-back-bar {
+    margin: 0.75rem auto 0.4rem;
+    padding: 0 1rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .top-nav-back-bar {
+    padding: 0 0.75rem;
+    margin: 0.5rem auto 0.3rem;
+  }
+}
+
+/* Layout Principal */
+.main-container {
+  max-width: 1600px;
+  width: 100%;
+  margin: 1rem auto 1.5rem;
+  padding: 0 1.5rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  gap: 2rem;
+  align-items: start;
+  flex: 1;
+}
+
+@media screen and (max-width: 1100px) {
+  .main-container {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Botão de Retorno ao STGP Digital */
+.nav-back-container {
+  display: flex;
+  align-items: center;
+}
+
+.hub-main .nav-back-container {
+  margin-bottom: 1.5rem;
+}
+
+.btn-back-stgp {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0.85rem;
+  background-color: #ffffff;
+  color: var(--dark-blue);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.btn-back-stgp:hover {
+  background-color: var(--primary-light);
+  color: var(--primary-dark);
+  border-color: var(--primary);
+  box-shadow: 0 2px 6px rgba(0, 163, 227, 0.2);
+  transform: translateX(-2px);
+}
+
+.btn-back-stgp .back-arrow-icon,
+.btn-back-stgp svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.btn-back-stgp:hover .back-arrow-icon,
+.btn-back-stgp:hover svg {
+  transform: translateX(-3px);
+}
+
+/* Coluna do Formulário */
+.form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.card {
+  background: var(--bg-card);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  border-top: 3px solid var(--primary);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.card-header {
+  margin-bottom: 1.25rem;
+  border-bottom: 1px solid #f1f5f9;
+  padding-bottom: 0.75rem;
+}
+
+.card-header h2 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--darker-blue);
+}
+
+.subtitle {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 0.2rem;
+}
+
+/* Abas de Perfil (Servidor vs Público Externo) */
+.profile-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  background-color: #f1f5f9;
+  padding: 0.35rem;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+}
+
+@media screen and (max-width: 600px) {
+  .profile-tabs {
+    grid-template-columns: 1fr;
+  }
+}
+
+.profile-tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: transparent;
+  border: none;
+  border-radius: var(--border-radius);
+  color: var(--darker-blue);
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.profile-tab:hover:not(.active) {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.profile-tab.active {
+  background-color: var(--primary);
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 163, 227, 0.25);
+}
+
+.profile-tab .tab-icon {
+  font-size: 1.15rem;
+}
+
+/* Seletor de Tipo (Cards de Rádio) */
+.tipo-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+.tipo-card {
+  position: relative;
+  display: block;
+  cursor: pointer;
+}
+
+.tipo-card input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.tipo-card-inner {
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  background-color: #ffffff;
+}
+
+.tipo-icon {
+  font-size: 1.5rem;
+}
+
+.tipo-title {
+  font-weight: 700;
+  color: var(--darker-blue);
+  font-size: 0.95rem;
+}
+
+.tipo-desc {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.35;
+}
+
+.tipo-card:hover .tipo-card-inner {
+  border-color: var(--primary);
+  background: #fbfdff;
+}
+
+.tipo-card input:checked + .tipo-card-inner {
+  border-color: var(--primary);
+  background-color: var(--primary-light);
+  box-shadow: 0 0 0 2px rgba(0, 163, 227, 0.25);
+}
+
+.tipo-card input:checked + .tipo-card-inner .tipo-title {
+  color: var(--dark-blue);
+}
+
+/* Grids do Formulário */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.col-span-2 {
+  grid-column: span 2;
+}
+
+@media screen and (max-width: 600px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+  .col-span-2 {
+    grid-column: span 1;
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.form-group label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--darker-blue);
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group input[type="date"],
+.form-group input[type="number"],
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 0.65rem 0.85rem;
+  font-size: 0.9rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  background-color: #ffffff;
+  color: var(--text-main);
+  transition: border-color 0.15s, box-shadow 0.15s;
+  font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #80d1f1;
+  box-shadow: 0 0 0 0.25rem rgba(0, 163, 227, 0.25);
+}
+
+.input-readonly {
+  background-color: #f8fafc !important;
+  cursor: not-allowed;
+  color: var(--text-muted) !important;
+}
+
+.field-hint {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 0.2rem;
+}
+
+.field-feedback {
+  font-size: 0.775rem;
+  font-weight: 600;
+  margin-top: 0.25rem;
+  display: none;
+  line-height: 1.3;
+}
+
+.field-feedback:not(:empty) {
+  display: block;
+}
+
+.field-feedback.valid {
+  color: #16a34a; /* Verde */
+}
+
+.field-feedback.invalid {
+  color: #dc2626; /* Vermelho */
+}
+
+.field-feedback.info {
+  color: var(--text-muted);
+}
+
+input.input-invalid {
+  border-color: var(--danger) !important;
+  background-color: #fff5f5 !important;
+}
+
+input.input-invalid:focus {
+  box-shadow: 0 0 0 0.25rem rgba(236, 88, 64, 0.25) !important;
+}
+
+input.input-valid {
+  border-color: #22c55e !important;
+}
+
+input.input-valid:focus {
+  box-shadow: 0 0 0 0.25rem rgba(34, 197, 94, 0.25) !important;
+}
+
+/* Checkbox estilizado */
+.checkbox-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  cursor: pointer;
+  padding: 0.5rem 0;
+}
+
+.checkbox-container input[type="checkbox"] {
+  width: 1.15rem;
+  height: 1.15rem;
+  accent-color: var(--primary);
+  margin-top: 0.15rem;
+  cursor: pointer;
+}
+
+.checkbox-container span {
+  font-size: 0.85rem;
+  color: var(--darker-blue);
+  line-height: 1.4;
+}
+
+/* Caixa Informativa / Alerta (Padrão Portal UNESP) */
+.info-box {
+  background-color: var(--primary-light);
+  border-left: 4px solid var(--primary);
+  padding: 0.85rem 1rem;
+  border-radius: var(--border-radius);
+  font-size: 0.825rem;
+  color: var(--dark-blue);
+  line-height: 1.5;
+  margin-bottom: 0.5rem;
+}
+
+.info-box strong {
+  color: var(--dark-blue);
+}
+
+.info-box ul {
+  margin: 0.4rem 0 0 1.25rem;
+  padding: 0;
+}
+
+.info-box li {
+  margin-bottom: 0.25rem;
+}
+
+/* Botões de Ação (Padrão .botao-azul do Portal UNESP) */
+.action-buttons-card {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.925rem;
+  font-weight: 600;
+  padding: 0.85rem 1.4rem;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 1px solid transparent;
+  text-decoration: none;
+  font-family: inherit;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  border-color: var(--primary);
+  color: #ffffff;
+  flex: 1;
+  min-width: 220px;
+  box-shadow: 0 2px 4px rgba(0, 163, 227, 0.25);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-dark);
+  border-color: var(--primary-dark);
+  box-shadow: 0 4px 8px rgba(0, 163, 227, 0.35);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background-color: var(--darker-blue);
+  border-color: var(--darker-blue);
+  color: #ffffff;
+}
+
+.btn-secondary:hover {
+  background-color: var(--dark-blue);
+  border-color: var(--dark-blue);
+}
+
+.btn-outline {
+  background-color: #ffffff;
+  color: var(--primary);
+  border: 1px solid var(--primary);
+}
+
+.btn-outline:hover {
+  background-color: var(--primary-light);
+  color: var(--primary-dark);
+}
+
+/* Coluna de Visualização (Folha A4) */
+.preview-section {
+  position: sticky;
+  top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-width: 0;
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.preview-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+  padding: 0.6rem 1rem;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  font-size: 0.825rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.preview-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  color: var(--darker-blue);
+}
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--success);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 200, 83, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(0, 200, 83, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 200, 83, 0); }
+}
+
+.preview-hint {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+
+/* Controles de Zoom e Escala A4 */
+.preview-zoom-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.btn-zoom {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.35rem 0.65rem;
+  font-size: 0.76rem;
+  font-weight: 600;
+  font-family: inherit;
+  color: var(--dark-blue);
+  background: #f1f5f9;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  min-height: 32px;
+}
+
+.btn-zoom:hover {
+  background: #e2e8f0;
+  border-color: #cbd5e1;
+}
+
+.btn-zoom.active {
+  background: var(--primary);
+  color: #ffffff;
+  border-color: var(--primary);
+  box-shadow: 0 1px 3px rgba(0, 163, 227, 0.3);
+}
+
+.a4-wrapper {
+  background: #cbd5e1;
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  overflow-x: auto;
+  overflow-y: auto;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+  max-height: calc(100vh - 120px);
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  scrollbar-width: thin;
+  scrollbar-color: #94a3b8 #e2e8f0;
+}
+
+.a4-wrapper::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.a4-wrapper::-webkit-scrollbar-track {
+  background: #e2e8f0;
+  border-radius: 4px;
+}
+
+.a4-wrapper::-webkit-scrollbar-thumb {
+  background-color: #94a3b8;
+  border-radius: 4px;
+  border: 2px solid #e2e8f0;
+}
+
+.a4-wrapper::-webkit-scrollbar-thumb:hover {
+  background-color: #64748b;
+}
+
+.a4-wrapper.mode-fit-screen {
+  overflow-x: hidden;
+  overflow-y: auto;
+  align-items: center;
+}
+
+.a4-scale-container {
+  position: relative;
+  transition: transform 0.15s ease-out;
+  transform-origin: top left;
+  margin: 0 auto;
+  min-width: 0;
+  box-sizing: border-box;
+  flex-shrink: 0; /* CRÍTICO: Impede que o flexbox encolha o container A4, garantindo rolagem e evitando cortes no documento */
+}
+
+/* Ações Rápidas da Prévia no Mobile */
+.preview-mobile-actions {
+  display: none;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Documento A4 */
+/* Documento A4 - Exatamente 1 página (210mm x 297mm) */
+.a4-page {
+  background: #ffffff;
+  width: 210mm;
+  height: 297mm;
+  min-height: 297mm;
+  max-height: 297mm;
+  margin: 0 auto;
+  padding: 0; /* Padding interno gerenciado em .doc-view para calibragem milimétrica com o papel timbrado */
+  box-sizing: border-box;
+  box-shadow: var(--shadow-lg);
+  color: #111827;
+  font-family: 'Merriweather', Georgia, serif;
+  font-size: 10.5pt;
+  line-height: 1.5;
+  position: relative !important; /* CRÍTICO: Garante que o papel timbrado oficial (.papel-timbrado-bg) nunca escape do documento A4 */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Imagem de Fundo do Papel Timbrado Oficial UNESP 50 Anos FCT */
+.papel-timbrado-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 210mm;
+  height: 297mm;
+  object-fit: fill;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Elementos do Documento */
+.doc-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.doc-title-unesp {
+  font-family: 'Inter', sans-serif;
+  font-size: 11.5pt;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #000000;
+}
+
+.doc-subtitle-unesp {
+  font-family: 'Inter', sans-serif;
+  font-size: 10pt;
+  font-style: italic;
+  margin-bottom: 2px;
+}
+
+.doc-campus {
+  font-family: 'Inter', sans-serif;
+  font-size: 9.5pt;
+  font-weight: 600;
+}
+
+.doc-unidade {
+  font-family: 'Inter', sans-serif;
+  font-size: 9.5pt;
+  font-weight: 600;
+  color: #1e3a8a;
+}
+
+.doc-divider {
+  border: 0;
+  height: 1.5px;
+  background: #1e293b;
+  margin: 8px auto 0 auto;
+  width: 100%;
+}
+
+.doc-destinatario {
+  margin-top: 0;
+  margin-bottom: 3.5rem; /* Espaçamento generoso entre o cabeçalho e a qualificação */
+  text-transform: uppercase;
+  font-size: 11pt;
+  line-height: 1.5;
+  font-family: 'Inter', sans-serif;
+  color: #000000;
+  text-align: justify;
+}
+
+.doc-paragrafo {
+  text-align: justify;
+  text-indent: 2.5cm; /* Recuo padrão de expediente oficial */
+  margin-bottom: 1rem;
+  font-size: 11pt;
+  line-height: 1.55;
+}
+
+.doc-val {
+  color: #0f172a;
+}
+
+.doc-box-pedido {
+  background-color: #fcfcfc;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  padding: 10px 14px;
+  margin: 0.95rem 0;
+  text-align: justify;
+  font-size: 10.5pt;
+  line-height: 1.5;
+}
+
+.doc-box-pedido p {
+  margin-bottom: 0.4rem;
+}
+.doc-box-pedido p:last-child {
+  margin-bottom: 0;
+}
+
+.doc-anexos-bloco {
+  margin: 0.95rem 0;
+  font-size: 10pt;
+  line-height: 1.5;
+}
+
+.doc-lista-anexos {
+  margin-left: 1.5rem;
+  margin-top: 0.25rem;
+}
+
+.doc-fecho {
+  text-align: justify;
+  text-indent: 2.5cm;
+  margin: 1.15rem 0 0.85rem 0;
+  font-size: 11pt;
+}
+
+.doc-data-local {
+  text-align: center; /* Centralizado conforme solicitado */
+  margin: 1.15rem 0 1.5rem 0;
+  font-size: 11pt;
+}
+
+/* ==========================================================================
+   Ajustes Exclusivos para o Requerimento de Auxílio Funeral (Página Única A4)
+   ========================================================================== */
+.a4-page.doc-auxilio-funeral .doc-destinatario {
+  margin-bottom: 2rem;
+  font-size: 10.5pt;
+  line-height: 1.45;
+}
+
+.a4-page.doc-auxilio-funeral .doc-paragrafo {
+  margin-bottom: 0.75rem;
+  font-size: 10.5pt;
+  line-height: 1.48;
+}
+
+.a4-page.doc-auxilio-funeral .doc-box-pedido {
+  padding: 8px 12px;
+  margin: 0.65rem 0;
+  font-size: 10pt;
+  line-height: 1.45;
+}
+
+.a4-page.doc-auxilio-funeral .doc-box-pedido p {
+  margin-bottom: 0.35rem;
+}
+
+.a4-page.doc-auxilio-funeral .doc-anexos-bloco {
+  margin: 0.65rem 0;
+  font-size: 8.5pt;
+  line-height: 1.38;
+}
+
+.a4-page.doc-auxilio-funeral .doc-lista-anexos {
+  margin-left: 1.35rem;
+  margin-top: 0.2rem;
+}
+
+.a4-page.doc-auxilio-funeral .doc-lista-anexos li {
+  margin-bottom: 2px;
+}
+
+.a4-page.doc-auxilio-funeral .doc-fecho {
+  margin: 0.75rem 0 0.5rem 0;
+  font-size: 10.5pt;
+}
+
+.a4-page.doc-auxilio-funeral .doc-data-local {
+  margin: 0.75rem 0 1.1rem 0;
+  font-size: 10.5pt;
+}
+
+/* ==========================================================================
+   Ajustes Exclusivos para Isenção de Imposto de Renda (Página Única A4)
+   ========================================================================== */
+.a4-page.doc-isencao-ir .doc-destinatario {
+  margin-bottom: 2.2rem;
+  font-size: 10.5pt;
+}
+
+.a4-page.doc-isencao-ir .doc-box-pedido {
+  padding: 8px 12px;
+  margin: 0.75rem 0;
+  font-size: 10pt;
+  line-height: 1.45;
+}
+
+.a4-page.doc-isencao-ir .doc-box-pedido p {
+  margin-bottom: 0.35rem;
+}
+
+.a4-page.doc-isencao-ir .doc-anexos-bloco {
+  margin: 0.75rem 0;
+  font-size: 9pt;
+  line-height: 1.38;
+}
+
+.a4-page.doc-isencao-ir .doc-lista-anexos li {
+  margin-bottom: 2px;
+}
+
+/* ==========================================================================
+   Ajustes Exclusivos para Adicional de Insalubridade (Página Única A4)
+   ========================================================================== */
+.a4-page.doc-insalubridade .doc-destinatario {
+  margin-bottom: 1rem;
+  font-size: 10pt;
+}
+
+.a4-page.doc-insalubridade .doc-box-pedido {
+  padding: 6px 10px;
+  margin: 0.5rem 0;
+  font-size: 9.5pt;
+  line-height: 1.4;
+}
+
+.a4-page.doc-insalubridade .doc-box-pedido p {
+  margin-bottom: 0.3rem;
+}
+
+.a4-page.doc-insalubridade .doc-anexos-bloco {
+  margin: 0.5rem 0;
+  font-size: 8.8pt;
+  line-height: 1.35;
+}
+
+.a4-page.doc-insalubridade .doc-lista-anexos li {
+  margin-bottom: 1.5px;
+}
+
+.a4-page.doc-insalubridade .doc-chefia-area {
+  margin-top: 1.2rem;
+  margin-bottom: 0.2rem;
+}
+
+.a4-page.doc-insalubridade .doc-chefia-ciente {
+  margin-bottom: 1rem;
+}
+
+.doc-assinatura-area {
+  text-align: center; /* Centralizado conforme solicitado */
+  margin-top: auto;
+  margin-bottom: 0.5rem;
+}
+
+.doc-linha-assinatura {
+  width: 55%;
+  margin: 0 auto 6px auto;
+  border-top: 1px solid #000000;
+}
+
+.doc-assinatura-nome {
+  font-weight: bold;
+  font-size: 10.5pt;
+}
+
+.doc-assinatura-cargo {
+  font-size: 10pt;
+  color: #334155;
+}
+
+/* Bloco de Ciência da Chefia Imediata */
+.doc-chefia-area {
+  text-align: center;
+  margin-top: 2rem; /* Quebra de linha adicional e separação nítida da assinatura anterior */
+  margin-bottom: 0.5rem;
+}
+
+.doc-chefia-ciente {
+  font-weight: normal;
+  font-size: 10.5pt;
+  margin-bottom: 1.5rem; /* Espaço para visto ou rubrica */
+}
+
+.doc-chefia-responsavel {
+  font-size: 10pt;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+/* Rodapé Institucional Oficial UNESP (Padrão Portal Unesp) */
+.app-footer {
+  background-color: #dedede;
+  color: #333333;
+  border-top: 1px solid #d0d0d0;
+  padding: 3.5rem 2rem 3rem;
+  margin-top: auto;
+  font-family: 'Raleway', sans-serif;
+}
+
+.footer-grid {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2.5rem;
+}
+
+@media screen and (max-width: 992px) {
+  .footer-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 440px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+.footer-group h3 {
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: #2e383f;
+  letter-spacing: 0.04em;
+  margin-bottom: 1.25rem;
+  text-transform: uppercase;
+}
+
+.footer-group ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.footer-group a {
+  color: #4a555c;
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 500;
+  transition: color 0.15s, text-decoration 0.15s;
+}
+
+.footer-group a:hover {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+/* Bloco Central do Rodapé */
+.footer-central-block {
+  max-width: 800px;
+  margin: 4rem auto 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 0.5rem;
+}
+
+.footer-unesp-logo-center {
+  height: 86px;
+  width: auto;
+  max-width: 280px;
+  object-fit: contain;
+  display: block;
+  margin-bottom: 0.85rem;
+  transition: transform 0.2s;
+}
+
+.footer-unesp-logo-center:hover {
+  transform: scale(1.02);
+}
+
+.footer-address-text {
+  color: #4a555c;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.footer-address-text p {
+  margin: 0 0 0.15rem 0;
+}
+
+.footer-unit-title {
+  color: #1a1a1a !important;
+  font-size: 0.95rem !important;
+  margin-bottom: 0.35rem !important;
+}
+
+.footer-social-icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.footer-social-icons a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.2s ease;
+  text-decoration: none;
+}
+
+.footer-social-icons a:hover {
+  transform: scale(1.15);
+  opacity: 0.92;
+}
+
+.footer-social-icons a:active {
+  transform: scale(1.05);
+}
+
+/* ============================================================
+   ESTILOS ESPECÍFICOS: MEMORANDO E QUADRO ANEXO COM PAPEL TIMBRADO
+   ============================================================ */
+.doc-view {
+  display: none;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  /* Padding calibrado com precisão: 43mm superior (libera o cabeçalho e a linha dupla timbrada que termina em 38.1mm) e 22mm inferior (libera o endereço e os grafismos da base) */
+  padding: 43mm 22mm 22mm 25mm;
+  box-sizing: border-box;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.doc-view.active {
+  display: flex;
+}
+
+#view-memorando {
+  font-family: 'Raleway', Arial, sans-serif;
+}
+
+/* Setor de Origem do Documento */
+.memo-origem-header {
+  font-family: 'Raleway', sans-serif;
+  font-size: 11pt;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--darker-blue);
+  letter-spacing: 0.03em;
+  margin-bottom: 1.25rem;
+  border-bottom: 1.5px solid var(--border-color);
+  padding-bottom: 0.35rem;
+}
+
+.memo-annex-indicator {
+  font-family: 'Raleway', sans-serif;
+  font-size: 8.5pt;
+  color: #475569;
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+
+.doc-header-institutional .header-text h3 {
+  font-family: 'Raleway', sans-serif;
+  font-size: 10.5pt;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #000;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.doc-header-institutional .header-text h4 {
+  font-family: 'Raleway', sans-serif;
+  font-size: 9pt;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #222;
+  margin: 2px 0 0 0;
+}
+
+.doc-header-institutional .header-text p {
+  font-family: 'Raleway', sans-serif;
+  font-size: 8.5pt;
+  color: #444;
+  margin: 2px 0 0 0;
+}
+
+/* Identificação e Endereçamento do Memorando */
+/* Identificação e Estrutura Oficial do Memorando (Manual UNESP) */
+.memo-identificacao-linha {
+  font-family: 'Raleway', Arial, sans-serif;
+  font-size: 11pt;
+  font-weight: normal; /* Sem negrito conforme item b do manual */
+  text-align: left;
+  color: #000000;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.15rem;
+}
+
+.memo-data-linha {
+  font-family: 'Raleway', Arial, sans-serif;
+  font-size: 11pt;
+  font-weight: normal;
+  text-align: right;
+  color: #000000;
+  margin-bottom: 1rem;
+}
+
+.memo-destinatario-bloco {
+  font-family: 'Raleway', Arial, sans-serif;
+  font-size: 11pt;
+  line-height: 1.35;
+  color: #000000;
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.memo-destinatario-bloco .memo-dest-linha {
+  margin: 0;
+  padding: 0;
+}
+
+.memo-vocativo-linha {
+  font-family: 'Raleway', Arial, sans-serif;
+  font-size: 11pt;
+  color: #000000;
+  margin-bottom: 0.75rem;
+  text-align: left;
+}
+
+.memo-assunto-linha {
+  font-family: 'Raleway', Arial, sans-serif;
+  font-size: 11pt;
+  font-weight: normal;
+  color: #000000;
+  margin-bottom: 0;
+  text-align: left;
+}
+
+.memo-assunto-linha strong {
+  font-weight: 700;
+}
+
+/* Parágrafos do texto com recuo padrão oficial de 2,5 cm e tipografia Raleway */
+.memo-paragrafo {
+  font-family: 'Raleway', Arial, sans-serif;
+  font-size: 11pt;
+  line-height: 1.5;
+  text-align: justify;
+  text-indent: 2.5cm; /* Recuo padrão oficial */
+  margin-bottom: 0.75rem;
+  color: #111827;
+}
+
+/* Fecho com o mesmo recuo de parágrafo (2,5 cm) e finalizado por vírgula */
+.memo-fecho-linha {
+  font-family: 'Raleway', Arial, sans-serif;
+  font-size: 11pt;
+  text-indent: 2.5cm;
+  margin-top: 1rem;
+  margin-bottom: 0;
+  color: #111827;
+}
+
+/* Bloco de Assinatura: Parágrafo de 2,5 cm com alinhamento centralizado */
+.memo-signatario-bloco {
+  text-align: center;
+  text-indent: 2.5cm;
+  margin: 0;
+  line-height: 1;
+}
+
+.memo-signatario-linha {
+  display: none;
+}
+
+.memo-signatario-nome {
+  font-family: 'Raleway', Arial, sans-serif;
+  font-size: 11pt;
+  font-weight: normal;
+  text-transform: none;
+  text-indent: 2.5cm;
+  text-align: center;
+  color: #000000;
+  line-height: 1;
+  margin: 0;
+  padding: 0;
+}
+
+.memo-signatario-cargo {
+  font-family: 'Raleway', Arial, sans-serif;
+  font-size: 11pt;
+  font-weight: normal;
+  text-transform: uppercase;
+  text-indent: 2.5cm;
+  text-align: center;
+  color: #000000;
+  line-height: 1;
+  margin: 0;
+  padding: 0;
+}
+
+/* Quadro de Alteração da Escala de Substituição */
+.quadro-title-container {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.quadro-title-container h2 {
+  font-family: 'Raleway', sans-serif;
+  font-size: 11.5pt;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #000;
+  margin-bottom: 0.25rem;
+}
+
+.quadro-title-container p {
+  font-family: 'Raleway', sans-serif;
+  font-size: 9pt;
+  color: var(--dark-blue);
+  font-weight: 600;
+}
+
+.quadro-info-bar {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  font-family: 'Raleway', sans-serif;
+  font-size: 8.5pt;
+}
+
+.quadro-info-item strong {
+  color: var(--darker-blue);
+}
+
+/* Estilos do Novo Modelo Oficial: Quadro de Alteração de Escala de Substituição */
+#view-quadro {
+  font-family: 'Raleway', Arial, sans-serif;
+  color: #000000;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#view-quadro.active {
+  display: flex;
+}
+
+.quadro-conteudo-pagina {
+  display: flex;
+  flex-direction: column;
+}
+
+.quadro-titulo-oficial {
+  font-family: 'Raleway', Arial, sans-serif;
+  font-size: 13pt;
+  font-weight: 800;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #000000;
+  margin: 0 0 0.85rem 0;
+}
+
+.quadro-dados-gerais {
+  font-family: 'Raleway', Arial, sans-serif;
+  font-size: 10pt;
+  line-height: 1.45;
+  color: #000000;
+  margin-bottom: 0.85rem;
+}
+
+.quadro-info-linha {
+  margin-bottom: 0.2rem;
+}
+
+.quadro-info-linha strong {
+  font-weight: 700;
+}
+
+.quadro-substituto-bloco {
+  border: 1px solid #000000;
+  margin-bottom: 0.85rem;
+  background-color: #ffffff;
+}
+
+.quadro-substituto-header {
+  background-color: #cbd5e1;
+  font-family: 'Raleway', Arial, sans-serif;
+  font-size: 10pt;
+  font-weight: 800;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 3px 0;
+  border-bottom: 1px solid #000000;
+  color: #000000;
+}
+
+.quadro-tabela-substituto {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Raleway', Arial, sans-serif;
+  font-size: 9pt;
+  line-height: 1.25;
+}
+
+.quadro-tabela-substituto td {
+  border: 1px solid #000000;
+  padding: 4px 8px;
+  vertical-align: middle;
+  color: #000000;
+}
+
+.quadro-tabela-substituto td strong {
+  font-weight: 700;
+}
+
+.quadro-acordo-bloco {
+  padding: 6px 10px 10px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.quadro-de-acordo {
+  align-self: flex-start;
+  font-family: 'Raleway', Arial, sans-serif;
+  font-size: 9.5pt;
+  margin: 0 0 2.2rem 0; /* Quebra de linha adicional entre "De acordo." e a legenda de identificação */
+  color: #000000;
+}
+
+.quadro-assinatura-linha-centro {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+#prev-quadro-bloco-subst2 {
+  margin-top: 2.25rem; /* Espaço equivalente a 3 quebras de linha entre o 1º e 2º substitutos */
+}
+
+.legenda-superior-imediato {
+  font-family: 'Raleway', Arial, sans-serif;
+  font-size: 8pt;
+  color: #000000;
+  margin: 0;
+  text-align: center;
+}
+
+.quadro-rodape-assinatura {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 0.5rem;
+  margin-top: auto;
+}
+
+.quadro-proponente-bloco {
+  text-align: right;
+  font-family: 'Raleway', Arial, sans-serif;
+  color: #000000;
+  line-height: 1.25;
+}
+
+.quadro-proponente-nome {
+  font-size: 10pt;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.quadro-proponente-cargo {
+  font-size: 9pt;
+  font-weight: normal;
+  text-transform: uppercase;
+}
+
+/* Formulário Card 3: Estilos dos Substitutos */
+.substituto-card-section {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1.15rem;
+  margin-bottom: 1rem;
+}
+
+.substituto-section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.substituto-section-title h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--darker-blue);
+}
+
+.substituto-section-title .badge-num {
+  background: var(--darker-blue);
+  color: #ffffff;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.doc-footer-annex {
+  border-top: 1px solid #cbd5e1;
+  padding-top: 0.5rem;
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Raleway', sans-serif;
+  font-size: 8pt;
+  color: #64748b;
+}
+
+.btn-back-subtle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 0.85rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--dark-blue);
+  background: #f1f5f9;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btn-back-subtle:hover {
+  background: #e2e8f0;
+  color: var(--darker-blue);
+  border-color: #cbd5e1;
+}
+
+/* ============================================================
+   PORTAL / HUB DE MEMORANDOS - ESTILOS DO PAINEL CENTRAL
+   ============================================================ */
+.hub-main {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 2.25rem 1.5rem 4rem;
+  width: 100%;
+}
+
+.hub-hero {
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 2rem 2.25rem;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hub-hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary) 0%, var(--dark-blue) 100%);
+}
+
+.hub-hero-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.hub-hero-text h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--darker-blue);
+  margin-bottom: 0.35rem;
+  line-height: 1.2;
+}
+
+.hub-hero-text p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  max-width: 780px;
+  line-height: 1.5;
+}
+
+.hub-badge-portal {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.85rem;
+  background: var(--primary-light);
+  color: var(--dark-blue);
+  border: 1px solid var(--primary-border-subtle);
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.hub-notice-sigad {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background: #eff6ff;
+  border-left: 4px solid #2563eb;
+  padding: 1rem 1.25rem;
+  border-radius: 4px;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #1e3a8a;
+  line-height: 1.45;
+}
+
+.hub-notice-sigad svg {
+  flex-shrink: 0;
+  color: #2563eb;
+  margin-top: 2px;
+}
+
+.hub-notice-sigad a {
+  color: #1d4ed8;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.hub-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+}
+
+.hub-search-box {
+  position: relative;
+  flex: 1;
+  min-width: 280px;
+  max-width: 480px;
+}
+
+.hub-search-box input {
+  width: 100%;
+  padding: 0.7rem 1rem 0.7rem 2.6rem;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 0.92rem;
+  background: #ffffff;
+  color: var(--text-main);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+
+.hub-search-box input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(0, 163, 227, 0.15);
+}
+
+.hub-search-box svg {
+  position: absolute;
+  left: 0.85rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+  pointer-events: none;
+}
+
+.hub-category-filters {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.hub-filter-btn {
+  padding: 0.5rem 0.95rem;
+  border-radius: 20px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  border: 1px solid var(--border-color);
+  background: #ffffff;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.hub-filter-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary-dark);
+}
+
+.hub-filter-btn.active {
+  background: var(--dark-blue);
+  color: #ffffff;
+  border-color: var(--dark-blue);
+}
+
+.hub-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 1.75rem;
+  margin-bottom: 3.5rem;
+}
+
+.hub-card {
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1.65rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  position: relative;
+}
+
+.hub-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary);
+}
+
+.hub-card.disabled {
+  background: #fbfbfb;
+  opacity: 0.88;
+}
+
+.hub-card.disabled:hover {
+  transform: none;
+  box-shadow: var(--shadow-sm);
+  border-color: var(--border-color);
+}
+
+.hub-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.badge-tag-category {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+  background: #f1f5f9;
+  color: #475569;
+}
+
+.badge-status-ready {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.25rem 0.65rem;
+  border-radius: 20px;
+  background: #e8f9ee;
+  color: #166534;
+  border: 1px solid #bbf7d0;
+}
+
+.badge-status-ready::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #22c55e;
+}
+
+.badge-status-upcoming {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.25rem 0.65rem;
+  border-radius: 20px;
+  background: #fffbeb;
+  color: #92400e;
+  border: 1px solid #fde68a;
+}
+
+.badge-status-upcoming::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #f59e0b;
+}
+
+.hub-card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  background: var(--primary-light);
+  color: var(--dark-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  border: 1px solid var(--primary-border-subtle);
+}
+
+.hub-card.disabled .hub-card-icon {
+  background: #f1f5f9;
+  color: #64748b;
+  border-color: #e2e8f0;
+}
+
+.hub-card-title {
+  font-size: 1.22rem;
+  font-weight: 700;
+  color: var(--darker-blue);
+  margin-bottom: 0.55rem;
+  line-height: 1.3;
+}
+
+.hub-card-desc {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 1.25rem;
+  flex-grow: 1;
+}
+
+.hub-card-docs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1.5rem;
+}
+
+.doc-tag {
+  font-size: 0.76rem;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  background: #f8fafc;
+  color: #334155;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+}
+
+.hub-card-footer {
+  border-top: 1px solid var(--border-color);
+  padding-top: 1.15rem;
+}
+
+.btn-card-launch {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.75rem 1.25rem;
+  background: var(--primary);
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 163, 227, 0.25);
+}
+
+.btn-card-launch:hover {
+  background: var(--primary-dark);
+  box-shadow: 0 4px 8px rgba(0, 163, 227, 0.35);
+  transform: translateY(-1px);
+}
+
+.btn-card-launch:active {
+  transform: translateY(0);
+}
+
+.btn-card-pending {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  width: 100%;
+  padding: 0.75rem 1.25rem;
+  background: #f1f5f9;
+  color: #94a3b8;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 6px;
+  border: 1px dashed #cbd5e1;
+  cursor: not-allowed;
+  user-select: none;
+}
+
+/* Seção Como Funciona / Padrão Institucional */
+.hub-guide-section {
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 2.25rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.hub-guide-section h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--darker-blue);
+  margin-bottom: 0.35rem;
+}
+
+.hub-guide-section .guide-sub {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 1.75rem;
+}
+
+.guide-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.guide-step-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background: #f8fafc;
+  padding: 1.25rem;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+}
+
+.step-number {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--dark-blue);
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.step-content h4 {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--darker-blue);
+  margin-bottom: 0.25rem;
+}
+
+.step-content p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+
+/* ============================================================
+   ESTILOS ESPECÍFICOS - INÍCIO DE EXERCÍCIO DE NOVOS SERVIDORES
+   ============================================================ */
+
+/* Seletor de Categoria do Servidor (Técnico / Docente / Pesquisador) */
+.category-toggle-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.4rem;
+}
+
+.category-toggle-label {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--border-color);
+  border-radius: 6px;
+  background-color: #ffffff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: var(--text-main);
+  user-select: none;
+}
+
+.category-toggle-label:hover {
+  border-color: var(--primary);
+  background-color: var(--primary-light);
+}
+
+.category-toggle-label input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--dark-blue);
+  cursor: pointer;
+}
+
+.category-toggle-label.active {
+  border-color: var(--dark-blue);
+  background-color: #f0f7fa;
+  color: var(--darker-blue);
+  box-shadow: 0 0 0 1px var(--dark-blue);
+}
+
+/* Seletor de Tipo de Horário (Escala vs Horário Fixo) */
+.schedule-type-group {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+.schedule-type-btn {
+  flex: 1;
+  min-width: 220px;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.75rem 1rem;
+  border: 1.5px solid var(--border-color);
+  border-radius: 6px;
+  background-color: #ffffff;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.schedule-type-btn:hover {
+  border-color: var(--primary);
+  background-color: var(--primary-light);
+}
+
+.schedule-type-btn input[type="radio"] {
+  width: 17px;
+  height: 17px;
+  accent-color: var(--dark-blue);
+}
+
+.schedule-type-btn.active {
+  border-color: var(--dark-blue);
+  background-color: #f0f7fa;
+  color: var(--darker-blue);
+  box-shadow: 0 0 0 1px var(--dark-blue);
+}
+
+/* Botões de Preenchimento Rápido de Horário */
+.quick-presets-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.85rem;
+  padding: 0.65rem 0.85rem;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+}
+
+.quick-presets-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--dark-blue);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-right: 0.25rem;
+}
+
+.btn-preset {
+  padding: 0.35rem 0.65rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  border-radius: 4px;
+  border: 1px solid #cbd5e1;
+  background-color: #ffffff;
+  color: #334155;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.btn-preset:hover {
+  background-color: var(--dark-blue);
+  color: #ffffff;
+  border-color: var(--dark-blue);
+}
+
+.btn-preset-clear {
+  color: var(--danger);
+  border-color: #fecaca;
+  background-color: #fef2f2;
+}
+
+.btn-preset-clear:hover {
+  background-color: var(--danger);
+  color: #ffffff;
+  border-color: var(--danger);
+}
+
+/* Tabela de Grade Semanal de Horário de Trabalho */
+.schedule-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  box-shadow: var(--shadow-sm);
+  background-color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.schedule-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+  min-width: 580px;
+}
+
+.schedule-table th {
+  background-color: #f1f5f9;
+  color: var(--darker-blue);
+  font-weight: 700;
+  text-align: center;
+  padding: 8px 6px;
+  border-bottom: 2px solid #cbd5e1;
+  border-right: 1px solid #e2e8f0;
+  white-space: nowrap;
+}
+
+.schedule-table th:last-child {
+  border-right: none;
+}
+
+.schedule-table td {
+  padding: 5px 6px;
+  border-bottom: 1px solid #e2e8f0;
+  border-right: 1px solid #e2e8f0;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.schedule-table td:first-child {
+  text-align: left;
+  font-weight: 600;
+  color: #1e293b;
+  padding-left: 10px;
+  background-color: #f8fafc;
+  white-space: nowrap;
+}
+
+.schedule-table td:last-child {
+  border-right: none;
+}
+
+.schedule-table tr:hover td {
+  background-color: #f8fbfd;
+}
+
+.schedule-table input[type="time"] {
+  width: 100%;
+  max-width: 96px;
+  padding: 4px 6px;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  font-size: 0.82rem;
+  font-family: inherit;
+  color: #1e293b;
+  text-align: center;
+  background-color: #ffffff;
+  transition: border-color 0.15s;
+}
+
+.schedule-table input[type="time"]:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(0, 163, 227, 0.2);
+}
+
+.day-duration-badge {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 0.78rem;
+  background-color: #e2e8f0;
+  color: #334155;
+  min-width: 48px;
+}
+
+.day-duration-badge.active {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+.schedule-footer-row {
+  background-color: #f1f5f9 !important;
+  font-weight: 700;
+}
+
+.schedule-footer-row td {
+  border-top: 2px solid #cbd5e1;
+  padding: 8px 10px;
+}
+
+.total-hours-display {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 4px 10px;
+  background-color: var(--dark-blue);
+  color: #ffffff;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  transition: all 0.2s;
+}
+
+.total-hours-display.excedido {
+  background-color: var(--danger);
+  color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.35);
+  animation: pulse-danger 1.5s infinite;
+}
+
+.total-hours-display.conforme {
+  background-color: #15803d;
+  color: #ffffff;
+}
+
+@keyframes pulse-danger {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+  100% { transform: scale(1); }
+}
+
+/* Campos de Síntese do Horário (Auto-preenchidos a partir da tabela) */
+.schedule-summary-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+@media screen and (max-width: 768px) {
+  .schedule-summary-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Blocos de Dados Bancários e Horário na Pré-visualização A4 */
+.memo-subsecao-bloco {
+  font-family: 'Raleway', Arial, sans-serif;
+  font-size: 11pt;
+  line-height: 1.5;
+  text-indent: 2.5cm;
+  margin-bottom: 0.75rem;
+  color: #111827;
+}
+
+.memo-subsecao-titulo {
+  font-weight: 700;
+  text-decoration: none;
+  margin-bottom: 0.25rem;
+}
+
+.memo-subsecao-item {
+  font-family: 'Raleway', Arial, sans-serif;
+  font-size: 11pt;
+  line-height: 1.45;
+  text-indent: 2.5cm;
+  margin-bottom: 0.15rem;
+  color: #111827;
+}
+
+.memo-subsecao-item strong {
+  font-weight: 600;
+}
+
+/* Tabela de Horário de Trabalho no Memorando A4 */
+.memo-tabela-horario {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.45rem 0 0.65rem 0;
+  font-family: 'Raleway', Arial, sans-serif;
+  font-size: 8.5pt;
+  line-height: 1.35;
+  color: #1e293b;
+  text-indent: 0 !important;
+}
+
+.memo-tabela-horario th,
+.memo-tabela-horario td {
+  border: 1px solid #cbd5e1;
+  padding: 3.5px 6px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.memo-tabela-horario th {
+  background-color: #f1f5f9;
+  font-weight: 700;
+  color: #0f172a;
+  font-size: 8.5pt;
+  letter-spacing: 0.2px;
+}
+
+.memo-tabela-horario th:first-child,
+.memo-tabela-horario td:first-child {
+  text-align: left;
+  padding-left: 8px;
+}
+
+.memo-tabela-horario tbody tr:nth-child(even) {
+  background-color: #f8fafc;
+}
+
+.memo-tabela-horario td.carga-diaria-col {
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.memo-tabela-horario tfoot tr.memo-tabela-total-linha {
+  background-color: #f8fafc;
+  font-weight: 700;
+  border-top: 1.5px solid #94a3b8;
+}
+
+.memo-tabela-horario tfoot td.total-label {
+  text-align: right;
+  padding-right: 12px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.memo-tabela-horario tfoot td.total-valor {
+  text-align: center;
+  font-weight: 800;
+  color: #0f172a;
+  font-size: 9pt;
+}
+
+.info-box-categoria {
+  margin-top: 0.5rem;
+  margin-bottom: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-left: 4px solid var(--primary);
+  background-color: var(--primary-light);
+  border-radius: 0 var(--border-radius) var(--border-radius) 0;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: var(--darker-blue);
+}
+
+/* ============================================================
+   PAINEL DE AUDITORIA DE CONFORMIDADE TRABALHISTA (CLT / TST)
+   ============================================================ */
+.clt-compliance-card {
+  margin-top: 1rem;
+  padding: 1rem 1.1rem;
+  background-color: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s;
+}
+
+.clt-compliance-card.inconforme {
+  border-color: #ef4444;
+  background-color: #fffaf0;
+}
+
+.clt-compliance-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #e2e8f0;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.clt-compliance-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--dark-blue);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.clt-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.clt-badge-ok {
+  background-color: #dcfce7;
+  color: #15803d;
+}
+
+.clt-badge-danger {
+  background-color: #fee2e2;
+  color: #b91c1c;
+}
+
+.clt-badge-info {
+  background-color: #e0f2fe;
+  color: #0369a1;
+}
+
+.clt-checks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.clt-check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 0.65rem 0.85rem;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  transition: all 0.15s;
+}
+
+.clt-check-item.ok {
+  border-left: 4px solid #16a34a;
+  background-color: #f0fdf4;
+}
+
+.clt-check-item.inconforme {
+  border-left: 4px solid #dc2626;
+  background-color: #fef2f2;
+}
+
+.clt-check-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  font-size: 0.8rem;
+  font-weight: 800;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.clt-check-item.ok .clt-check-icon {
+  background-color: #16a34a;
+  color: #ffffff;
+}
+
+.clt-check-item.inconforme .clt-check-icon {
+  background-color: #dc2626;
+  color: #ffffff;
+}
+
+.clt-check-content {
+  flex: 1;
+}
+
+.clt-check-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 2px;
+}
+
+.clt-check-desc {
+  font-size: 0.8rem;
+  color: #475569;
+  line-height: 1.35;
+}
+
+.clt-check-item.inconforme .clt-check-desc {
+  color: #b91c1c;
+  font-weight: 600;
+}
+
+.clt-compliance-footer {
+  margin-top: 0.85rem;
+  padding: 0.65rem 0.85rem;
+  border-top: 1px dashed #cbd5e1;
+  font-size: 0.78rem;
+  color: #475569;
+  line-height: 1.4;
+  background-color: #f8fafc;
+  border-radius: 4px;
+}
+
+
+/* ============================================================
+   RESPONSIVIDADE MOBILE — ALTERNÂNCIA DE ABAS E CONTENÇÃO
+   ============================================================ */
+@media screen and (max-width: 992px) {
+  .mobile-only {
+    display: inline-flex !important;
+  }
+
+  .preview-mobile-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-top: 1rem;
+  }
+
+  .preview-mobile-actions .btn {
+    width: 100%;
+    justify-content: center;
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+  }
+
+  .mobile-view-tabs {
+    display: block;
+  }
+
+  .main-container {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 1.5rem;
+    padding: 0 1rem;
+    margin: 1rem auto;
+    width: 100%;
+    max-width: 100vw;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+
+  .form-section,
+  .preview-section {
+    min-width: 0;
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Controle dinâmico de abas no mobile */
+  body.view-mode-form .preview-section {
+    display: none !important;
+  }
+
+  body.view-mode-preview .form-section {
+    display: none !important;
+  }
+
+  body.view-mode-preview .preview-section {
+    display: flex !important;
+    position: static;
+    top: auto;
+    min-width: 0;
+    max-width: 100%;
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  .preview-toolbar {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: space-between;
+  }
+
+  .preview-status {
+    font-size: 0.8rem;
+  }
+}
+
+/* ============================================================
+   RESPONSIVIDADE MOBILE — BARRA SUPERIOR E RODAPÉ CENTRALIZADOS
+   ============================================================ */
+@media screen and (max-width: 768px) {
+  /* Barra Superior UNESP Centralizada */
+  .unesp-top-bar {
+    padding: 0.5rem 0.75rem;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .top-bar-content {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    gap: 0.35rem;
+  }
+
+  .top-bar-brand {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    font-size: 0.76rem;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.5rem;
+  }
+
+  .top-bar-brand a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .unesp-logo-svg {
+    height: 22px;
+    width: auto;
+    margin: 0 auto;
+  }
+
+  .top-bar-campus {
+    text-align: center;
+  }
+
+  .top-bar-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 0.25rem 0.5rem;
+    font-size: 0.74rem;
+  }
+
+  /* Rodapé Centralizado */
+  .app-footer {
+    padding: 2.5rem 1.25rem 2rem;
+    text-align: center;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+    text-align: center;
+    justify-items: center;
+    align-items: center;
+  }
+
+  .footer-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+  }
+
+  .footer-group h3 {
+    text-align: center;
+    margin-bottom: 0.65rem;
+    width: 100%;
+  }
+
+  .footer-group ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    width: 100%;
+  }
+
+  .footer-group li {
+    text-align: center;
+    width: 100%;
+  }
+
+  .footer-group a {
+    text-align: center;
+    display: inline-block;
+  }
+
+  .footer-central-block {
+    margin: 2.5rem auto 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+  }
+
+  .footer-unesp-logo-center {
+    height: auto;
+    max-height: 68px;
+    max-width: 220px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+
+  .footer-address-text {
+    font-size: 0.82rem;
+    text-align: center;
+    width: 100%;
+  }
+
+  .footer-address-text p {
+    text-align: center;
+    margin: 0 0 0.15rem 0;
+  }
+
+  .footer-unit-title {
+    text-align: center;
+  }
+
+  .footer-social-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 1.25rem;
+  }
+
+  .preview-section {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    position: static;
+  }
+
+  .a4-wrapper {
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .unesp-top-bar {
+    padding: 0.45rem 0.5rem;
+  }
+
+  .top-bar-campus {
+    font-size: 0.72rem;
+    text-align: center;
+  }
+
+  .top-bar-sep {
+    display: none;
+  }
+
+  .top-bar-brand {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 0.2rem;
+  }
+
+  .top-bar-links {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 0.2rem 0.45rem;
+    font-size: 0.72rem;
+  }
+
+  .top-link {
+    font-size: 0.72rem;
+  }
+
+  .app-footer {
+    padding: 2rem 0.75rem 1.75rem;
+  }
+
+  .footer-grid {
+    gap: 1.5rem;
+  }
+
+  .footer-unesp-logo-center {
+    max-height: 60px;
+    max-width: 190px;
+  }
+}
+
+/* ============================================================
+   ESTILOS DE IMPRESSÃO (Ctrl+P / Imprimir Nativo / Salvar como PDF)
+   Imprime RIGOROSAMENTE apenas a folha A4 oficial do documento
+   ============================================================ */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 0 !important; /* Sem margens do navegador: folha A4 pura 210mm x 297mm */
+  }
+
+  *, *:before, *:after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  html {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    width: 210mm !important;
+    height: 297mm !important;
+    overflow: hidden !important;
+  }
+
+  body {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    width: 210mm !important;
+    height: 297mm !important;
+    min-height: 297mm !important;
+    max-height: 297mm !important;
+    overflow: hidden !important;
+  }
+
+  /* Oculta rigorosamente TODA a interface web do navegador */
+  .unesp-top-bar,
+  .app-header,
+  .top-nav-back-bar,
+  .top-nav-back-inner,
+  .mobile-view-tabs,
+  .mobile-view-tabs-inner,
+  .nav-back-container,
+  .form-section,
+  .profile-tabs,
+  .preview-toolbar,
+  .preview-mobile-actions,
+  .action-buttons-card,
+  .app-footer,
+  .mobile-only,
+  .btn,
+  .btn-zoom,
+  .preview-zoom-controls {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Envoltórios principais sem margens, sem espaçamento e sem grid */
+  .main-container {
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block !important;
+    max-width: 210mm !important;
+    width: 210mm !important;
+    height: 297mm !important;
+    min-height: 297mm !important;
+    border: none !important;
+    overflow: hidden !important;
+  }
+
+  /* Força a preview-section a ser exibida como bloco 210mm x 297mm mesmo se body tiver view-mode-form no celular */
+  .preview-section,
+  body.view-mode-form .preview-section,
+  body.view-mode-preview .preview-section {
+    display: block !important;
+    position: static !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 210mm !important;
+    height: 297mm !important;
+    min-height: 297mm !important;
+    max-width: 210mm !important;
+    overflow: hidden !important;
+    border: none !important;
+  }
+
+  body.view-mode-form .form-section,
+  body.view-mode-preview .form-section {
+    display: none !important;
+  }
+
+  /* Remove contêiner cinza, barra de rolagem e sombras do wrapper */
+  .a4-wrapper {
+    background: none !important;
+    background-color: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    overflow: hidden !important;
+    max-height: none !important;
+    width: 210mm !important;
+    height: 297mm !important;
+    min-height: 297mm !important;
+    border: none !important;
+    border-radius: 0 !important;
+    display: block !important;
+  }
+
+  /* Remove transform e restrições de dimensões do container de escala */
+  .a4-scale-container {
+    width: 210mm !important;
+    height: 297mm !important;
+    min-width: 210mm !important;
+    max-width: 210mm !important;
+    min-height: 297mm !important;
+    max-height: 297mm !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    transform: none !important;
+    overflow: hidden !important;
+    border-radius: 0 !important;
+    border: none !important;
+    position: relative !important;
+    display: block !important;
+  }
+
+  /* Folha A4 Oficial: Exatamente 1 página (210mm x 297mm) */
+  .a4-page {
+    box-shadow: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 210mm !important;
+    height: 297mm !important;
+    min-height: 297mm !important;
+    max-height: 297mm !important;
+    position: relative !important;
+    transform: none !important;
+    top: 0 !important;
+    left: 0 !important;
+    overflow: hidden !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    page-break-after: avoid !important;
+    page-break-before: avoid !important;
+    background: #ffffff !important;
+    display: block !important;
+  }
+
+  /* Papel timbrado oficial UNESP em alta fidelidade */
+  .papel-timbrado-bg {
+    display: block !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 210mm !important;
+    height: 297mm !important;
+    z-index: 1 !important;
+  }
+
+  /* Oculta views inativas */
+  .doc-view {
+    display: none !important;
+  }
+
+  /* Exibe exclusivamente o documento ativo com suas margens institucionais */
+  .doc-view.active {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    padding: 43mm 22mm 22mm 25mm !important;
+    width: 210mm !important;
+    height: 297mm !important;
+    box-sizing: border-box !important;
+    position: relative !important;
+    z-index: 2 !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+}

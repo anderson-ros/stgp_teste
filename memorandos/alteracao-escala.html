@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alteração da Escala de Substituição | Memorandos STGP FCT UNESP</title>
+  <link rel="shortcut icon" href="unesp.ico" type="image/x-icon">
+  <link rel="icon" href="unesp.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <!-- Papel Timbrado Oficial em Base64 para exportação de PDF no cliente sem taint no canvas -->
+  <script src="papel_timbrado_data.js"></script>
+  <!-- Fontes Raleway em Base64 para incorporação direta e offline no jsPDF -->
+  <script src="raleway_fonts_data.js"></script>
+  <!-- jsPDF local para geração de PDFs com texto vetorial nativo de alta definição -->
+  <script src="jspdf.umd.min.js"></script>
+  <!-- html2pdf.js local e fallback CDN -->
+  <script src="html2pdf.bundle.min.js"></script>
+  <script>
+    if (typeof html2pdf === 'undefined') {
+      document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"><\/script>');
+    }
+  </script>
+</head>
+<body>
+  <!-- Barra Superior Institucional UNESP (Padrão Portal Unesp) -->
+  <div class="unesp-top-bar">
+    <div class="top-bar-content">
+      <div class="top-bar-brand">
+        <a href="https://www.unesp.br" target="_blank" title="Universidade Estadual Paulista Júlio de Mesquita Filho">
+          <img src="unesp-logo-white.svg" alt="Logotipo UNESP" class="unesp-logo-svg">
+        </a>
+        <span class="top-bar-sep">|</span>
+        <span class="top-bar-campus">Câmpus de Presidente Prudente</span>
+      </div>
+      <div class="top-bar-links">
+        <a href="https://www.fct.unesp.br/" target="_blank" class="top-link" title="Acessar o portal oficial da FCT">Portal FCT Unesp</a>
+        <span class="top-bar-dot">•</span>
+        <a href="https://www.fct.unesp.br/#!/administracao/recursos-humanos/" target="_blank" class="top-link" title="Seção Técnica de Gestão de Pessoas (Recursos Humanos)">Página da STGP</a>
+        <span class="top-bar-dot">•</span>
+        <a href="../index.html" class="top-link" title="Portal STGP Digital">STGP Digital</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cabeçalho Principal da Aplicação -->
+  <header class="app-header">
+    <div class="header-content">
+      <div class="brand">
+        <a href="https://www.fct.unesp.br/" target="_blank" title="Faculdade de Ciências e Tecnologia - FCT UNESP">
+          <img src="fct-logo.png" alt="Logotipo FCT" class="brand-fct-logo">
+        </a>
+        <div class="brand-titles">
+          <h1>STGP Digital — Portal de Modelos de Documentos</h1>
+          <p>Faculdade de Ciências e Tecnologia — Seção Técnica de Gestão de Pessoas (STGP)</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <span class="badge-status">Câmpus de Presidente Prudente</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Barra Superior de Retorno e Localização (Modelo B) -->
+  <div class="top-nav-back-bar">
+    <div class="top-nav-back-inner">
+      <a href="../index.html" class="btn-back-stgp" title="Voltar para a página inicial">
+        <svg class="back-arrow-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        <span>Voltar para Início</span>
+      </a>
+      <span class="breadcrumb-sep">/</span>
+      <a href="index.html" class="breadcrumb-link" title="Voltar aos modelos de memorandos">Memorandos</a>
+      <span class="breadcrumb-sep">/</span>
+      <span class="breadcrumb-current">Alteração da Escala de Substituição</span>
+    </div>
+  </div>
+
+  <!-- Seletor de Abas para Celulares e Tablets (Mobile View Switcher) -->
+  <nav class="mobile-view-tabs" aria-label="Navegação mobile de visualização">
+    <div class="mobile-view-tabs-inner">
+      <button type="button" class="mobile-view-tab active" id="tab-view-form">
+        <span>📝</span> Preenchimento
+      </button>
+      <button type="button" class="mobile-view-tab" id="tab-view-preview">
+        <span>👁️</span> Ver Documento (A4)
+      </button>
+    </div>
+  </nav>
+
+  <main class="main-container">
+    <!-- Coluna Esquerda: Formulário de Preenchimento -->
+    <section class="form-section">
+
+      <!-- Card 1: Identificação do Memorando -->
+      <div class="card">
+        <div class="card-header">
+          <h2>1. Identificação do Memorando</h2>
+          <p class="subtitle">Numeração gerada no SIGAD, ano e data do documento oficial.</p>
+        </div>
+
+        <!-- Alerta informativo do SIGAD -->
+        <div class="info-box">
+          <strong>ℹ️ Número do Memorando (SIGAD UNESP):</strong>
+          <p style="margin-top: 4px; margin-bottom: 4px;">
+            O número do memorando deverá ser obtido previamente no <strong>SIGAD (Sistema Informatizado de Gestão Arquivística de Documentos)</strong>.
+          </p>
+          <p style="margin: 0;">
+            Acesse o sistema oficial para obter o número: <a href="https://sistemas.unesp.br/sigad/" target="_blank" style="color: #1e3a8a; text-decoration: underline; font-weight: 700;">https://sistemas.unesp.br/sigad/</a>
+          </p>
+        </div>
+
+        <div class="form-grid">
+          <!-- Número do Memorando -->
+          <div class="form-group">
+            <label for="memo_numero">Número do Memorando *</label>
+            <input type="text" id="memo_numero" placeholder="Ex: 01" value="01" autocomplete="off" autofocus>
+            <span class="field-hint">Padrão: MEMORANDO Nº [num]/[ano] [sigla]/FCT/PP</span>
+          </div>
+
+          <!-- Ano do Documento (Travado / Vinculado à Data) -->
+          <div class="form-group">
+            <label for="memo_ano">Ano do Documento (Vinculado à Data)</label>
+            <input type="number" id="memo_ano" readonly class="input-readonly" title="Campo travado, sincronizado automaticamente com o ano da data de emissão escolhida">
+            <span class="field-hint">Sincronizado automaticamente com a data.</span>
+          </div>
+
+          <!-- Data de Emissão -->
+          <div class="form-group">
+            <label for="memo_data">Data de Emissão *</label>
+            <input type="date" id="memo_data" title="Preenchido por padrão com a data atual">
+          </div>
+
+          <!-- Assunto Oficial (Fixo) -->
+          <div class="form-group">
+            <label for="memo_assunto">Assunto Oficial *</label>
+            <input type="text" id="memo_assunto" value="ALTERAÇÃO DA ESCALA DE SUBSTITUIÇÃO" readonly class="input-readonly" title="Assunto fixo institucional">
+            <span class="field-hint">Assunto padronizado obrigatório.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Remetente e Destinatário -->
+      <div class="card">
+        <div class="card-header">
+          <h2>2. Remetente e Destinatário</h2>
+          <p class="subtitle">Selecione o setor de origem; o destinatário institucional é ajustado automaticamente.</p>
+        </div>
+
+        <!-- Alerta dinâmico de Destinatário -->
+        <div class="info-box" id="info-box-destinatario">
+          <strong id="destinatario-info-title">⚖️ Regra Institucional de Endereçamento:</strong>
+          <p id="destinatario-info-desc" style="margin-top: 4px; margin-bottom: 0;">
+            O destinatário será sempre a <strong>Divisão Técnica Administrativa (DTAd)</strong>, exceto quando o remetente for a própria DTAd — situação em que o documento é automaticamente endereçado à <strong>Seção Técnica de Gestão de Pessoas (STGP)</strong>.
+          </p>
+        </div>
+
+        <div class="form-grid">
+          <!-- Seleção da Unidade Administrativa de Procedência (apenas nomes em ordem alfabética) -->
+          <div class="form-group col-span-2">
+            <label for="remetente_select">Unidade Administrativa de Procedência *</label>
+            <select id="remetente_select">
+              <option value="Centro de Educação Infantil" data-sigla="CEI">Centro de Educação Infantil</option>
+              <option value="Departamento de Cartografia" data-sigla="DCART" selected>Departamento de Cartografia</option>
+              <option value="Departamento de Educação" data-sigla="DEDUC">Departamento de Educação</option>
+              <option value="Departamento de Educação Física" data-sigla="DEF">Departamento de Educação Física</option>
+              <option value="Departamento de Estatística" data-sigla="DEST">Departamento de Estatística</option>
+              <option value="Departamento de Física" data-sigla="DF">Departamento de Física</option>
+              <option value="Departamento de Fisioterapia" data-sigla="DFISIOT">Departamento de Fisioterapia</option>
+              <option value="Departamento de Geografia" data-sigla="DGEO">Departamento de Geografia</option>
+              <option value="Departamento de Matemática e Computação" data-sigla="DMC">Departamento de Matemática e Computação</option>
+              <option value="Departamento de Planejamento, Urbanismo e Ambiente" data-sigla="DPUA">Departamento de Planejamento, Urbanismo e Ambiente</option>
+              <option value="Departamento de Química e Bioquímica" data-sigla="DQB">Departamento de Química e Bioquímica</option>
+              <option value="Diretoria" data-sigla="DIR">Diretoria</option>
+              <option value="Diretoria Técnica de Biblioteca e Documentação" data-sigla="DTBD">Diretoria Técnica de Biblioteca e Documentação</option>
+              <option value="Diretoria Técnica de Informática" data-sigla="DTI">Diretoria Técnica de Informática</option>
+              <option value="Diretoria Técnica de Serviços" data-sigla="DTSAA">Diretoria Técnica de Serviços</option>
+              <option value="Divisão Técnica Acadêmica" data-sigla="DTAC">Divisão Técnica Acadêmica</option>
+              <option value="Divisão Técnica Administrativa" data-sigla="DTAd" data-is-dtad="true">Divisão Técnica Administrativa</option>
+              <option value="Seção de Atividades Auxiliares" data-sigla="SAA">Seção de Atividades Auxiliares</option>
+              <option value="Seção de Conservação e Manutenção" data-sigla="SCM">Seção de Conservação e Manutenção</option>
+              <option value="Seção Técnica Acadêmica" data-sigla="STA">Seção Técnica Acadêmica</option>
+              <option value="Seção Técnica de Apoio ao Ensino, Pesquisa e Extensão" data-sigla="STAEPE">Seção Técnica de Apoio ao Ensino, Pesquisa e Extensão</option>
+              <option value="Seção Técnica de Aquisição e Tratamento da Informação" data-sigla="STATI">Seção Técnica de Aquisição e Tratamento da Informação</option>
+              <option value="Seção Técnica de Comunicações" data-sigla="STCOM">Seção Técnica de Comunicações</option>
+              <option value="Seção Técnica de Contabilidade" data-sigla="STCONT">Seção Técnica de Contabilidade</option>
+              <option value="Seção Técnica de Finanças" data-sigla="STFIN">Seção Técnica de Finanças</option>
+              <option value="Seção Técnica de Gestão de Pessoas" data-sigla="STGP">Seção Técnica de Gestão de Pessoas</option>
+              <option value="Seção Técnica de Graduação" data-sigla="STG">Seção Técnica de Graduação</option>
+              <option value="Seção Técnica de Materiais" data-sigla="STMAT">Seção Técnica de Materiais</option>
+              <option value="Seção Técnica de Nutrição" data-sigla="STNUTRI">Seção Técnica de Nutrição</option>
+              <option value="Seção Técnica de Pós-Graduação" data-sigla="STPG">Seção Técnica de Pós-Graduação</option>
+              <option value="Seção Técnica de Referência, Atendimento ao Usuário e Documentação" data-sigla="STRAUD">Seção Técnica de Referência, Atendimento ao Usuário e Documentação</option>
+              <option value="Seção Técnica de Saúde" data-sigla="STS">Seção Técnica de Saúde</option>
+              <option value="Setor de Transporte" data-sigla="S. TRANSP.">Setor de Transporte</option>
+              <option value="Setor de Vigilância" data-sigla="SVIG">Setor de Vigilância</option>
+              <option value="Vice-Diretoria" data-sigla="VICE-DIR">Vice-Diretoria</option>
+            </select>
+            <span class="field-hint">Lista oficial em ordem alfabética (sem códigos).</span>
+          </div>
+
+          <!-- Campo: Função em Confiança a ser substituída (amarrada à UA) -->
+          <div class="form-group">
+            <label for="funcao_substituida_select">Função em Confiança a ser substituída *</label>
+            <select id="funcao_substituida_select" title="Funções em confiança pertencentes a esta unidade">
+              <!-- Opções injetadas dinamicamente via JavaScript -->
+            </select>
+            <span class="field-hint">Função vinculada à UA de procedência.</span>
+          </div>
+
+          <!-- Campo: Data de Vigência -->
+          <div class="form-group">
+            <label for="data_vigencia">Data de Vigência *</label>
+            <input type="date" id="data_vigencia" title="Data a partir da qual a escala deverá ser alterada">
+            <span class="field-hint">Data a partir da qual a escala deverá ser alterada.</span>
+          </div>
+
+          <!-- Campo Unidade Administrativa de Destino (antigo Órgão Destinatário Oficial) -->
+          <div class="form-group">
+            <label for="destinatario_input">Unidade Administrativa de Destino *</label>
+            <input type="text" id="destinatario_input" readonly class="input-readonly" title="Definido automaticamente com base na regra institucional">
+            <span class="field-hint">Ajustado pela regra institucional.</span>
+          </div>
+
+          <!-- Seleção do Nome do Destinatário (antigo Autoridade Destinatária (Responsável)) -->
+          <div class="form-group">
+            <label for="destinatario_pessoa_select">Nome do destinatário *</label>
+            <select id="destinatario_pessoa_select" title="Escolha a autoridade titular ou substituta">
+              <!-- Opções injetadas dinamicamente via JavaScript -->
+            </select>
+            <span class="field-hint">Titular ou 1º/2º Substituto(a).</span>
+          </div>
+
+          <!-- Responsável / Signatário Emitente (antigo Nome da Chefia / Responsável Remetente) -->
+          <div class="form-group">
+            <label for="signatario_nome">Identificação do signatário (nome do emitente) *</label>
+            <input type="text" id="signatario_nome" placeholder="Digite o nome completo do(a) assinante..." value="" autocomplete="off">
+            <span class="field-hint">Nome de quem assina o memorando.</span>
+          </div>
+
+          <!-- Função do Emitente (antigo Cargo / Função do(a) Remetente) -->
+          <div class="form-group">
+            <label for="signatario_cargo">Função do Emitente *</label>
+            <select id="signatario_cargo" title="Escolha a opção de assinatura do emitente">
+              <!-- Opções das 4 colunas do Excel injetadas dinamicamente -->
+            </select>
+            <span class="field-hint">Função de quem assina o memorando (conforme UA de Procedência).</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Estrutura do Quadro Anexo -->
+      <div class="card">
+        <div class="card-header">
+          <h2>3. Quadro de Alteração da Escala (Anexo)</h2>
+          <p class="subtitle">Preenchimento das informações dos substitutos para o Quadro Oficial.</p>
+        </div>
+
+        <!-- 1º Substituto (Obrigatório) -->
+        <div class="substituto-card-section">
+          <div class="substituto-section-title">
+            <span class="badge-num">1</span>
+            <h3>1º Substituto (Obrigatório)</h3>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group col-span-2">
+              <label for="subst1_nome">Nome Completo *</label>
+              <input type="text" id="subst1_nome" placeholder="Digite o nome completo do 1º substituto..." autocomplete="off">
+            </div>
+
+            <div class="form-group">
+              <label for="subst1_matricula">Matrícula Funcional *</label>
+              <input type="text" id="subst1_matricula" placeholder="Ex: 102345-7" maxlength="8" autocomplete="off">
+              <span class="field-feedback" id="feedback_subst1_matricula"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="subst1_rg">RG *</label>
+              <input type="text" id="subst1_rg" placeholder="Ex: 12.345.678-9" autocomplete="off">
+            </div>
+
+            <div class="form-group">
+              <label for="subst1_cpf">CPF *</label>
+              <input type="text" id="subst1_cpf" placeholder="Ex: 123.456.789-00" maxlength="14" autocomplete="off">
+              <span class="field-feedback" id="feedback_subst1_cpf"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="subst1_funcao">Função Efetiva *</label>
+              <select id="subst1_funcao">
+                <option value="">Selecione a função efetiva...</option>
+              </select>
+              <span class="field-hint">Cargo/função efetivo(a) do servidor.</span>
+            </div>
+
+            <div class="form-group col-span-2">
+              <label for="subst1_escolaridade">Escolaridade *</label>
+              <select id="subst1_escolaridade">
+                <option value="">Selecione a escolaridade...</option>
+              </select>
+              <span class="field-hint">Grau de escolaridade do substituto.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Checkbox para ativar 2º Substituto -->
+        <div class="toggle-subst2-container" style="margin-top: 1rem; padding-top: 0.85rem; border-top: 1px solid var(--border-color);">
+          <label style="display: flex; align-items: center; gap: 8px; font-weight: 600; cursor: pointer;">
+            <input type="checkbox" id="check_possui_subst2" style="width: 18px; height: 18px; cursor: pointer;">
+            <span>Indicar 2º Substituto nesta alteração de escala (opcional)</span>
+          </label>
+        </div>
+
+        <!-- 2º Substituto (Condicional) -->
+        <div class="substituto-card-section" id="form_section_subst2" style="display: none; margin-top: 1rem;">
+          <div class="substituto-section-title">
+            <span class="badge-num">2</span>
+            <h3>2º Substituto</h3>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group col-span-2">
+              <label for="subst2_nome">Nome Completo</label>
+              <input type="text" id="subst2_nome" placeholder="Digite o nome completo do 2º substituto..." autocomplete="off">
+            </div>
+
+            <div class="form-group">
+              <label for="subst2_matricula">Matrícula Funcional</label>
+              <input type="text" id="subst2_matricula" placeholder="Ex: 102345-7" maxlength="8" autocomplete="off">
+              <span class="field-feedback" id="feedback_subst2_matricula"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="subst2_rg">RG</label>
+              <input type="text" id="subst2_rg" placeholder="Ex: 12.345.678-9" autocomplete="off">
+            </div>
+
+            <div class="form-group">
+              <label for="subst2_cpf">CPF</label>
+              <input type="text" id="subst2_cpf" placeholder="Ex: 123.456.789-00" maxlength="14" autocomplete="off">
+              <span class="field-feedback" id="feedback_subst2_cpf"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="subst2_funcao">Função Efetiva</label>
+              <select id="subst2_funcao">
+                <option value="">Selecione a função efetiva...</option>
+              </select>
+              <span class="field-hint">Cargo/função efetivo(a) do servidor.</span>
+            </div>
+
+            <div class="form-group col-span-2">
+              <label for="subst2_escolaridade">Escolaridade</label>
+              <select id="subst2_escolaridade">
+                <option value="">Selecione a escolaridade...</option>
+              </select>
+              <span class="field-hint">Grau de escolaridade do substituto.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Botões de Ação (Idêntico ao site anexado) -->
+      <div class="action-buttons-card">
+        <button id="btn-gerar-memo-pdf" class="btn btn-primary" type="button">
+          <span class="btn-icon">📄</span> Baixar Memorando em PDF
+        </button>
+        <button id="btn-gerar-quadro-pdf" class="btn btn-secondary" type="button">
+          <span class="btn-icon">📊</span> Baixar Quadro Anexo em PDF
+        </button>
+        <button id="btn-imprimir-tudo" class="btn btn-outline" type="button">
+          <span class="btn-icon">🖨️</span> Imprimir / Visualizar Impressão
+        </button>
+        <button id="btn-ver-previa-mobile" class="btn btn-secondary mobile-only" type="button">
+          <span class="btn-icon">👁️</span> Visualizar Documento (A4)
+        </button>
+      </div>
+    </section>
+
+    <!-- Coluna Direita: Pré-visualização em Tempo Real (Folha A4) -->
+    <section class="preview-section">
+      <!-- Seletor de Abas de Documentos (Padrão de Abas do Site Anexo) -->
+      <div class="profile-tabs" style="margin-bottom: 0.75rem;">
+        <button type="button" class="profile-tab active" id="tab-memo">
+          <span class="tab-icon">📄</span>
+          <span class="tab-label">1. Memorando</span>
+        </button>
+        <button type="button" class="profile-tab" id="tab-quadro">
+          <span class="tab-icon">📊</span>
+          <span class="tab-label">2. Quadro Anexo</span>
+        </button>
+      </div>
+
+      <div class="preview-toolbar">
+        <div class="preview-status">
+          <span class="pulse-dot"></span> <span id="label-doc-preview">Visualização em Tempo Real (Padrão Oficial A4)</span>
+        </div>
+        <div class="preview-zoom-controls">
+          <button type="button" class="btn-zoom active" id="btn-zoom-fit" title="Ajustar largura da folha à tela do celular">
+            <span>📐</span> Ajustar à Tela
+          </button>
+          <button type="button" class="btn-zoom" id="btn-zoom-100" title="Exibir em tamanho real 100% (com rolagem lateral)">
+            <span>🔍</span> 100%
+          </button>
+        </div>
+      </div>
+
+      <div class="a4-wrapper mode-fit-screen" id="a4-wrapper">
+        <div class="a4-scale-container" id="a4-scale-container">
+          <div id="documento-pdf" class="a4-page">
+          <!-- Imagem de Fundo em Alta Definição do Papel Timbrado Oficial UNESP 50 Anos FCT -->
+          <img id="papel-timbrado-img" src="papel-timbrado-2026.png" alt="Papel Timbrado Oficial UNESP FCT" class="papel-timbrado-bg">
+          <script>
+            if (window.PAPEL_TIMBRADO_BASE64) {
+              document.getElementById('papel-timbrado-img').src = window.PAPEL_TIMBRADO_BASE64;
+            }
+          </script>
+          
+          <!-- --------------------------------------------------------
+               DOCUMENTO 1: MEMORANDO OFICIAL (A4 RETRATO)
+               -------------------------------------------------------- -->
+          <div class="doc-view active" id="view-memorando">
+            <div>
+              <!-- a) e b) Identificação do Documento: alinhada à esquerda, maiúsculas, sem negrito -->
+              <div class="memo-identificacao-linha">
+                MEMORANDO Nº <span id="prev-memo-num">01</span>/<span id="prev-memo-ano">2026</span> <span id="prev-memo-sigla">DCART</span>/FCT/PP
+              </div>
+
+              <!-- c) Data: alinhada à direita, linha imediatamente inferior à identificação -->
+              <div class="memo-data-linha" id="prev-memo-data-extenso">
+                Presidente Prudente, 05 de setembro de 2026.
+              </div>
+
+              <!-- d) Destinatário: alinhado à esquerda, logo abaixo da data -->
+              <div class="memo-destinatario-bloco" id="prev-memo-destinatario-bloco">
+                <div class="memo-dest-linha">A(o) Senhor(a)</div>
+                <div class="memo-dest-linha" id="prev-memo-dest-nome">Eliene Ribeiro Spolador</div>
+                <div class="memo-dest-linha" id="prev-memo-dest-funcao">DIRETORA TÉCNICA DE DIVISÃO</div>
+                <div class="memo-dest-linha" id="prev-memo-dest-ua">DIVISÃO TÉCNICA ADMINISTRATIVA</div>
+                <div class="memo-dest-linha">FACULDADE DE CIÊNCIAS E TECNOLOGIA - CÂMPUS DE PRESIDENTE PRUDENTE</div>
+              </div>
+
+              <!-- e) Assunto: alinhado à esquerda, resumo do teor do ato -->
+              <div class="memo-assunto-linha">
+                <strong>Assunto:</strong> <span id="prev-memo-assunto">ALTERAÇÃO DA ESCALA DE SUBSTITUIÇÃO</span>
+              </div>
+
+              <!-- 3 quebras de linha entre o assunto e o corpo do texto -->
+              <br>
+              <br>
+              <br>
+
+              <!-- f) Texto: exposição clara e objetiva com recuo de parágrafo oficial de 2,5 cm -->
+              <div class="memo-paragrafo" id="prev-memo-corpo">
+                Encaminhamos a Vossa Senhoria, para as providências cabíveis, o Quadro de Alteração da Escala de Substituição constante em anexo, da função de <strong id="prev-memo-funcao-alvo">Chefe de Departamento</strong> referente a esta unidade administrativa, para vigência a partir de <span id="prev-memo-data-vigencia">05/09/2026</span>.
+              </div>
+
+
+              <!-- g) Fecho: alinhado aos parágrafos do texto (recuo de 2,5 cm) e finalizado por vírgula -->
+              <div class="memo-fecho-linha" id="prev-memo-fecho">
+                Respeitosamente,
+              </div>
+
+              <!-- 3 quebras de linha entre o fecho oficial e a identificação do signatário -->
+              <br>
+              <br>
+              <br>
+
+              <!-- h) Identificação do Signatário: centralizado na página, sem linha superior, iniciais em maiúsculas e função em maiúsculo -->
+              <div class="memo-signatario-bloco">
+                <div class="memo-signatario-nome" id="prev-memo-sig-nome">Prof. Dr. João da Silva</div>
+                <div class="memo-signatario-cargo" id="prev-memo-sig-cargo">CHEFE DE DEPARTAMENTO</div>
+                <div class="memo-signatario-cargo" id="prev-memo-sig-dept" style="display: none;">Departamento de Cartografia</div>
+              </div>
+            </div>
+
+            <!-- Anexo Indicador -->
+            <div>
+              <div class="memo-annex-indicator">
+                Anexo: 1. Quadro de Alteração da Escala de Substituição.
+              </div>
+            </div>
+          </div>
+
+          <!-- --------------------------------------------------------
+               DOCUMENTO 2: QUADRO DE ALTERAÇÃO DA ESCALA (A4 RETRATO)
+               -------------------------------------------------------- -->
+          <div class="doc-view" id="view-quadro">
+            <div class="quadro-conteudo-pagina">
+              <!-- Título Centralizado em Caixa Alta -->
+              <h2 class="quadro-titulo-oficial">QUADRO DE ALTERAÇÃO DE ESCALA DE SUBSTITUIÇÃO</h2>
+
+              <!-- Informações da Unidade, Função e Vigência -->
+              <div class="quadro-dados-gerais">
+                <div class="quadro-info-linha">
+                  <strong>UNIDADE ADMINISTRATIVA:</strong> <span id="prev-quadro-ua">Departamento de Cartografia</span>
+                </div>
+                <div class="quadro-info-linha">
+                  <strong>FUNÇÃO EM CONFIANÇA:</strong> <span id="prev-quadro-funcao">Chefe de Departamento</span>
+                </div>
+                <div class="quadro-info-linha">
+                  <strong>A PARTIR DE:</strong> <span id="prev-quadro-a-partir">05/09/2026</span>
+                </div>
+              </div>
+
+              <!-- BLOCO 1º SUBSTITUTO -->
+              <div class="quadro-substituto-bloco" id="prev-quadro-bloco-subst1">
+                <div class="quadro-substituto-header">1º SUBSTITUTO</div>
+                <table class="quadro-tabela-substituto">
+                  <tr>
+                    <td colspan="3"><strong>NOME:</strong> <span id="prev-quadro-subst1-nome"></span></td>
+                  </tr>
+                  <tr>
+                    <td style="width: 32%;"><strong>MATRÍCULA:</strong> <span id="prev-quadro-subst1-mat"></span></td>
+                    <td style="width: 32%;"><strong>RG:</strong> <span id="prev-quadro-subst1-rg"></span></td>
+                    <td style="width: 36%;"><strong>CPF:</strong> <span id="prev-quadro-subst1-cpf"></span></td>
+                  </tr>
+                  <tr>
+                    <td colspan="3"><strong>FUNÇÃO:</strong> <span id="prev-quadro-subst1-funcao"></span></td>
+                  </tr>
+                  <tr>
+                    <td colspan="3"><strong>ESCOLARIDADE:</strong> <span id="prev-quadro-subst1-esc"></span></td>
+                  </tr>
+                </table>
+
+                <div class="quadro-acordo-bloco">
+                  <p class="quadro-de-acordo">De acordo.</p>
+                  <div class="quadro-assinatura-linha-centro">
+                    <p class="legenda-superior-imediato">Identificação e assinatura do superior imediato do 1º substituto</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- BLOCO 2º SUBSTITUTO (Condicional) -->
+              <div class="quadro-substituto-bloco" id="prev-quadro-bloco-subst2" style="display: none;">
+                <div class="quadro-substituto-header">2º SUBSTITUTO</div>
+                <table class="quadro-tabela-substituto">
+                  <tr>
+                    <td colspan="3"><strong>NOME:</strong> <span id="prev-quadro-subst2-nome"></span></td>
+                  </tr>
+                  <tr>
+                    <td style="width: 32%;"><strong>MATRÍCULA:</strong> <span id="prev-quadro-subst2-mat"></span></td>
+                    <td style="width: 32%;"><strong>RG:</strong> <span id="prev-quadro-subst2-rg"></span></td>
+                    <td style="width: 36%;"><strong>CPF:</strong> <span id="prev-quadro-subst2-cpf"></span></td>
+                  </tr>
+                  <tr>
+                    <td colspan="3"><strong>FUNÇÃO:</strong> <span id="prev-quadro-subst2-funcao"></span></td>
+                  </tr>
+                  <tr>
+                    <td colspan="3"><strong>ESCOLARIDADE:</strong> <span id="prev-quadro-subst2-esc"></span></td>
+                  </tr>
+                </table>
+
+                <div class="quadro-acordo-bloco">
+                  <p class="quadro-de-acordo">De acordo.</p>
+                  <div class="quadro-assinatura-linha-centro">
+                    <p class="legenda-superior-imediato">Identificação e assinatura do superior imediato do 2º substituto</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Ações Rápidas da Prévia no Mobile -->
+    <div class="preview-mobile-actions mobile-only">
+      <button id="btn-voltar-form-mobile" class="btn btn-secondary" type="button">
+        <span>📝</span> Voltar ao Formulário
+      </button>
+      <button id="btn-gerar-pdf-preview" class="btn btn-primary" type="button">
+        <span>📄</span> Baixar PDF do Memorando
+      </button>
+      <button id="btn-imprimir-preview" class="btn btn-outline" type="button">
+        <span>🖨️</span> Imprimir Documento
+      </button>
+    </div>
+  </section>
+  </main>
+
+  <!-- Rodapé Institucional Oficial UNESP (Padrão Oficial Portal Unesp) -->
+  <footer class="app-footer">
+    <div class="footer-grid">
+      <!-- Coluna 1: FUNDAÇÕES -->
+      <div class="footer-group">
+        <h3>FUNDAÇÕES</h3>
+        <ul>
+          <li><a href="https://editoraunesp.com.br/" target="_blank">Editora Unesp</a></li>
+          <li><a href="https://www.fundunesp.org.br/" target="_blank">Fundunesp</a></li>
+          <li><a href="https://www.vunesp.com.br/" target="_blank">Fundação Vunesp</a></li>
+        </ul>
+      </div>
+
+      <!-- Coluna 2: GOVERNO -->
+      <div class="footer-group">
+        <h3>GOVERNO</h3>
+        <ul>
+          <li><a href="https://www.saopaulo.sp.gov.br/" target="_blank">Governo de São Paulo</a></li>
+          <li><a href="https://www.cruesp.sp.gov.br/" target="_blank">Conselho de Reitores</a></li>
+          <li><a href="https://unesp.br/transparencia/" target="_blank">Transparência Unesp</a></li>
+        </ul>
+      </div>
+
+      <!-- Coluna 3: SISTEMAS -->
+      <div class="footer-group">
+        <h3>SISTEMAS</h3>
+        <ul>
+          <li><a href="https://sistemas.unesp.br/" target="_blank">Sistemas Online</a></li>
+          <li><a href="https://www2.unesp.br/eduroam" target="_blank">EDUROAM</a></li>
+          <li><a href="https://www2.unesp.br/vpn" target="_blank">VPN</a></li>
+          <li><a href="https://email.unesp.br/" target="_blank">Webmail</a></li>
+        </ul>
+      </div>
+
+      <!-- Coluna 4: SAÚDE -->
+      <div class="footer-group">
+        <h3>SAÚDE</h3>
+        <ul>
+          <li><a href="https://www.unesp.br/unespsaude/" target="_blank">Unesp Saúde</a></li>
+          <li><a href="https://www.ecaresentinela.com.br/" target="_blank">e-Care Sentinela</a></li>
+          <li><a href="https://www.unesp.br/numis" target="_blank">NUMIS</a></li>
+        </ul>
+      </div>
+
+      <!-- Coluna 5: INFORMAÇÕES -->
+      <div class="footer-group">
+        <h3>INFORMAÇÕES</h3>
+        <ul>
+          <li><a href="https://www2.unesp.br/secgeral/manuais/legislacao-unesp/" target="_blank">Legislação Unesp</a></li>
+          <li><a href="https://www.unesp.br/ai/documentos/lgpd/legislacao/" target="_blank">Política de Privacidade</a></li>
+          <li><a href="https://www.fct.unesp.br/lib/modals/modal-preferencias-privacidade.php" target="_blank">Preferências de Privacidade</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bloco Central do Rodapé (Logo, Endereço Oficial e Redes Sociais) -->
+    <div class="footer-central-block">
+      <a href="https://www.unesp.br" target="_blank" title="Universidade Estadual Paulista Júlio de Mesquita Filho">
+        <img src="unesp-logo.svg" alt="Logotipo UNESP" class="footer-unesp-logo-center">
+      </a>
+      <div class="footer-address-text">
+        <p class="footer-unit-title"><strong>Faculdade de Ciências e Tecnologia - Câmpus de Presidente Prudente</strong></p>
+        <p>Rua Roberto Simonsen, 305 - Centro Educacional</p>
+        <p>P. Prudente/SP - CEP 19060-900</p>
+        <p>Telefone: (18) 3229-5388</p>
+      </div>
+      <div class="footer-social-icons">
+        <a href="https://www.facebook.com/UnespPrudente/" target="_blank" title="Facebook - FCT UNESP" aria-label="Facebook" rel="noopener">
+          <svg viewBox="0 0 36 36" width="36" height="36">
+            <circle cx="18" cy="18" r="18" fill="#1877F2"/>
+            <path d="M22.68 18.53l.65-4.23h-4.05v-2.75c0-1.16.57-2.28 2.38-2.28h1.84V5.67s-1.67-.28-3.27-.28c-3.33 0-5.52 2.02-5.52 5.69v3.22h-3.76v4.23h3.76v10.25c.75.12 1.53.18 2.31.18s1.56-.06 2.31-.18V18.53h3.35z" fill="#fff"/>
+          </svg>
+        </a>
+        <a href="https://www.instagram.com/fctunesp/" target="_blank" title="Instagram - FCT UNESP" aria-label="Instagram" rel="noopener">
+          <svg viewBox="0 0 36 36" width="36" height="36">
+            <defs>
+              <linearGradient id="igGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#FFDD55"/>
+                <stop offset="50%" stop-color="#E1306C"/>
+                <stop offset="100%" stop-color="#C13584"/>
+              </linearGradient>
+            </defs>
+            <rect width="36" height="36" rx="9" fill="url(#igGrad)"/>
+            <rect x="7" y="7" width="22" height="22" rx="6" fill="none" stroke="#fff" stroke-width="2.2"/>
+            <circle cx="18" cy="18" r="4.8" fill="none" stroke="#fff" stroke-width="2.2"/>
+            <circle cx="24.5" cy="11.5" r="1.5" fill="#fff"/>
+          </svg>
+        </a>
+        <a href="https://www.youtube.com/@fct_unesp" target="_blank" title="YouTube - FCT UNESP" aria-label="YouTube" rel="noopener">
+          <svg viewBox="0 0 46 34" width="44" height="32">
+            <rect width="46" height="34" rx="8" fill="#FF0000"/>
+            <polygon points="19,10 31,17 19,24" fill="#fff"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Catálogo de Dados de UAs e Funções -->
+  <script src="uas_catalogo.js"></script>
+  <!-- Catálogo Oficial de Cargos e Funções por Categoria (UNESP) -->
+  <script src="cargos_catalogo.js"></script>
+  <!-- Script Lógico da Aplicação -->
+  <script src="app.js"></script>
+  <!-- Script Padrão de Responsividade e Escala Mobile -->
+  <script src="memorando-mobile.js"></script>
+</body>
+</html>

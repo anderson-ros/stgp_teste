@@ -1,0 +1,1056 @@
+/* ============================================================
+   ESTILOS INSTITUCIONAIS — PORTAL STGP DIGITAL (FCT UNESP)
+   Padrão visual baseado no projeto memorando-alteracao-escala
+   ============================================================ */
+
+:root {
+  --primary: #00a3e3;           /* Azul Ciano Oficial UNESP */
+  --primary-dark: #0082b6;      /* Azul Ciano Hover */
+  --primary-light: #f0f9fd;     /* Azul Sutil Fundo */
+  --primary-border-subtle: #99daf4;
+  --dark-blue: #0e5374;         /* Azul Médio Institucional */
+  --darker-blue: #1b303b;       /* Azul Noturno UNESP (Topbar e Rodapé) */
+  --accent: #00a3e3;
+  --accent-hover: #0082b6;
+  --success: #059669;           /* Verde Sucesso */
+  --success-light: #ecfdf5;
+  --success-border: #a7f3d0;
+  --warning: #d97706;           /* Âmbar / Alerta */
+  --warning-light: #fffbeb;
+  --warning-border: #fde68a;
+  --danger: #ec5840;            /* Vermelho Alerta */
+  --text-main: #1a1a1a;         /* Texto padrão Portal Unesp */
+  --text-muted: #64748b;        /* Texto secundário */
+  --bg-app: #f8fafc;            /* Fundo da página */
+  --bg-card: #ffffff;           /* Fundo dos cartões */
+  --border-color: #e2e8f0;       /* Bordas suaves */
+  --border-radius: 6px;         /* Bordas padrão */
+  --border-radius-sm: 4px;
+  --border-radius-lg: 12px;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.07);
+  --shadow-lg: 0 12px 24px -4px rgba(0, 0, 0, 0.10);
+  --transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Raleway', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--bg-app);
+  color: var(--text-main);
+  line-height: 1.55;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ============================================================
+   1. BARRA SUPERIOR INSTITUCIONAL UNESP (TOPBAR)
+   ============================================================ */
+.unesp-top-bar {
+  background-color: var(--darker-blue);
+  color: #ffffff;
+  padding: 0.45rem 2rem;
+  border-bottom: 2px solid var(--primary);
+  font-size: 0.8rem;
+}
+
+.top-bar-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.top-bar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.unesp-logo-svg {
+  height: 24px;
+  width: auto;
+  display: block;
+}
+
+.top-bar-sep {
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 300;
+}
+
+.top-bar-campus {
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: #ffffff;
+}
+
+.top-bar-links {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.top-link {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  transition: color 0.15s;
+  font-weight: 500;
+}
+
+.top-link:hover {
+  color: var(--primary);
+}
+
+.top-bar-dot {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* ============================================================
+   2. CABEÇALHO PRINCIPAL DO SISTEMA
+   ============================================================ */
+.app-header {
+  background: #ffffff;
+  color: var(--text-main);
+  padding: 1.25rem 2rem;
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+}
+
+.header-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 1.15rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.brand-fct-logo {
+  height: 54px;
+  width: auto;
+  max-width: 115px;
+  object-fit: contain;
+  display: block;
+  transition: transform 0.2s ease;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.08));
+}
+
+.brand-fct-logo:hover {
+  transform: scale(1.04);
+}
+
+.brand-titles h1 {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--darker-blue);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.brand-titles p {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin-top: 0.2rem;
+  font-weight: 500;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.badge-status {
+  background: var(--primary-light);
+  color: var(--dark-blue);
+  border: 1px solid var(--primary-border-subtle);
+  padding: 0.42rem 0.9rem;
+  border-radius: var(--border-radius-sm);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   3. SEÇÃO HERO / APRESENTAÇÃO
+   ============================================================ */
+.hero-section {
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  border-bottom: 1px solid var(--border-color);
+  padding: 3rem 2rem 2.5rem;
+  text-align: center;
+}
+
+.hero-content {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--primary-light);
+  color: var(--dark-blue);
+  border: 1px solid var(--primary-border-subtle);
+  padding: 0.35rem 0.85rem;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+}
+
+.hero-badge-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--primary);
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px rgba(0, 163, 227, 0.25);
+}
+
+.hero-title {
+  font-size: 2.35rem;
+  font-weight: 800;
+  color: var(--darker-blue);
+  line-height: 1.2;
+  margin-bottom: 0.85rem;
+  letter-spacing: -0.02em;
+}
+
+.hero-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  max-width: 720px;
+  margin: 0 auto 2rem;
+  line-height: 1.6;
+}
+
+/* Barra de Busca e Filtragem Rápida */
+.search-wrapper {
+  max-width: 620px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.search-input-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  position: absolute;
+  left: 1.15rem;
+  color: #94a3b8;
+  pointer-events: none;
+  width: 20px;
+  height: 20px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.95rem 1.15rem 0.95rem 3.1rem;
+  font-family: inherit;
+  font-size: 1rem;
+  border: 2px solid var(--border-color);
+  border-radius: 50px;
+  background: #ffffff;
+  color: var(--text-main);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  outline: none;
+}
+
+.search-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(0, 163, 227, 0.15);
+}
+
+.search-clear-btn {
+  position: absolute;
+  right: 1.15rem;
+  background: none;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  display: none;
+  font-size: 1.1rem;
+  padding: 0.2rem;
+  line-height: 1;
+}
+
+.search-clear-btn:hover {
+  color: var(--danger);
+}
+
+/* ============================================================
+   4. CONTEÚDO PRINCIPAL (SERVIÇOS E PROJETOS)
+   ============================================================ */
+.portal-main {
+  flex: 1;
+  max-width: 1400px;
+  width: 100%;
+  margin: 2.5rem auto 4rem;
+  padding: 0 2rem;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 1.75rem;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 0.85rem;
+}
+
+.section-header-left h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--darker-blue);
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.section-header-left p {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+}
+
+.section-counter {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--dark-blue);
+  background: var(--primary-light);
+  padding: 0.3rem 0.75rem;
+  border-radius: 12px;
+  border: 1px solid var(--primary-border-subtle);
+}
+
+/* Grid de Cartões */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3.5rem;
+}
+
+/* Cartão do Serviço Ativo */
+.service-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-lg);
+  border-top: 4px solid var(--primary);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  overflow: hidden;
+  transition: var(--transition);
+  position: relative;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary-border-subtle);
+  border-top-color: var(--primary-dark);
+}
+
+.service-card-body {
+  padding: 2rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.service-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.25rem;
+}
+
+.service-icon-box {
+  width: 54px;
+  height: 54px;
+  border-radius: 12px;
+  background-color: var(--primary-light);
+  border: 1px solid var(--primary-border-subtle);
+  color: var(--dark-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+.service-card:hover .service-icon-box {
+  background-color: var(--primary);
+  color: #ffffff;
+  border-color: var(--primary);
+  transform: scale(1.05);
+}
+
+.service-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 20px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.badge-available {
+  background: var(--success-light);
+  color: var(--success);
+  border: 1px solid var(--success-border);
+}
+
+.badge-available-dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--success);
+  border-radius: 50%;
+}
+
+.badge-upcoming {
+  background: var(--warning-light);
+  color: var(--warning);
+  border: 1px solid var(--warning-border);
+}
+
+.badge-maintenance {
+  background: #fff7ed;
+  color: #c2410c;
+  border: 1px solid #fed7aa;
+}
+
+.badge-maintenance-dot {
+  width: 6px;
+  height: 6px;
+  background-color: #ea580c;
+  border-radius: 50%;
+}
+
+.service-card.is-maintenance {
+  border-top-color: #ea580c;
+}
+
+.service-card.is-maintenance:hover {
+  border-top-color: #c2410c;
+}
+
+/* Alerta Global de Manutenção */
+.alert-maintenance-global {
+  background: #fff7ed;
+  border: 1px solid #fdba74;
+  border-left: 5px solid #ea580c;
+  border-radius: var(--border-radius);
+  padding: 1.15rem 1.4rem;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  color: #7c2d12;
+  font-size: 0.94rem;
+  line-height: 1.55;
+  box-shadow: var(--shadow-sm);
+}
+
+.alert-maintenance-global svg {
+  color: #ea580c;
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+}
+
+.alert-maintenance-global a {
+  color: #c2410c;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.alert-maintenance-global a:hover {
+  color: #9a3412;
+}
+
+.service-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--darker-blue);
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+}
+
+.service-desc {
+  font-size: 0.94rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+/* Chips / Tags de Funcionalidades */
+.service-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: auto;
+  padding-top: 1rem;
+}
+
+.service-tag {
+  background: #f1f5f9;
+  color: #475569;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--border-radius-sm);
+  border: 1px solid #e2e8f0;
+}
+
+/* Rodapé do Cartão com Ação */
+.service-card-footer {
+  padding: 1.15rem 2rem;
+  background-color: #f8fafc;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: var(--dark-blue);
+  transition: var(--transition);
+}
+
+.service-card:hover .service-card-footer {
+  background-color: var(--primary-light);
+  color: var(--primary-dark);
+}
+
+.btn-access {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-access-arrow {
+  transition: transform 0.2s ease;
+}
+
+.service-card:hover .btn-access-arrow {
+  transform: translateX(5px);
+}
+
+/* Cartão em Desenvolvimento / Próximos Lançamentos */
+.service-card-upcoming {
+  background: #fafbfc;
+  border: 1px dashed #cbd5e1;
+  border-top: 4px solid #94a3b8;
+  cursor: default;
+  box-shadow: none;
+}
+
+.service-card-upcoming:hover {
+  transform: none;
+  box-shadow: none;
+  border-color: #cbd5e1;
+  border-top-color: #94a3b8;
+}
+
+.service-card-upcoming .service-icon-box {
+  background-color: #f1f5f9;
+  border-color: #e2e8f0;
+  color: #94a3b8;
+}
+
+.service-card-upcoming .service-title {
+  color: #475569;
+}
+
+.service-card-upcoming .service-card-footer {
+  background-color: #f1f5f9;
+  color: #64748b;
+  font-weight: 600;
+}
+
+/* ============================================================
+   5. CENTRAL DE ATENDIMENTO E SUPORTE
+   ============================================================ */
+.support-banner {
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-lg);
+  padding: 2rem 2.5rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2rem;
+  align-items: center;
+  box-shadow: var(--shadow-sm);
+  margin-top: 3rem;
+  border-left: 6px solid var(--dark-blue);
+}
+
+@media (max-width: 900px) {
+  .support-banner {
+    grid-template-columns: 1fr;
+  }
+}
+
+.support-info h3 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--darker-blue);
+  margin-bottom: 0.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.support-info p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.55;
+  margin-bottom: 1rem;
+}
+
+.support-contacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-main);
+  font-weight: 600;
+}
+
+.contact-item svg {
+  color: var(--primary);
+  flex-shrink: 0;
+}
+
+.contact-item a {
+  color: var(--dark-blue);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.contact-item a:hover {
+  text-decoration: underline;
+  color: var(--primary);
+}
+
+.support-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--dark-blue);
+  color: #ffffff;
+  padding: 0.85rem 1.4rem;
+  border-radius: var(--border-radius);
+  font-weight: 700;
+  font-size: 0.92rem;
+  text-decoration: none;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+
+.support-action-btn:hover {
+  background: var(--primary-dark);
+  box-shadow: 0 4px 12px rgba(0, 130, 182, 0.3);
+}
+
+/* Mensagem de "Nenhum resultado" na busca */
+.no-results-msg {
+  display: none;
+  text-align: center;
+  padding: 3rem 1rem;
+  background: #ffffff;
+  border: 1px dashed var(--border-color);
+  border-radius: var(--border-radius-lg);
+  color: var(--text-muted);
+}
+
+.no-results-msg h3 {
+  color: var(--darker-blue);
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+/* ============================================================
+   6. RODAPÉ INSTITUCIONAL OFICIAL UNESP (PADRÃO PORTAL UNESP)
+   ============================================================ */
+.app-footer {
+  background-color: #dedede;
+  color: #333333;
+  border-top: 1px solid #d0d0d0;
+  padding: 3.5rem 2rem 3rem;
+  margin-top: auto;
+  font-family: 'Raleway', sans-serif;
+}
+
+.footer-grid {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2.5rem;
+}
+
+.footer-group h3 {
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: #2e383f;
+  letter-spacing: 0.04em;
+  margin-bottom: 1.25rem;
+  text-transform: uppercase;
+}
+
+.footer-group ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.footer-group a {
+  color: #4a555c;
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 500;
+  transition: color 0.15s, text-decoration 0.15s;
+}
+
+.footer-group a:hover {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+/* Bloco Central do Rodapé */
+.footer-central-block {
+  max-width: 800px;
+  margin: 4rem auto 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 0.5rem;
+}
+
+.footer-unesp-logo-center {
+  height: 86px;
+  width: auto;
+  max-width: 280px;
+  object-fit: contain;
+  display: block;
+  margin-bottom: 0.85rem;
+  transition: transform 0.2s;
+}
+
+.footer-unesp-logo-center:hover {
+  transform: scale(1.02);
+}
+
+.footer-address-text {
+  color: #4a555c;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.footer-address-text p {
+  margin: 0 0 0.15rem 0;
+}
+
+.footer-unit-title {
+  color: #1a1a1a !important;
+  font-size: 0.95rem !important;
+  margin-bottom: 0.35rem !important;
+}
+
+.footer-social-icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.footer-social-icons a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  text-decoration: none;
+}
+
+.footer-social-icons a:hover {
+  transform: scale(1.1);
+  opacity: 0.9;
+}
+
+/* ============================================================
+   7. RESPONSIVIDADE E ACESSIBILIDADE
+   ============================================================ */
+@media (max-width: 992px) {
+  .footer-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Barra Superior UNESP Centralizada */
+  .unesp-top-bar {
+    padding: 0.5rem 0.75rem;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .top-bar-content {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    gap: 0.35rem;
+  }
+
+  .top-bar-brand {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    font-size: 0.76rem;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.5rem;
+  }
+
+  .top-bar-brand a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .unesp-logo-svg {
+    height: 22px;
+    width: auto;
+    margin: 0 auto;
+  }
+
+  .top-bar-campus {
+    text-align: center;
+  }
+
+  .top-bar-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 0.25rem 0.5rem;
+    font-size: 0.74rem;
+  }
+
+  .app-header {
+    padding: 1rem;
+    text-align: center;
+  }
+  .brand-titles h1 {
+    font-size: 1.2rem;
+    text-align: center;
+  }
+  .hero-section {
+    padding: 2.25rem 1.25rem 2rem;
+    text-align: center;
+  }
+  .hero-title {
+    font-size: 1.75rem;
+    text-align: center;
+  }
+  .portal-main {
+    padding: 0 1.25rem;
+    margin: 1.75rem auto 3rem;
+  }
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  .service-card-body {
+    padding: 1.5rem;
+  }
+
+  /* Rodapé Centralizado */
+  .app-footer {
+    padding: 2.5rem 1.25rem 2rem;
+    text-align: center;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+    text-align: center;
+    justify-items: center;
+    align-items: center;
+  }
+
+  .footer-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+  }
+
+  .footer-group h3 {
+    text-align: center;
+    margin-bottom: 0.65rem;
+    width: 100%;
+  }
+
+  .footer-group ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    width: 100%;
+  }
+
+  .footer-group li {
+    text-align: center;
+    width: 100%;
+  }
+
+  .footer-group a {
+    text-align: center;
+    display: inline-block;
+  }
+
+  .footer-central-block {
+    margin: 2.5rem auto 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+  }
+
+  .footer-unesp-logo-center {
+    height: auto;
+    max-height: 68px;
+    max-width: 220px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+
+  .footer-address-text {
+    font-size: 0.82rem;
+    text-align: center;
+    width: 100%;
+  }
+
+  .footer-address-text p {
+    text-align: center;
+    margin: 0 0 0.15rem 0;
+  }
+
+  .footer-unit-title {
+    text-align: center;
+  }
+
+  .footer-social-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .unesp-top-bar {
+    padding: 0.45rem 0.5rem;
+  }
+
+  .top-bar-campus {
+    font-size: 0.72rem;
+    text-align: center;
+  }
+
+  .top-bar-sep {
+    display: none;
+  }
+
+  .top-bar-brand {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 0.2rem;
+  }
+
+  .top-bar-links {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 0.2rem 0.45rem;
+    font-size: 0.72rem;
+  }
+
+  .top-link {
+    font-size: 0.72rem;
+  }
+
+  .app-footer {
+    padding: 2rem 0.75rem 1.75rem;
+  }
+
+  .footer-grid {
+    gap: 1.5rem;
+  }
+
+  .footer-unesp-logo-center {
+    max-height: 60px;
+    max-width: 190px;
+  }
+}
