@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Validação de Autenticidade | STGP FCT UNESP</title>
+  <meta name="description" content="Serviço público de conferência e validação de autenticidade de declarações de dependentes e documentos emitidos pela STGP FCT UNESP.">
+  <link rel="icon" type="image/x-icon" href="unesp.ico">
+  
+  <!-- Fontes Oficiais UNESP (Raleway) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    /* Estilos específicos para a página de validação pública */
+    .validator-container {
+      max-width: 900px;
+      width: 100%;
+      margin: 1.75rem auto 4rem;
+      padding: 0 1.5rem;
+      flex: 1;
+    }
+
+    .validator-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius-lg);
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+      margin-top: 1rem;
+    }
+
+    .validator-header {
+      background: linear-gradient(135deg, #004b87 0%, #0077a8 100%);
+      color: #ffffff;
+      padding: 2.2rem 2rem;
+      text-align: center;
+    }
+
+    .validator-header-icon {
+      width: 58px;
+      height: 58px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.85rem;
+      backdrop-filter: blur(4px);
+    }
+
+    .validator-header h1 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      margin: 0;
+      color: #ffffff;
+    }
+
+    .validator-header p {
+      font-size: 0.95rem;
+      opacity: 0.92;
+      margin: 0.45rem 0 0;
+      font-weight: 400;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .validator-body {
+      padding: 2.2rem;
+    }
+
+    .validator-form-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: var(--border-radius);
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .validator-input-group {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .validator-input {
+      flex: 1;
+      min-width: 260px;
+      padding: 0.85rem 1.1rem;
+      border: 2px solid #cbd5e1;
+      border-radius: var(--border-radius);
+      font-size: 1rem;
+      font-family: inherit;
+      color: #1e293b;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      text-transform: uppercase;
+    }
+
+    .validator-input:focus {
+      outline: none;
+      border-color: #00a3e3;
+      box-shadow: 0 0 0 3px rgba(0, 163, 227, 0.2);
+      background-color: #ffffff;
+    }
+
+    .btn-consultar {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.85rem 1.6rem;
+      background-color: #0055a5;
+      color: #ffffff;
+      border: none;
+      border-radius: var(--border-radius);
+      font-size: 0.98rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 8px rgba(0, 85, 165, 0.25);
+    }
+
+    .btn-consultar:hover {
+      background-color: #004280;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 85, 165, 0.35);
+    }
+
+    .btn-consultar:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .validator-hint {
+      margin-top: 0.65rem;
+      font-size: 0.82rem;
+      color: #64748b;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    /* Estado de Carregamento */
+    .loading-state-box {
+      text-align: center;
+      padding: 2.5rem 1rem;
+      color: #0077a8;
+      font-weight: 700;
+    }
+
+    .loading-spinner-circle {
+      width: 42px;
+      height: 42px;
+      border: 4px solid #e0f2fe;
+      border-top-color: #0077a8;
+      border-radius: 50%;
+      animation: girarSpinner 0.8s linear infinite;
+      margin: 0 auto 1rem;
+    }
+
+    @keyframes girarSpinner {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Certidão de Sucesso / Autenticidade Confirmada */
+    .cert-success-box {
+      background: #ffffff;
+      border: 2px solid #10b981;
+      border-radius: var(--border-radius-lg);
+      padding: 2rem;
+      box-shadow: 0 4px 16px rgba(16, 185, 129, 0.12);
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .cert-badge-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 2px solid #ecfdf5;
+      margin-bottom: 1.5rem;
+    }
+
+    .cert-badge-icon {
+      width: 48px;
+      height: 48px;
+      background-color: #d1fae5;
+      color: #059669;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .cert-badge-text h2 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #065f46;
+      margin: 0;
+    }
+
+    .cert-badge-text p {
+      font-size: 0.86rem;
+      color: #047857;
+      margin: 0.2rem 0 0;
+    }
+
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    @media (max-width: 640px) {
+      .cert-grid { grid-template-columns: 1fr; }
+    }
+
+    .cert-item {
+      background-color: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: var(--border-radius);
+      padding: 0.85rem 1rem;
+    }
+
+    .cert-item.span-2 {
+      grid-column: 1 / -1;
+    }
+
+    .cert-item-label {
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      font-weight: 800;
+      color: #64748b;
+      letter-spacing: 0.03em;
+      margin-bottom: 0.3rem;
+    }
+
+    .cert-item-value {
+      font-size: 0.96rem;
+      font-weight: 700;
+      color: #1e293b;
+      word-break: break-word;
+    }
+
+    .cert-hash-code {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.85rem;
+      color: #0f172a;
+      background: #ffffff;
+      padding: 0.4rem 0.6rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      display: block;
+      word-break: break-all;
+      margin-top: 0.2rem;
+    }
+
+    .cert-official-seal {
+      background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+      border: 1px solid #86efac;
+      border-radius: var(--border-radius);
+      padding: 1rem 1.25rem;
+      font-size: 0.85rem;
+      color: #166534;
+      line-height: 1.5;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    /* Estado de Erro / Não Encontrado */
+    .cert-error-box {
+      background: #fff1f2;
+      border: 2px solid #fecdd3;
+      border-radius: var(--border-radius-lg);
+      padding: 2rem;
+      text-align: center;
+      color: #9f1239;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .cert-error-icon {
+      width: 54px;
+      height: 54px;
+      background-color: #ffe4e6;
+      color: #e11d48;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+
+    .cert-error-box h2 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #9f1239;
+      margin: 0 0 0.5rem;
+    }
+
+    .cert-error-box p {
+      font-size: 0.92rem;
+      color: #be123c;
+      max-width: 520px;
+      margin: 0 auto 1.5rem;
+      line-height: 1.5;
+    }
+
+    .cert-actions {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: center;
+      margin-top: 1.75rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-cert-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.65rem 1.25rem;
+      border-radius: var(--border-radius);
+      font-size: 0.88rem;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: 1px solid transparent;
+    }
+
+    .btn-cert-action.primary {
+      background-color: #0055a5;
+      color: #ffffff;
+    }
+
+    .btn-cert-action.primary:hover {
+      background-color: #004280;
+    }
+
+    .btn-cert-action.secondary {
+      background-color: #ffffff;
+      color: #475569;
+      border-color: #cbd5e1;
+    }
+
+    .btn-cert-action.secondary:hover {
+      background-color: #f1f5f9;
+      color: #1e293b;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Barra Superior Institucional UNESP -->
+  <div class="unesp-top-bar">
+    <div class="top-bar-content">
+      <div class="top-bar-brand">
+        <a href="https://www.unesp.br" target="_blank" title="Universidade Estadual Paulista Júlio de Mesquita Filho">
+          <img src="unesp-logo-white.svg" alt="Logotipo UNESP" class="unesp-logo-svg">
+        </a>
+        <span class="top-bar-sep">|</span>
+        <span class="top-bar-campus">Câmpus de Presidente Prudente</span>
+      </div>
+      <div class="top-bar-links">
+        <a href="https://www.fct.unesp.br/" target="_blank" class="top-link" title="Acessar o portal oficial da FCT">Portal FCT Unesp</a>
+        <span class="top-bar-dot">•</span>
+        <a href="https://www.fct.unesp.br/#!/administracao/recursos-humanos/" target="_blank" class="top-link" title="Seção Técnica de Gestão de Pessoas (Recursos Humanos)">Página da STGP</a>
+        <span class="top-bar-dot">•</span>
+        <a href="../index.html" class="top-link" title="Portal STGP Digital">STGP Digital</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cabeçalho Principal da Aplicação -->
+  <header class="app-header">
+    <div class="header-content">
+      <a href="../index.html" class="brand" title="Início — STGP Digital">
+        <img src="fct-logo.png" alt="Logotipo FCT UNESP" class="brand-fct-logo">
+        <div class="brand-titles">
+          <h1>STGP Digital — Portal de Serviços e Modelos de Documentos</h1>
+          <p>Faculdade de Ciências e Tecnologia — Seção Técnica de Gestão de Pessoas (STGP)</p>
+        </div>
+      </a>
+      <div class="header-actions">
+        <span class="badge-status">Câmpus de Presidente Prudente</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Conteúdo Principal -->
+  <main class="validator-container">
+    
+    <!-- Barra Superior de Navegação -->
+    <div class="nav-back-container">
+      <div class="nav-back-left">
+        <a href="index.html" class="btn-back-stgp" title="Voltar para a página de declaração">
+          <svg class="back-arrow-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          <span>Voltar para Declaração</span>
+        </a>
+        <span class="breadcrumb-sep">/</span>
+        <span class="breadcrumb-current">Validação de Autenticidade</span>
+      </div>
+    </div>
+
+    <!-- CARD PRINCIPAL DE VALIDAÇÃO -->
+    <article class="validator-card">
+      <div class="validator-header">
+        <div class="validator-header-icon">
+          <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#ffffff" stroke-width="2.2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            <polyline points="9 12 11 14 15 10"></polyline>
+          </svg>
+        </div>
+        <h1>Validação de Autenticidade Documental</h1>
+        <p>
+          Serviço público da Seção Técnica de Gestão de Pessoas (STGP) para conferência e validação da assinatura digital e integridade de declarações emitidas eletronicamente.
+        </p>
+      </div>
+
+      <div class="validator-body">
+        
+        <!-- Formulário de Busca por Protocolo ou Hash -->
+        <div class="validator-form-box">
+          <label for="input-codigo" style="font-weight: 700; color: #1e293b; font-size: 0.92rem; display: block; margin-bottom: 0.5rem;">
+            Código de Autenticidade / Protocolo ou Hash SHA-256:
+          </label>
+          <div class="validator-input-group">
+            <input 
+              type="text" 
+              id="input-codigo" 
+              class="validator-input" 
+              placeholder="Ex: FCT-STGP-DEP-2026-XXXXXXXX" 
+              autocomplete="off" 
+              spellcheck="false"
+              maxlength="70"
+            >
+            <button type="button" id="btn-verificar" class="btn-consultar" onclick="executarValidacao()">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <span>Verificar</span>
+            </button>
+          </div>
+          <div class="validator-hint">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+            <span>O código está impresso no comprovante em PDF e no corpo do e-mail oficial de confirmação emitido pela STGP.</span>
+          </div>
+        </div>
+
+        <!-- ÁREA DINÂMICA DE RESULTADOS -->
+        <div id="resultado-container">
+
+          <!-- Estado Inicial (Orientações) -->
+          <div id="estado-inicial" style="text-align: center; color: #64748b; padding: 2rem 1rem;">
+            <svg viewBox="0 0 24 24" width="52" height="52" fill="none" stroke="#94a3b8" stroke-width="1.6" style="margin-bottom: 0.75rem;">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+              <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+            <p style="font-size: 0.95rem; margin: 0; font-weight: 500;">
+              Digite ou cole o código no campo acima e clique em <strong>Verificar</strong> para consultar a autenticidade jurídica deste documento.
+            </p>
+          </div>
+
+          <!-- Estado de Carregamento -->
+          <div id="estado-carregando" class="loading-state-box" style="display: none;">
+            <div class="loading-spinner-circle"></div>
+            <div>Consultando base oficial de autenticidade da STGP / UNESP...</div>
+          </div>
+
+          <!-- Estado de Sucesso: Documento Válido e Autêntico -->
+          <div id="estado-sucesso" class="cert-success-box" style="display: none;">
+            <div class="cert-badge-header">
+              <div class="cert-badge-icon">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </div>
+              <div class="cert-badge-text">
+                <h2>DECLARAÇÃO AUTÊNTICA E REGISTRADA</h2>
+                <p>Assinatura eletrônica e integridade documental verificadas com sucesso na base STGP UNESP.</p>
+              </div>
+            </div>
+
+            <div class="cert-grid">
+              <div class="cert-item">
+                <div class="cert-item-label">Código de Autenticidade / Protocolo</div>
+                <div class="cert-item-value" id="res-protocolo" style="color: #0055a5; font-family: monospace; font-size: 1.05rem;">---</div>
+              </div>
+
+              <div class="cert-item">
+                <div class="cert-item-label">Data e Hora de Transmissão Oficial</div>
+                <div class="cert-item-value" id="res-datahora">---</div>
+              </div>
+
+              <div class="cert-item">
+                <div class="cert-item-label">Servidor(a) Declarante</div>
+                <div class="cert-item-value" id="res-nome">---</div>
+              </div>
+
+              <div class="cert-item">
+                <div class="cert-item-label">Tipo de Declaração</div>
+                <div class="cert-item-value" id="res-tipo">---</div>
+              </div>
+
+              <div class="cert-item">
+                <div class="cert-item-label">Qtd. de Dependentes Declarados</div>
+                <div class="cert-item-value" id="res-qtd">---</div>
+              </div>
+
+              <div class="cert-item">
+                <div class="cert-item-label">Unidade Responsável</div>
+                <div class="cert-item-value">FCT UNESP — Presidente Prudente / SP</div>
+              </div>
+
+              <div class="cert-item span-2">
+                <div class="cert-item-label">Carimbo Criptográfico de Integridade (Hash SHA-256)</div>
+                <div class="cert-hash-code" id="res-hash">---</div>
+              </div>
+            </div>
+
+            <div class="cert-official-seal">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" style="flex-shrink: 0;">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              <span>
+                <strong>Certificação Oficial STGP:</strong> O registro acima foi emitido eletronicamente e arquivado em conformidade com as normas institucionais da UNESP e da legislação trabalhista/tributária vigente.
+              </span>
+            </div>
+
+            <div class="cert-actions">
+              <button type="button" class="btn-cert-action primary" onclick="window.print()">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+                Imprimir Certidão de Autenticidade
+              </button>
+              <button type="button" class="btn-cert-action secondary" onclick="limparConsulta()">
+                Nova Consulta
+              </button>
+            </div>
+          </div>
+
+          <!-- Estado de Erro: Não Encontrado -->
+          <div id="estado-erro" class="cert-error-box" style="display: none;">
+            <div class="cert-error-icon">
+              <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </div>
+            <h2>DOCUMENTO NÃO LOCALIZADO</h2>
+            <p id="msg-erro-detalhe">
+              O código informado não foi localizado na base oficial de registros da Seção Técnica de Gestão de Pessoas da FCT UNESP.
+            </p>
+            <div class="cert-actions">
+              <button type="button" class="btn-cert-action secondary" onclick="focarInput()">
+                Tentar Novamente
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </article>
+
+  </main>
+
+  <!-- Rodapé Institucional Oficial UNESP -->
+  <footer class="app-footer">
+    <div class="footer-grid">
+      <div class="footer-group">
+        <h3>FUNDAÇÕES</h3>
+        <ul>
+          <li><a href="https://editoraunesp.com.br/" target="_blank" rel="noopener">Editora Unesp</a></li>
+          <li><a href="https://www.fundunesp.org.br/" target="_blank" rel="noopener">Fundunesp</a></li>
+          <li><a href="https://www.vunesp.com.br/" target="_blank" rel="noopener">Fundação Vunesp</a></li>
+        </ul>
+      </div>
+      <div class="footer-group">
+        <h3>GOVERNO</h3>
+        <ul>
+          <li><a href="https://www.saopaulo.sp.gov.br/" target="_blank" rel="noopener">Governo de São Paulo</a></li>
+          <li><a href="https://www.cruesp.sp.gov.br/" target="_blank" rel="noopener">Conselho de Reitores</a></li>
+          <li><a href="https://unesp.br/transparencia/" target="_blank" rel="noopener">Transparência Unesp</a></li>
+        </ul>
+      </div>
+      <div class="footer-group">
+        <h3>SISTEMAS</h3>
+        <ul>
+          <li><a href="https://sistemas.unesp.br/" target="_blank" rel="noopener">Sistemas Online</a></li>
+          <li><a href="https://www2.unesp.br/eduroam" target="_blank" rel="noopener">EDUROAM</a></li>
+          <li><a href="https://www2.unesp.br/vpn" target="_blank" rel="noopener">VPN</a></li>
+          <li><a href="https://email.unesp.br/" target="_blank" rel="noopener">Webmail</a></li>
+        </ul>
+      </div>
+      <div class="footer-group">
+        <h3>SAÚDE</h3>
+        <ul>
+          <li><a href="https://www.unesp.br/unespsaude/" target="_blank" rel="noopener">Unesp Saúde</a></li>
+          <li><a href="https://www.ecaresentinela.com.br/" target="_blank" rel="noopener">e-Care Sentinela</a></li>
+          <li><a href="https://www.unesp.br/numis" target="_blank" rel="noopener">NUMIS</a></li>
+        </ul>
+      </div>
+      <div class="footer-group">
+        <h3>INFORMAÇÕES</h3>
+        <ul>
+          <li><a href="validar.html" title="Validar autenticidade de declarações da STGP">Validação de Autenticidade</a></li>
+          <li><a href="https://www2.unesp.br/secgeral/manuais/legislacao-unesp/" target="_blank" rel="noopener">Legislação Unesp</a></li>
+          <li><a href="https://www.unesp.br/ai/documentos/lgpd/legislacao/" target="_blank" rel="noopener">Política de Privacidade</a></li>
+          <li><a href="https://www.fct.unesp.br/lib/modals/modal-preferencias-privacidade.php" target="_blank" rel="noopener">Preferências de Privacidade</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-central-block">
+      <a href="https://www.unesp.br" target="_blank" title="Universidade Estadual Paulista Júlio de Mesquita Filho" rel="noopener">
+        <img src="unesp-logo.svg" alt="Logotipo UNESP" class="footer-unesp-logo-center">
+      </a>
+      <div class="footer-address-text">
+        <p class="footer-unit-title"><strong>Faculdade de Ciências e Tecnologia - Câmpus de Presidente Prudente</strong></p>
+        <p>Rua Roberto Simonsen, 305 - Centro Educacional</p>
+        <p>P. Prudente/SP - CEP 19060-900</p>
+        <p>Telefone: (18) 3229-5388</p>
+      </div>
+      <div class="footer-social-icons">
+        <a href="https://www.facebook.com/UnespPrudente/" target="_blank" title="Facebook - FCT UNESP" aria-label="Facebook" rel="noopener">
+          <svg viewBox="0 0 36 36" width="36" height="36"><circle cx="18" cy="18" r="18" fill="#1877F2"/><path d="M22.68 18.53l.65-4.23h-4.05v-2.75c0-1.16.57-2.28 2.38-2.28h1.84V5.67s-1.67-.28-3.27-.28c-3.33 0-5.52 2.02-5.52 5.69v3.22h-3.76v4.23h3.76v10.25c.75.12 1.53.18 2.31.18s1.56-.06 2.31-.18V18.53h3.35z" fill="#fff"/></svg>
+        </a>
+        <a href="https://www.instagram.com/fctunesp/" target="_blank" title="Instagram - FCT UNESP" aria-label="Instagram" rel="noopener">
+          <svg viewBox="0 0 36 36" width="36" height="36">
+            <defs><linearGradient id="igGradVal" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#FFDD55"/><stop offset="50%" stop-color="#E1306C"/><stop offset="100%" stop-color="#C13584"/></linearGradient></defs>
+            <rect width="36" height="36" rx="9" fill="url(#igGradVal)"/><rect x="7" y="7" width="22" height="22" rx="6" fill="none" stroke="#fff" stroke-width="2.2"/><circle cx="18" cy="18" r="4.8" fill="none" stroke="#fff" stroke-width="2.2"/><circle cx="24.5" cy="11.5" r="1.5" fill="#fff"/>
+          </svg>
+        </a>
+        <a href="https://www.youtube.com/@fct_unesp" target="_blank" title="YouTube - FCT UNESP" aria-label="YouTube" rel="noopener">
+          <svg viewBox="0 0 46 34" width="44" height="32"><rect width="46" height="34" rx="8" fill="#FF0000"/><polygon points="19,10 31,17 19,24" fill="#fff"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const API_ENDPOINT = "https://script.google.com/macros/s/AKfycbwbvSX5xQfUejr1_3jVgWQB3JkXdjZNKybarjktqQR2YGwuu7s8902bJamw649prQzm/exec";
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const inputCodigo = document.getElementById("input-codigo");
+
+      // Enter aciona a busca
+      inputCodigo.addEventListener("keyup", function (e) {
+        if (e.key === "Enter") {
+          executarValidacao();
+        }
+      });
+
+      // Leitura automática de parâmetros da URL (ex: ?codigo=... ou ?validar=... ou ?protocolo=...)
+      const urlParams = new URLSearchParams(window.location.search);
+      const codigoParam = urlParams.get("codigo") || urlParams.get("validar") || urlParams.get("protocolo") || urlParams.get("hash");
+      
+      if (codigoParam) {
+        inputCodigo.value = codigoParam.trim();
+        executarValidacao();
+      }
+    });
+
+    async function executarValidacao() {
+      const inputCodigo = document.getElementById("input-codigo");
+      const codigo = inputCodigo.value.trim().toUpperCase();
+
+      if (!codigo) {
+        alert("Por favor, digite o Código de Autenticidade ou Hash do documento.");
+        inputCodigo.focus();
+        return;
+      }
+
+      mostrarEstado("carregando");
+
+      const btn = document.getElementById("btn-verificar");
+      btn.disabled = true;
+
+      try {
+        const urlConsulta = `${API_ENDPOINT}?validar=${encodeURIComponent(codigo)}`;
+        const res = await fetch(urlConsulta, { method: "GET" });
+        const data = await res.json();
+
+        if (data && data.valido) {
+          document.getElementById("res-protocolo").textContent = data.protocolo || codigo;
+          document.getElementById("res-datahora").textContent = formatarDataHoraBrasilia(data.dataHora);
+          document.getElementById("res-nome").textContent = data.nome || "Servidor Autenticado";
+          document.getElementById("res-tipo").textContent = data.tipoDeclaracao || "Declaração de Dependentes";
+          document.getElementById("res-qtd").textContent = (data.qtdDependentes !== undefined) ? data.qtdDependentes : "-";
+          document.getElementById("res-hash").textContent = data.hash ? data.hash.toUpperCase() : "AUTENTICADO";
+
+          mostrarEstado("sucesso");
+        } else {
+          const detalhe = document.getElementById("msg-erro-detalhe");
+          detalhe.textContent = (data && data.mensagem) 
+            ? data.mensagem 
+            : `O código "${codigo}" não foi localizado na base oficial de registros da STGP. Verifique se o código foi digitado corretamente.`;
+          mostrarEstado("erro");
+        }
+      } catch (err) {
+        console.error("Erro na validação:", err);
+        const detalhe = document.getElementById("msg-erro-detalhe");
+        detalhe.textContent = "Falha de conexão com os servidores da UNESP. Verifique sua conexão com a internet e tente novamente em instantes.";
+        mostrarEstado("erro");
+      } finally {
+        btn.disabled = false;
+      }
+    }
+
+    function mostrarEstado(estado) {
+      document.getElementById("estado-inicial").style.display = (estado === "inicial") ? "block" : "none";
+      document.getElementById("estado-carregando").style.display = (estado === "carregando") ? "block" : "none";
+      document.getElementById("estado-sucesso").style.display = (estado === "sucesso") ? "block" : "none";
+      document.getElementById("estado-erro").style.display = (estado === "erro") ? "block" : "none";
+
+      if (estado === "sucesso" || estado === "erro") {
+        document.getElementById("resultado-container").scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }
+    }
+
+    function formatarDataHoraBrasilia(val) {
+      if (!val) return "---";
+      let str = String(val).trim();
+      // Remove menção prévia a Horário de Brasília / fuso horário para não duplicar
+      str = str.replace(/\s*\([^)]*bras[ií]lia[^)]*\)/gi, "").trim();
+
+      // 1. Já no formato DD/MM/AAAA HH:mm:ss
+      const regexCompleto = /^(\d{2}\/\d{2}\/\d{4})\s+(\d{2}:\d{2}:\d{2})$/;
+      const matchComp = str.match(regexCompleto);
+      if (matchComp) {
+        return `${matchComp[1]} ${matchComp[2]} (Horário de Brasília)`;
+      }
+
+      // 2. Formato DD/MM/AAAA HH:mm (sem segundos)
+      const regexSemSeg = /^(\d{2}\/\d{2}\/\d{4})\s+(\d{2}:\d{2})$/;
+      const matchSemSeg = str.match(regexSemSeg);
+      if (matchSemSeg) {
+        return `${matchSemSeg[1]} ${matchSemSeg[2]}:00 (Horário de Brasília)`;
+      }
+
+      // 3. Apenas DD/MM/AAAA
+      const regexApenasData = /^(\d{2}\/\d{2}\/\d{4})$/;
+      if (regexApenasData.test(str)) {
+        return `${str} 00:00:00 (Horário de Brasília)`;
+      }
+
+      // 4. Se for ISO ou formato aceito por Date
+      const d = new Date(str);
+      if (!isNaN(d.getTime())) {
+        try {
+          const formatter = new Intl.DateTimeFormat("pt-BR", {
+            timeZone: "America/Sao_Paulo",
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric",
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit",
+            hour12: false
+          });
+          const partes = formatter.formatToParts(d);
+          const m = {};
+          partes.forEach(p => { m[p.type] = p.value; });
+          return `${m.day}/${m.month}/${m.year} ${m.hour}:${m.minute}:${m.second} (Horário de Brasília)`;
+        } catch (e) {
+          return `${str} (Horário de Brasília)`;
+        }
+      }
+
+      return `${str} (Horário de Brasília)`;
+    }
+
+    function limparConsulta() {
+      document.getElementById("input-codigo").value = "";
+      mostrarEstado("inicial");
+      focarInput();
+    }
+
+    function focarInput() {
+      const input = document.getElementById("input-codigo");
+      input.focus();
+      input.select();
+    }
+  </script>
+</body>
+</html>

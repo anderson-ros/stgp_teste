@@ -16,6 +16,10 @@
   <!-- Google Identity Services (Login com Google @unesp.br) -->
   <script src="https://accounts.google.com/gsi/client" async defer></script>
   
+  <!-- jsPDF e jsPDF-AutoTable para geração vetorial oficial idêntica ao modelo FCT UNESP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -59,17 +63,28 @@
   <!-- Conteúdo Principal -->
   <main class="container-dependentes">
     
-    <!-- Barra Superior de Retorno e Localização -->
+    <!-- Barra Superior de Retorno e Localização com Link de Validação -->
     <div class="nav-back-container">
-      <a href="../index.html" class="btn-back-stgp" title="Voltar para a página inicial">
-        <svg class="back-arrow-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="19" y1="12" x2="5" y2="12"></line>
-          <polyline points="12 19 5 12 12 5"></polyline>
+      <div class="nav-back-left">
+        <a href="../index.html" class="btn-back-stgp" title="Voltar para a página inicial">
+          <svg class="back-arrow-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          <span>Voltar para Início</span>
+        </a>
+        <span class="breadcrumb-sep">/</span>
+        <span class="breadcrumb-current">Declaração de Dependentes</span>
+      </div>
+
+      <!-- Link Direto para Validação de Autenticidade -->
+      <a href="validar.html" class="btn-validar-nav" title="Consultar autenticidade de declaração emitida">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          <polyline points="9 12 11 14 15 10"></polyline>
         </svg>
-        <span>Voltar para Início</span>
+        <span>Validar Autenticidade</span>
       </a>
-      <span class="breadcrumb-sep">/</span>
-      <span class="breadcrumb-current">Declaração de Dependentes</span>
     </div>
 
     <!-- CARD DE AUTENTICAÇÃO GOOGLE WORKSPACE (GATEKEEPER) -->
@@ -96,6 +111,21 @@
       <div class="auth-security-notice">
         <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
         <span>Acesso exclusivo para servidores ativos e docentes da UNESP. Contas pessoais (@gmail.com) não são aceitas.</span>
+      </div>
+
+      <!-- Atalho de Validação de Autenticidade para Terceiros/RH -->
+      <div class="auth-validate-box">
+        <div class="auth-validate-text">
+          <strong>Precisa validar uma declaração já emitida?</strong>
+          <span>Consulte a autenticidade e a assinatura eletrônica de qualquer declaração STGP.</span>
+        </div>
+        <a href="validar.html" class="btn-auth-validar" title="Abrir validador de autenticidade">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            <polyline points="9 12 11 14 15 10"></polyline>
+          </svg>
+          Consultar Autenticidade
+        </a>
       </div>
 
       <!-- Aviso se aberto direto como arquivo local sem servidor -->
@@ -641,10 +671,18 @@
       </div>
 
       <div class="receipt-actions">
+        <button type="button" id="btn-baixar-pdf-oficial" class="btn-receipt-action" style="background-color: #0055a5; color: #ffffff; border-color: #004280; font-weight: 700;" onclick="baixarPdfDeclaracaoOficial()">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          Baixar Declaração Oficial (PDF)
+        </button>
         <button type="button" class="btn-receipt-action print" onclick="window.print()">
           <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
-          Imprimir / Salvar em PDF
+          Imprimir Comprovante
         </button>
+        <a id="link-validar-comprovante-sucesso" href="validar.html" target="_blank" class="btn-receipt-action secondary" style="background-color: #f0fdf4; color: #15803d; border-color: #86efac; text-decoration: none;" title="Consultar autenticidade do documento na base oficial da STGP">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 12 11 14 15 10"></polyline></svg>
+          Validar Autenticidade
+        </a>
         <button type="button" class="btn-receipt-action secondary" onclick="reiniciarFormulario()">
           Preencher Nova Declaração
         </button>
@@ -692,6 +730,7 @@
       <div class="footer-group">
         <h3>INFORMAÇÕES</h3>
         <ul>
+          <li><a href="validar.html" title="Validar autenticidade de declarações da STGP">Validação de Autenticidade</a></li>
           <li><a href="https://www2.unesp.br/secgeral/manuais/legislacao-unesp/" target="_blank" rel="noopener">Legislação Unesp</a></li>
           <li><a href="https://www.unesp.br/ai/documentos/lgpd/legislacao/" target="_blank" rel="noopener">Política de Privacidade</a></li>
           <li><a href="https://www.fct.unesp.br/lib/modals/modal-preferencias-privacidade.php" target="_blank" rel="noopener">Preferências de Privacidade</a></li>
@@ -1510,7 +1549,17 @@
       return {
         cpf,
         estadoCivil,
-        enderecoCompleto
+        enderecoCompleto,
+        endereco: {
+          tipoLogradouro,
+          logradouro,
+          numero,
+          complemento: complemento || "-",
+          bairro,
+          cidade,
+          uf,
+          cep
+        }
       };
     }
 
@@ -1526,16 +1575,67 @@
         return;
       }
 
+      const nomeServ = (usuarioAutenticado && usuarioAutenticado.nome)
+        ? usuarioAutenticado.nome
+        : (document.getElementById("servidor-nome").value.trim() || "Servidor(a) Institucional");
+      const emailServ = (usuarioAutenticado && usuarioAutenticado.email)
+        ? usuarioAutenticado.email
+        : (document.getElementById("servidor-email").value.trim() || "servidor@unesp.br");
+
+      const servidorDados = {
+        nome: nomeServ,
+        email: emailServ,
+        cpf: dadosServidor.cpf,
+        estadoCivil: dadosServidor.estadoCivil,
+        tipoLogradouro: dadosServidor.endereco.tipoLogradouro,
+        logradouro: dadosServidor.endereco.logradouro,
+        numero: dadosServidor.endereco.numero,
+        complemento: dadosServidor.endereco.complemento !== '-' ? dadosServidor.endereco.complemento : '',
+        bairro: dadosServidor.endereco.bairro,
+        cidade: dadosServidor.endereco.cidade,
+        uf: dadosServidor.endereco.uf,
+        cep: dadosServidor.endereco.cep,
+        enderecoCompleto: dadosServidor.enderecoCompleto
+      };
+
+      const btnEmissao = document.getElementById("btn-emitir-negativa");
+      if (btnEmissao) {
+        btnEmissao.disabled = true;
+        btnEmissao.textContent = "Gerando documento PDF e assinatura digital...";
+      }
+
+      let pdfResult = null;
+      try {
+        pdfResult = await gerarDocumentoPDFOficial({
+          servidor: servidorDados,
+          tipo: 'NEGATIVA',
+          dependentes: []
+        });
+        window.ultimoPdfGerado = pdfResult;
+      } catch (errPdf) {
+        console.error("Erro na geração do PDF:", errPdf);
+        alert("Falha ao gerar o PDF oficial da declaração: " + errPdf.message);
+        if (btnEmissao) {
+          btnEmissao.disabled = false;
+          btnEmissao.textContent = "Emitir Declaração Negativa com Assinatura Eletrônica";
+        }
+        return;
+      }
+
       const payload = {
         tokenGoogle: usuarioAutenticado ? (usuarioAutenticado.token || "") : "",
         chaveSeguranca: CHAVE_APLICACAO_STGP,
-        email: usuarioAutenticado.email,
-        nome: usuarioAutenticado.nome,
+        email: emailServ,
+        nome: nomeServ,
         cpf: dadosServidor.cpf,
         estadoCivil: dadosServidor.estadoCivil,
         enderecoCompleto: dadosServidor.enderecoCompleto,
+        endereco: dadosServidor.endereco,
         possuiDependentes: false,
-        dependentes: []
+        dependentes: [],
+        pdfBase64: pdfResult.base64,
+        filename: pdfResult.filename,
+        hashCliente: pdfResult.hash
       };
 
       await enviarAoServidor(payload);
@@ -1552,16 +1652,72 @@
         return;
       }
 
+      if (listaDependentes.length > 8) {
+        alert("A declaração suporta até 8 dependentes por documento oficial em folha única.");
+        return;
+      }
+
+      const nomeServ = (usuarioAutenticado && usuarioAutenticado.nome)
+        ? usuarioAutenticado.nome
+        : (document.getElementById("servidor-nome").value.trim() || "Servidor(a) Institucional");
+      const emailServ = (usuarioAutenticado && usuarioAutenticado.email)
+        ? usuarioAutenticado.email
+        : (document.getElementById("servidor-email").value.trim() || "servidor@unesp.br");
+
+      const servidorDados = {
+        nome: nomeServ,
+        email: emailServ,
+        cpf: dadosServidor.cpf,
+        estadoCivil: dadosServidor.estadoCivil,
+        tipoLogradouro: dadosServidor.endereco.tipoLogradouro,
+        logradouro: dadosServidor.endereco.logradouro,
+        numero: dadosServidor.endereco.numero,
+        complemento: dadosServidor.endereco.complemento !== '-' ? dadosServidor.endereco.complemento : '',
+        bairro: dadosServidor.endereco.bairro,
+        cidade: dadosServidor.endereco.cidade,
+        uf: dadosServidor.endereco.uf,
+        cep: dadosServidor.endereco.cep,
+        enderecoCompleto: dadosServidor.enderecoCompleto
+      };
+
+      const btnEmissao = document.getElementById("btn-finalizar-emissao");
+      if (btnEmissao) {
+        btnEmissao.disabled = true;
+        btnEmissao.textContent = "Gerando documento PDF e assinatura digital...";
+      }
+
+      let pdfResult = null;
+      try {
+        pdfResult = await gerarDocumentoPDFOficial({
+          servidor: servidorDados,
+          tipo: 'POSITIVA',
+          dependentes: listaDependentes
+        });
+        window.ultimoPdfGerado = pdfResult;
+      } catch (errPdf) {
+        console.error("Erro na geração do PDF:", errPdf);
+        alert("Falha ao gerar o PDF oficial da declaração: " + errPdf.message);
+        if (btnEmissao) {
+          btnEmissao.disabled = false;
+          btnEmissao.textContent = "Emitir Declaração Positiva com Assinatura Eletrônica";
+        }
+        return;
+      }
+
       const payload = {
         tokenGoogle: usuarioAutenticado ? (usuarioAutenticado.token || "") : "",
         chaveSeguranca: CHAVE_APLICACAO_STGP,
-        email: usuarioAutenticado.email,
-        nome: usuarioAutenticado.nome,
+        email: emailServ,
+        nome: nomeServ,
         cpf: dadosServidor.cpf,
         estadoCivil: dadosServidor.estadoCivil,
         enderecoCompleto: dadosServidor.enderecoCompleto,
+        endereco: dadosServidor.endereco,
         possuiDependentes: true,
-        dependentes: listaDependentes
+        dependentes: listaDependentes,
+        pdfBase64: pdfResult.base64,
+        filename: pdfResult.filename,
+        hashCliente: pdfResult.hash
       };
 
       await enviarAoServidor(payload);
@@ -1589,12 +1745,17 @@
         if (resultado.sucesso) {
           document.getElementById("secao-formulario-completo").style.display = "none";
           document.getElementById("resumo-protocolo").textContent = resultado.protocolo;
-          document.getElementById("resumo-datahora").textContent = resultado.dataHora;
+          document.getElementById("resumo-datahora").textContent = formatarDataHoraBrasilia(resultado.dataHora);
           document.getElementById("resumo-nome").textContent = payload.nome;
           document.getElementById("resumo-cpf").textContent = payload.cpf;
           document.getElementById("resumo-email").textContent = payload.email;
           document.getElementById("resumo-tipo").textContent = payload.possuiDependentes ? `Com Dependentes (${payload.dependentes.length})` : "Declaração Negativa de Dependentes";
-          document.getElementById("resumo-hash").textContent = resultado.hash || "Autenticado Digitalmente";
+          document.getElementById("resumo-hash").textContent = resultado.hash || (payload.hashCliente || "Autenticado Digitalmente");
+
+          const linkValidar = document.getElementById("link-validar-comprovante-sucesso");
+          if (linkValidar && resultado.protocolo) {
+            linkValidar.href = "validar.html?codigo=" + encodeURIComponent(resultado.protocolo);
+          }
 
           const cardSucesso = document.getElementById("card-comprovante-sucesso");
           cardSucesso.style.display = "block";
@@ -1612,6 +1773,544 @@
             ? "Emitir Declaração Positiva com Assinatura Eletrônica"
             : "Emitir Declaração Negativa com Assinatura Eletrônica";
         }
+      }
+    }
+
+    // ============================================================
+    // GERAÇÃO DO PDF OFICIAL VETORIAL (jsPDF + autoTable)
+    // Cópia fiel de estrutura, fontes e tabelas do modelo de referência
+    // ============================================================
+    async function gerarDocumentoPDFOficial(dados) {
+      const jsPDFClass = window.jspdf ? window.jspdf.jsPDF : (window.jsPDF || null);
+      if (!jsPDFClass) {
+        throw new Error("Biblioteca jsPDF não carregada no navegador.");
+      }
+
+      const doc = new jsPDFClass({ orientation: 'landscape', unit: 'mm', format: 'a4' });
+
+      // Data e Hora exatas (Brasília)
+      const agora = new Date();
+      const d = String(agora.getDate()).padStart(2, '0');
+      const m = String(agora.getMonth() + 1).padStart(2, '0');
+      const y = agora.getFullYear();
+      const h = String(agora.getHours()).padStart(2, '0');
+      const min = String(agora.getMinutes()).padStart(2, '0');
+      const dataHoraStr = `${d}/${m}/${y} às ${h}:${min}`;
+      const dataHoraTimestamp = agora.toISOString();
+
+      // 1. Gera o Hash SHA-256 da declaração
+      const payloadHashStr = JSON.stringify({
+        servidorNome: dados.servidor.nome,
+        servidorEmail: dados.servidor.email,
+        tipo: dados.tipo,
+        dependentes: dados.dependentes,
+        timestamp: dataHoraTimestamp
+      });
+
+      let hashSHA256 = "";
+      try {
+        if (window.crypto && window.crypto.subtle) {
+          const hashBuffer = await window.crypto.subtle.digest('SHA-256', new TextEncoder().encode(payloadHashStr));
+          const hashArray = Array.from(new Uint8Array(hashBuffer));
+          hashSHA256 = hashArray.map(b => b.toString(16).padStart(2, '0')).join('').toUpperCase();
+        }
+      } catch (errHash) {
+        console.warn("Crypto subtle fallback:", errHash);
+      }
+      if (!hashSHA256) {
+        const pseudo = (dados.servidor.cpf || '') + Date.now() + Math.random();
+        hashSHA256 = Array.from(pseudo).reduce((h, c) => ((h << 5) - h) + c.charCodeAt(0) | 0, 0).toString(16).toUpperCase().padStart(64, '0');
+      }
+
+      // 2. URL de Validação para a lateral do documento (sem encurtador e sem QR Code)
+      const urlValidacaoBase = window.location.origin + window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1) + 'validar.html';
+      let urlExibicao = urlValidacaoBase.replace(/^https?:\/\//, '');
+      if (urlExibicao.indexOf('file:') === 0 || urlExibicao.indexOf('127.0.0.1') !== -1 || urlExibicao.indexOf('localhost') !== -1) {
+        urlExibicao = 'portal.fct.unesp.br/validar';
+      }
+
+      // ==================== CORPO DO DOCUMENTO (LARGURA ÚTIL: X = 12 até 282 mm, total = 270 mm) ====================
+      const margemEsq = 12;
+      const limiteCorpo = 282;
+      const larguraUtil = limiteCorpo - margemEsq; // 270 mm
+      const margemDirTabela = 297 - limiteCorpo; // 15 mm
+      const centroX = 148.5;
+
+      // 1. Cálculo da CTPS a partir do CPF (7 primeiros dígitos e 4 últimos)
+      const cpfLimpo = (dados.servidor.cpf || '').replace(/\D/g, '');
+      const ctpsNum = cpfLimpo.length >= 7 ? cpfLimpo.substring(0, 7) : cpfLimpo;
+      const ctpsSerie = cpfLimpo.length >= 11 ? cpfLimpo.substring(cpfLimpo.length - 4) : (cpfLimpo.substring(7) || '');
+      const ctpsUf = 'SP';
+
+      function formatarCpfComMascara(cpf) {
+        const limpo = (cpf || '').replace(/\D/g, '');
+        if (limpo.length === 11) {
+          return limpo.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+        }
+        return cpf || '';
+      }
+
+      function formatarCepComMascara(cep) {
+        const limpo = (cep || '').replace(/\D/g, '');
+        if (limpo.length === 8) {
+          return limpo.replace(/(\d{5})(\d{3})/, '$1-$2');
+        }
+        return cep || '';
+      }
+
+      const numDeps = (dados.tipo === 'POSITIVA' && dados.dependentes) ? dados.dependentes.length : 0;
+
+      // Ajuste inteligente de espaçamento para manter estritamente em 1 folha A4 quando há muitos dependentes (até 8)
+      const quebraLinha = numDeps > 6 ? 3.6 : (numDeps > 4 ? 4.0 : 4.5);
+      const recuoParagrafo = 25; // Parágrafo de 2,5 cm
+      const corCinzaCab = [233, 238, 244]; // Cinza claro de contraste para cabeçalhos
+      const corZebra = [246, 248, 251]; // Linha alternada zebrada
+
+      // Função para renderizar parágrafo com recuo de 2,5 cm na 1ª linha e justificado
+      function renderizarParagrafoJustificado(texto, yInicial) {
+        const palavras = texto.split(' ');
+        const larguraL1 = larguraUtil - recuoParagrafo; // 245 mm
+        const linhas = [];
+        let linhaAtual = [];
+
+        for (let i = 0; i < palavras.length; i++) {
+          const teste = linhaAtual.concat(palavras[i]).join(' ');
+          const largMax = (linhas.length === 0) ? larguraL1 : larguraUtil;
+          if (doc.getTextWidth(teste) <= largMax) {
+            linhaAtual.push(palavras[i]);
+          } else {
+            linhas.push(linhaAtual);
+            linhaAtual = [palavras[i]];
+          }
+        }
+        if (linhaAtual.length > 0) {
+          linhas.push(linhaAtual);
+        }
+
+        let y = yInicial;
+        for (let l = 0; l < linhas.length; l++) {
+          const ehPrimeira = (l === 0);
+          const ehUltima = (l === linhas.length - 1);
+          const xLinha = ehPrimeira ? (margemEsq + recuoParagrafo) : margemEsq;
+          const largDisponivel = ehPrimeira ? larguraL1 : larguraUtil;
+          const textoLinha = linhas[l].join(' ');
+
+          if (!ehUltima && linhas[l].length > 1) {
+            const largTexto = doc.getTextWidth(textoLinha);
+            const sobra = largDisponivel - largTexto;
+            const numEspacos = linhas[l].length - 1;
+            const espacoExtra = sobra / numEspacos;
+            let xCursor = xLinha;
+            for (let p = 0; p < linhas[l].length; p++) {
+              const pal = linhas[l][p];
+              doc.text(pal, xCursor, y);
+              xCursor += doc.getTextWidth(pal) + doc.getTextWidth(' ') + espacoExtra;
+            }
+          } else {
+            doc.text(textoLinha, xLinha, y);
+          }
+          if (l < linhas.length - 1) {
+            y += 4.2;
+          }
+        }
+        return y;
+      }
+
+      // =========================================================================
+      // 1. TÍTULO DO DOCUMENTO
+      // =========================================================================
+      const margemSup = numDeps > 6 ? 13 : 15;
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(14.5);
+      doc.setTextColor(0, 0, 0);
+      doc.text('DECLARAÇÃO DE DEPENDENTES', centroX, margemSup, { align: 'center' });
+
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(8.5);
+      doc.setTextColor(0, 0, 0);
+      const ySubtitulo = margemSup + 5.2;
+      doc.text('Declaração de dependentes para fins de atualização cadastral (SisRH e Folha de Pagamento) e posterior envio ao eSocial', centroX, ySubtitulo, { align: 'center' });
+
+      // Espaço entre título e início da tabela
+      const multQuebra1 = numDeps > 6 ? 1.5 : 2;
+      const yInicioQuadro1 = ySubtitulo + (multQuebra1 * quebraLinha);
+
+      // =========================================================================
+      // QUADRO 1: DADOS DO DECLARANTE
+      // =========================================================================
+      let endCompleto = ((dados.servidor.tipoLogradouro || '') + ' ' + (dados.servidor.logradouro || '')).trim().toUpperCase();
+      if (!endCompleto && dados.servidor.enderecoCompleto) {
+        endCompleto = dados.servidor.enderecoCompleto.toUpperCase();
+      }
+
+      const celulaCab = function(texto) {
+        return { content: texto, styles: { fontStyle: 'bold', fontSize: 6.5, halign: 'center', fillColor: corCinzaCab, cellPadding: 1 } };
+      };
+      const celulaVal = function(texto, bold) {
+        return { content: texto, styles: { fontStyle: bold ? 'bold' : 'normal', fontSize: 7.2, halign: 'center', cellPadding: 1.5 } };
+      };
+
+      // Larguras base das 7 colunas perfeitamente alinhadas (Total: 270 mm):
+      // 0: ENDEREÇO (80 mm)
+      // 1: Nº (20 mm)  --> (0+1 = 100 mm: ESTADO CIVIL / BAIRRO Empresa)
+      // 2: COMPLEMENTO (36 mm) --> CTPS Nº (36 mm)
+      // 3: BAIRRO (46 mm) --> CTPS SÉRIE (46 mm)
+      // 4: CIDADE (47 mm) --> CTPS UF (47 mm) / Nº Empresa (47 mm)
+      // 5: UF (11 mm)
+      // 6: CEP (30 mm) --> (5+6 = 41 mm: CPF / COMPLEMENTO Empresa)
+      const colStylesQuadro = {
+        0: { cellWidth: 80 },
+        1: { cellWidth: 20 },
+        2: { cellWidth: 36 },
+        3: { cellWidth: 46 },
+        4: { cellWidth: 47 },
+        5: { cellWidth: 11 },
+        6: { cellWidth: 30 }
+      };
+
+      doc.autoTable({
+        startY: yInicioQuadro1,
+        margin: { left: margemEsq, right: margemDirTabela },
+        theme: 'grid',
+        tableLineColor: [0, 0, 0],
+        tableLineWidth: 0.3,
+        styles: {
+          textColor: [0, 0, 0],
+          lineColor: [0, 0, 0],
+          lineWidth: 0.25,
+          valign: 'middle'
+        },
+        body: [
+          // Linha 1 e 2: Nome do declarante
+          [{ content: 'NOME DO DECLARANTE', colSpan: 7, styles: { fontStyle: 'bold', fontSize: 6.5, halign: 'center', fillColor: corCinzaCab, cellPadding: 1 } }],
+          [{ content: dados.servidor.nome.toUpperCase(), colSpan: 7, styles: { fontStyle: 'bold', fontSize: 8.5, halign: 'center', cellPadding: 2 } }],
+
+          // Linha 3 e 4: Endereço completo
+          [
+            celulaCab('ENDEREÇO'),
+            celulaCab('Nº'),
+            celulaCab('COMPLEMENTO'),
+            celulaCab('BAIRRO'),
+            celulaCab('CIDADE'),
+            celulaCab('UF'),
+            celulaCab('CEP')
+          ],
+          [
+            celulaVal(endCompleto),
+            celulaVal(dados.servidor.numero || 'S/N'),
+            celulaVal(dados.servidor.complemento || '-'),
+            celulaVal((dados.servidor.bairro || '').toUpperCase()),
+            celulaVal((dados.servidor.cidade || '').toUpperCase()),
+            celulaVal((dados.servidor.uf || 'SP').toUpperCase()),
+            celulaVal(formatarCepComMascara(dados.servidor.cep || ''))
+          ],
+
+          // Linha 5 e 6: Estado civil, CTPS e CPF
+          // Estado Civil: abaixo de Endereço e Nº (colSpan 2)
+          // CTPS Nº: abaixo de Complemento (colSpan 1)
+          // CTPS Série: abaixo de Bairro (colSpan 1)
+          // CTPS UF: abaixo de Cidade (colSpan 1)
+          // CPF: abaixo de UF e CEP (colSpan 2)
+          [
+            { content: 'ESTADO CIVIL', colSpan: 2, styles: { fontStyle: 'bold', fontSize: 6.5, halign: 'center', fillColor: corCinzaCab, cellPadding: 1 } },
+            celulaCab('CTPS Nº'),
+            celulaCab('CTPS SÉRIE'),
+            celulaCab('CTPS UF'),
+            { content: 'CPF', colSpan: 2, styles: { fontStyle: 'bold', fontSize: 6.5, halign: 'center', fillColor: corCinzaCab, cellPadding: 1 } }
+          ],
+          [
+            { content: (dados.servidor.estadoCivil || '').toUpperCase(), colSpan: 2, styles: { fontStyle: 'bold', fontSize: 7.2, halign: 'center' } },
+            celulaVal(ctpsNum),
+            celulaVal(ctpsSerie),
+            celulaVal(ctpsUf),
+            { content: formatarCpfComMascara(dados.servidor.cpf || ''), colSpan: 2, styles: { fontStyle: 'bold', fontSize: 7.5, halign: 'center' } }
+          ]
+        ],
+        columnStyles: colStylesQuadro
+      });
+
+      // Espaço entre término da tabela 1 e texto introdutório
+      const multQuebra2 = numDeps > 6 ? 1.8 : (numDeps > 4 ? 2.2 : 3);
+      const yTextoIntro = doc.lastAutoTable.finalY + (multQuebra2 * quebraLinha);
+
+      // =========================================================================
+      // TEXTO INTRODUTÓRIO (8.5 pt, recuo de 2,5 cm, justificado)
+      // =========================================================================
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(8.5);
+      doc.setTextColor(0, 0, 0);
+
+      const textoIntro = (dados.tipo === 'NEGATIVA')
+        ? 'Em obediência à legislação vigente, venho pela presente informar que NÃO POSSUO DEPENDENTES para fins de dedução do Imposto de Renda, Salário-Família ou Plano de Saúde.'
+        : 'Em obediência à legislação vigente, venho pela presente informar que possuo como encargo(s) de família a(s) pessoa(s) abaixo relacionada(s):';
+
+      const yFimIntro = renderizarParagrafoJustificado(textoIntro, yTextoIntro);
+
+      // Espaço entre texto introdutório e tabela de dependentes
+      const yInicioQuadro2 = yFimIntro + quebraLinha;
+
+      // =========================================================================
+      // QUADRO 2: TABELA DE 11 COLUNAS DE DEPENDENTES
+      // =========================================================================
+      const colunasDep = [
+        'SEQ',
+        'NOME COMPLETO',
+        'DATA DE\nNASC.',
+        'GRAU DE\nPARENTESCO',
+        'SEXO',
+        'RESPONSABILIDADE',
+        'CPF',
+        'DEP\nDE IR',
+        'DEP DE SAL.\nFAMÍLIA',
+        'DEP DE PLANO\nDE SAÚDE',
+        'INCAPACITADO\nPARA O TRAB.'
+      ];
+
+      let linhasDep = [];
+      if (dados.tipo === 'NEGATIVA' || !dados.dependentes || dados.dependentes.length === 0) {
+        linhasDep = [
+          [{
+            content: 'NÃO HÁ DEPENDENTES A DECLARAR (DECLARAÇÃO NEGATIVA DE ENCARGOS DE FAMÍLIA)',
+            colSpan: 11,
+            styles: {
+              halign: 'center',
+              fontStyle: 'bold',
+              fontSize: 7.5,
+              cellPadding: 4,
+              fillColor: [254, 237, 214],
+              textColor: [154, 52, 18]
+            }
+          }]
+        ];
+      } else {
+        const bloqueadosResp = ['Cônjuge', 'Curatelado(a)', 'Enteado(a)', 'Guarda Judicial', 'Tutelado(a)', 'União Estável'];
+        linhasDep = dados.dependentes.map(function(d, idx) {
+          const sexoSigla = (d.sexo && d.sexo.toUpperCase().indexOf('F') === 0) ? 'F' : 'M';
+          const parentescoUpper = (d.parentesco || '').trim().toUpperCase();
+          const ehBloqueado = bloqueadosResp.some(b => b.toUpperCase() === parentescoUpper);
+          const respTexto = (!ehBloqueado && d.responsabilidade && d.responsabilidade.trim())
+            ? d.responsabilidade.trim().toUpperCase()
+            : '-';
+
+          const temIRRF = d.irrf || (d.finalidades && d.finalidades.some(f => /irrf|imposto/i.test(f)));
+          const temSalario = d.salarioFamilia || (d.finalidades && d.finalidades.some(f => /sal[aá]rio/i.test(f)));
+          const temPlano = d.planoSaude || (d.finalidades && d.finalidades.some(f => /plano|sa[uú]de/i.test(f)));
+          const temIncapacitado = d.incapacitado || (d.finalidades && d.finalidades.some(f => /incapacitado/i.test(f)));
+          const nascFormatada = d.nascimentoFormatada || d.nascimento || d.dataNascimento || '';
+
+          return [
+            String(idx + 1),
+            d.nome.toUpperCase(),
+            nascFormatada,
+            (d.parentesco || '').toUpperCase(),
+            sexoSigla,
+            respTexto,
+            d.cpf,
+            temIRRF ? 'Sim' : 'Não',
+            temSalario ? 'Sim' : 'Não',
+            temPlano ? 'Sim' : 'Não',
+            temIncapacitado ? 'Sim' : 'Não'
+          ];
+        });
+      }
+
+      const cellPadDep = numDeps > 6 ? 0.9 : 1.2;
+      doc.autoTable({
+        startY: yInicioQuadro2,
+        head: [colunasDep],
+        body: linhasDep,
+        margin: { left: margemEsq, right: margemDirTabela },
+        theme: 'grid',
+        tableLineColor: [0, 0, 0],
+        tableLineWidth: 0.3,
+        headStyles: {
+          fillColor: corCinzaCab,
+          textColor: [0, 0, 0],
+          fontStyle: 'bold',
+          fontSize: 6.8,
+          halign: 'center',
+          valign: 'middle',
+          lineColor: [0, 0, 0],
+          lineWidth: 0.25,
+          cellPadding: cellPadDep
+        },
+        bodyStyles: {
+          fillColor: [255, 255, 255],
+          textColor: [0, 0, 0],
+          fontSize: 7.2,
+          valign: 'middle',
+          lineColor: [0, 0, 0],
+          lineWidth: 0.25,
+          cellPadding: cellPadDep
+        },
+        alternateRowStyles: {
+          fillColor: corZebra
+        },
+        columnStyles: {
+          0: { cellWidth: 8, halign: 'center' },
+          1: { cellWidth: 68, halign: 'left' },
+          2: { cellWidth: 20, halign: 'center' },
+          3: { cellWidth: 26, halign: 'center' },
+          4: { cellWidth: 10, halign: 'center' },
+          5: { cellWidth: 30, halign: 'center' },
+          6: { cellWidth: 26, halign: 'center' },
+          7: { cellWidth: 15, halign: 'center' },
+          8: { cellWidth: 18, halign: 'center' },
+          9: { cellWidth: 23, halign: 'center' },
+          10: { cellWidth: 26, halign: 'center' }
+        }
+      });
+
+      // Espaço entre tabela de dependentes e termo de responsabilidade
+      const yTermoLegal = doc.lastAutoTable.finalY + (numDeps > 6 ? 2.5 : quebraLinha);
+
+      // =========================================================================
+      // TERMO DE RESPONSABILIDADE LEGAL (8.5 pt, recuo de 2,5 cm, justificado)
+      // =========================================================================
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(8.5);
+      doc.setTextColor(0, 0, 0);
+      const termoTexto = 'Declaro sob as penas da lei, que as informações aqui prestadas são verdadeiras e de minha inteira responsabilidade, não cabendo a fonte pagadora qualquer responsabilidade perante a fiscalização.';
+      const yFimTermo = renderizarParagrafoJustificado(termoTexto, yTermoLegal);
+
+      // =========================================================================
+      // LOCAL, DATA POR EXTENSO E ASSINATURA DO DECLARANTE (Centralizados, 8.5 pt)
+      // =========================================================================
+      const meses = [
+        'janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho',
+        'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'
+      ];
+      const diaExtenso = String(agora.getDate()).padStart(2, '0');
+      const mesExtenso = meses[agora.getMonth()];
+      const anoExtenso = agora.getFullYear();
+      const dataStrExtenso = `Presidente Prudente, ${diaExtenso} de ${mesExtenso} de ${anoExtenso}.`;
+
+      const yDataLocal = yFimTermo + (numDeps > 6 ? 3.5 : (quebraLinha + 1.5));
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(8.5);
+      doc.text(dataStrExtenso, centroX, yDataLocal, { align: 'center' });
+
+      // Espaço entre data e nome do declarante
+      const multQuebra3 = numDeps > 6 ? 1.8 : (numDeps > 4 ? 2.2 : 3);
+      const yNomeServidor = yDataLocal + (multQuebra3 * quebraLinha);
+
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(8.5);
+      doc.text(dados.servidor.nome.toUpperCase(), centroX, yNomeServidor, { align: 'center' });
+
+      // E-mail institucional na linha de baixo
+      const yEmailServidor = yNomeServidor + 3.8;
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(8.5);
+      doc.setTextColor(0, 0, 0);
+      doc.text(dados.servidor.email.toLowerCase(), centroX, yEmailServidor, { align: 'center' });
+
+      // =========================================================================
+      // QUADRO 3: DADOS DA EMPRESA (Com cabeçalho cinza claro de contraste)
+      // =========================================================================
+      const espacoAntesEmpresa = numDeps > 6 ? 4.5 : (numDeps > 4 ? 6 : 8);
+      const minEmpresaY = numDeps > 6 ? 162 : 142;
+      const yEmpresa = Math.max(yEmailServidor + espacoAntesEmpresa, minEmpresaY);
+
+      const padEmpresa = numDeps > 6 ? 1.0 : 1.5;
+      doc.autoTable({
+        startY: yEmpresa,
+        margin: { left: margemEsq, right: margemDirTabela, bottom: 4 },
+        pageBreak: 'avoid',
+        theme: 'grid',
+        tableLineColor: [0, 0, 0],
+        tableLineWidth: 0.3,
+        styles: {
+          textColor: [0, 0, 0],
+          lineColor: [0, 0, 0],
+          lineWidth: 0.25,
+          valign: 'middle'
+        },
+        body: [
+          // Linha 1 e 2: Nome da Empresa
+          [{ content: 'NOME DA EMPRESA', colSpan: 7, styles: { fontStyle: 'bold', fontSize: 6.5, halign: 'center', fillColor: corCinzaCab, cellPadding: 1 } }],
+          [{ content: 'UNESP - CÂMPUS DE PRESIDENTE PRUDENTE', colSpan: 7, styles: { fontStyle: 'bold', fontSize: 8.5, halign: 'center', cellPadding: numDeps > 6 ? 1.3 : 2 } }],
+
+          // Linha 3 e 4: Endereço, Nº e Complemento
+          [
+            { content: 'ENDEREÇO', colSpan: 4, styles: { fontStyle: 'bold', fontSize: 6.5, halign: 'center', fillColor: corCinzaCab, cellPadding: 1 } },
+            { content: 'Nº', styles: { fontStyle: 'bold', fontSize: 6.5, halign: 'center', fillColor: corCinzaCab, cellPadding: 1 } },
+            { content: 'COMPLEMENTO', colSpan: 2, styles: { fontStyle: 'bold', fontSize: 6.5, halign: 'center', fillColor: corCinzaCab, cellPadding: 1 } }
+          ],
+          [
+            { content: 'RUA ROBERTO SIMONSEN', colSpan: 4, styles: { fontSize: 7.2, halign: 'center', cellPadding: padEmpresa } },
+            { content: '305', styles: { fontSize: 7.2, halign: 'center', cellPadding: padEmpresa } },
+            { content: '', colSpan: 2, styles: { fontSize: 7.2, halign: 'center', cellPadding: padEmpresa } }
+          ],
+
+          // Linha 5 e 6: Bairro, Cidade, UF, CEP
+          [
+            { content: 'BAIRRO', colSpan: 2, styles: { fontStyle: 'bold', fontSize: 6.5, halign: 'center', fillColor: corCinzaCab, cellPadding: 1 } },
+            { content: 'CIDADE', colSpan: 3, styles: { fontStyle: 'bold', fontSize: 6.5, halign: 'center', fillColor: corCinzaCab, cellPadding: 1 } },
+            celulaCab('UF'),
+            celulaCab('CEP')
+          ],
+          [
+            { content: 'CENTRO EDUCACIONAL', colSpan: 2, styles: { fontSize: 7.2, halign: 'center', cellPadding: padEmpresa } },
+            { content: 'PRESIDENTE PRUDENTE', colSpan: 3, styles: { fontSize: 7.2, halign: 'center', cellPadding: padEmpresa } },
+            celulaVal('SP'),
+            celulaVal('19060-900')
+          ],
+
+          // Linha 7 e 8: CNPJ e Inscrição Estadual
+          [
+            { content: 'CNPJ', colSpan: 4, styles: { fontStyle: 'bold', fontSize: 6.5, halign: 'center', fillColor: corCinzaCab, cellPadding: 1 } },
+            { content: 'INSCRIÇÃO ESTADUAL', colSpan: 3, styles: { fontStyle: 'bold', fontSize: 6.5, halign: 'center', fillColor: corCinzaCab, cellPadding: 1 } }
+          ],
+          [
+            { content: '48.031.918/0009-81', colSpan: 4, styles: { fontSize: 7.5, halign: 'center', fontStyle: 'bold', cellPadding: padEmpresa } },
+            { content: 'ISENTO', colSpan: 3, styles: { fontSize: 7.5, halign: 'center', fontStyle: 'bold', cellPadding: padEmpresa } }
+          ]
+        ],
+        columnStyles: colStylesQuadro
+      });
+
+      // =========================================================================
+      // ASSINATURA ELETRÔNICA LATERAL VERTICAL NO CANTO DIREITO (SEM QR CODE E SEM ENCURTADOR)
+      // =========================================================================
+      doc.setDrawColor(203, 213, 225);
+      doc.setLineWidth(0.2);
+      doc.line(285, 95, 285, 202);
+
+      const yInicioTexto = 198.0;
+
+      const linha1 = `Assinado eletronicamente por ${dados.servidor.nome} (${dados.servidor.email}), em ${dataHoraStr}.`;
+      const linha2 = `Para conferir a autenticidade, acesse ${urlExibicao} e informe o código ${hashSHA256}`;
+
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(5.0);
+      doc.setTextColor(100, 116, 139);
+
+      // Linha 1 (mais interna / 1ª linha: X = 289.0 mm)
+      doc.text(linha1, 289.0, yInicioTexto, { angle: 90 });
+
+      // Linha 2 (mais externa / 2ª linha: X = 292.5 mm)
+      doc.text(linha2, 292.5, yInicioTexto, { angle: 90 });
+
+      // Gera o Base64 sem cabeçalho MIME
+      const dataUriString = doc.output('datauristring');
+      const base64Pure = dataUriString.split(',')[1];
+      const nomeArquivo = 'Declaracao_Dependentes_' + dados.servidor.nome.replace(/\s+/g, '_') + '.pdf';
+
+      return {
+        doc: doc,
+        base64: base64Pure,
+        filename: nomeArquivo,
+        hash: hashSHA256,
+        dataHoraStr: dataHoraStr
+      };
+    }
+
+    function baixarPdfDeclaracaoOficial() {
+      if (window.ultimoPdfGerado && window.ultimoPdfGerado.doc) {
+        window.ultimoPdfGerado.doc.save(window.ultimoPdfGerado.filename);
+      } else {
+        alert("O documento PDF oficial não está disponível para download. Por favor, reenvie a declaração.");
       }
     }
 
@@ -1636,6 +2335,53 @@
       const partes = dataIso.split("-");
       if (partes.length === 3) return `${partes[2]}/${partes[1]}/${partes[0]}`;
       return dataIso;
+    }
+
+    function formatarDataHoraBrasilia(val) {
+      if (!val) return "---";
+      let str = String(val).trim();
+      str = str.replace(/\s*\([^)]*bras[ií]lia[^)]*\)/gi, "").trim();
+
+      const regexCompleto = /^(\d{2}\/\d{2}\/\d{4})\s+(\d{2}:\d{2}:\d{2})$/;
+      const matchComp = str.match(regexCompleto);
+      if (matchComp) {
+        return `${matchComp[1]} ${matchComp[2]} (Horário de Brasília)`;
+      }
+
+      const regexSemSeg = /^(\d{2}\/\d{2}\/\d{4})\s+(\d{2}:\d{2})$/;
+      const matchSemSeg = str.match(regexSemSeg);
+      if (matchSemSeg) {
+        return `${matchSemSeg[1]} ${matchSemSeg[2]}:00 (Horário de Brasília)`;
+      }
+
+      const regexApenasData = /^(\d{2}\/\d{2}\/\d{4})$/;
+      if (regexApenasData.test(str)) {
+        return `${str} 00:00:00 (Horário de Brasília)`;
+      }
+
+      const d = new Date(str);
+      if (!isNaN(d.getTime())) {
+        try {
+          const formatter = new Intl.DateTimeFormat("pt-BR", {
+            timeZone: "America/Sao_Paulo",
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric",
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit",
+            hour12: false
+          });
+          const partes = formatter.formatToParts(d);
+          const m = {};
+          partes.forEach(p => { m[p.type] = p.value; });
+          return `${m.day}/${m.month}/${m.year} ${m.hour}:${m.minute}:${m.second} (Horário de Brasília)`;
+        } catch (e) {
+          return `${str} (Horário de Brasília)`;
+        }
+      }
+
+      return `${str} (Horário de Brasília)`;
     }
 
     function reiniciarFormulario() {

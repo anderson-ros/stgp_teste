@@ -2622,3 +2622,99 @@ input:disabled {
   }
 }
 
+/* ============================================================
+   ELEMENTOS DE VALIDAÇÃO DE AUTENTICIDADE
+   ============================================================ */
+.nav-back-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.nav-back-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.btn-validar-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.48rem 0.95rem;
+  background-color: #ffffff;
+  color: #0077a8;
+  border: 1px solid #99d5f0;
+  border-radius: var(--border-radius);
+  font-size: 0.86rem;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.btn-validar-nav:hover {
+  background-color: #f0f9fd;
+  border-color: #00a3e3;
+  color: #0055a5;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(0, 163, 227, 0.2);
+}
+
+.auth-validate-box {
+  background-color: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  border-radius: var(--border-radius);
+  padding: 1rem 1.25rem;
+  margin-top: 1.5rem;
+  width: 100%;
+  max-width: 520px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.auth-validate-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 0.85rem;
+  color: #475569;
+  text-align: left;
+}
+
+.auth-validate-text strong {
+  color: var(--dark-blue);
+  font-size: 0.9rem;
+}
+
+.btn-auth-validar {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.48rem 0.9rem;
+  background-color: #ffffff;
+  color: var(--primary-dark);
+  border: 1px solid var(--primary-border-subtle);
+  border-radius: 50px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.btn-auth-validar:hover {
+  background-color: var(--primary-light);
+  border-color: var(--primary);
+  color: var(--darker-blue);
+  transform: translateY(-1px);
+}
+
