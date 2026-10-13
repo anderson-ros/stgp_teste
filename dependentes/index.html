@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Declaração de Dependentes | STGP FCT UNESP</title>
-  <meta name="description" content="Orientações e acesso ao sistema eletrônico de Declaração de Dependentes (Encargos de Família) da Seção Técnica de Gestão de Pessoas da FCT UNESP.">
+  <meta name="description" content="Formulário eletrônico oficial de Declaração de Dependentes (Encargos de Família) e Declaração Negativa da Seção Técnica de Gestão de Pessoas da FCT UNESP.">
   <link rel="shortcut icon" href="unesp.ico" type="image/x-icon">
   <link rel="icon" href="unesp.ico" type="image/x-icon">
   
@@ -13,11 +13,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
   
+  <!-- Google Identity Services (Login com Google @unesp.br) -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <!-- Barra Superior Institucional UNESP (Padrão Portal Unesp) -->
+  <!-- Barra Superior Institucional UNESP -->
   <div class="unesp-top-bar">
     <div class="top-bar-content">
       <div class="top-bar-brand">
@@ -43,7 +46,7 @@
       <a href="../index.html" class="brand" title="Início — STGP Digital">
         <img src="fct-logo.png" alt="Logotipo FCT UNESP" class="brand-fct-logo">
         <div class="brand-titles">
-          <h1>STGP Digital — Portal de Modelos de Documentos</h1>
+          <h1>STGP Digital — Portal de Serviços e Modelos de Documentos</h1>
           <p>Faculdade de Ciências e Tecnologia — Seção Técnica de Gestão de Pessoas (STGP)</p>
         </div>
       </a>
@@ -56,7 +59,7 @@
   <!-- Conteúdo Principal -->
   <main class="container-dependentes">
     
-    <!-- Barra Superior de Retorno e Localização (Modelo B) -->
+    <!-- Barra Superior de Retorno e Localização -->
     <div class="nav-back-container">
       <a href="../index.html" class="btn-back-stgp" title="Voltar para a página inicial">
         <svg class="back-arrow-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -69,216 +72,590 @@
       <span class="breadcrumb-current">Declaração de Dependentes</span>
     </div>
 
-    <!-- Card Principal de Apresentação e Botão de Acesso -->
-    <article class="card-hero-dependente">
-      <h2>
-        <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary);">
-          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-          <circle cx="9" cy="7" r="4"></circle>
-          <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-          <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+    <!-- CARD DE AUTENTICAÇÃO GOOGLE WORKSPACE (GATEKEEPER) -->
+    <article class="auth-gatekeeper-card" id="card-auth-google">
+      <div class="auth-card-icon">
+        <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
         </svg>
-        Procedimento e Finalidades
-      </h2>
-      <p class="lead-text">
-        A <strong>Declaração de Dependentes (Encargos de Família)</strong> é o procedimento pelo qual o(a) servidor(a) docente, pesquisador ou técnico-administrativo da FCT/Unesp informa, atualiza ou declara a inexistência de dependentes sob sua responsabilidade legal. O registro correto garante a conformidade funcional e a aplicação dos direitos previstos na legislação vigente.
+      </div>
+      <h3>Identificação Funcional Obrigatória</h3>
+      <p class="auth-card-desc">
+        Para acessar o formulário de Declaração de Dependentes, identifique-se com sua conta institucional <strong>Google Workspace da UNESP (@unesp.br)</strong>.
       </p>
 
-      <!-- Finalidades em Destaque -->
-      <div class="finalidades-grid">
-        <div class="finalidade-item">
-          <h4>
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary);">
-              <line x1="12" y1="1" x2="12" y2="23"></line>
-              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-            </svg>
-            Imposto de Renda (IRRF)
-          </h4>
-          <p>
-            Permite a dedução mensal legal por dependente diretamente na folha de pagamento, conforme as normas estabelecidas pela Receita Federal do Brasil.
-          </p>
-        </div>
+      <!-- Alerta de Erro de Autenticação -->
+      <div class="auth-error-box" id="auth-error-msg" style="display: none;"></div>
 
-        <div class="finalidade-item">
-          <h4>
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary);">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-            </svg>
-            Salário-Família
-          </h4>
-          <p>
-            Concessão de benefício previdenciário devido a servidores com remuneração bruta dentro do teto estipulado, mediante inclusão de filhos ou equiparados até 14 anos ou inválidos.
-          </p>
-        </div>
-
-        <div class="finalidade-item">
-          <h4>
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary);">
-              <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
-            </svg>
-            Plano de Saúde Conveniado
-          </h4>
-          <p>
-            Habilitação para inclusão ou manutenção de dependentes em planos coletivos de assistência médica e odontológica conveniados à Unesp (Unesp Saúde e Odonto).
-          </p>
-        </div>
+      <!-- Botão Oficial Google -->
+      <div class="auth-button-wrapper">
+        <div id="google-signin-btn"></div>
       </div>
 
-      <!-- Bloco de Aviso: Sistema em Manutenção -->
-      <div class="maintenance-alert-box">
-        <div class="maintenance-icon">
-          <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
-          </svg>
-        </div>
-        <div class="maintenance-text">
-          <h3>Sistema Temporariamente em Manutenção</h3>
-          <p>
-            O formulário eletrônico de <strong>Declaração de Dependentes</strong> está temporariamente desativado para reformulação e melhorias. Em breve, uma nova versão estará disponível para acesso.
-          </p>
-          <p class="maintenance-sub">
-            Caso necessite de atendimento ou orientações urgentes sobre dependentes funcionais, entre em contato com a Seção Técnica de Gestão de Pessoas pelo e-mail <a href="mailto:rh.fct@unesp.br">rh.fct@unesp.br</a> ou pelo telefone (18) 3229-5388.
-          </p>
-        </div>
+      <div class="auth-security-notice">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+        <span>Acesso exclusivo para servidores ativos e docentes da UNESP. Contas pessoais (@gmail.com) não são aceitas.</span>
+      </div>
+
+      <!-- Aviso se aberto direto como arquivo local sem servidor -->
+      <div id="file-protocol-warning" class="auth-local-warning" style="display: none;">
+        <strong>Nota de teste local:</strong> O botão de login do Google exige execução via servidor web (ex: <code>http://localhost:5500</code> ou no domínio oficial).
       </div>
     </article>
 
-    <!-- Card de Instrução: Autorização no Primeiro Acesso -->
-    <article class="card-instruction">
-      <div class="instruction-header">
-        <h3>
-          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="color: #0055a5;">
-            <circle cx="12" cy="12" r="10"></circle>
-            <line x1="12" y1="8" x2="12" y2="12"></line>
-            <line x1="12" y1="16" x2="12.01" y2="16"></line>
-          </svg>
-          Atenção: Autorização no Primeiro Acesso
-        </h3>
-        <p>
-          Ao acessar o formulário pela primeira vez, o Google solicitará permissão para executar o aplicativo. Siga os 3 passos abaixo (clique nas imagens para ampliar):
-        </p>
+    <!-- FORMULÁRIO PRINCIPAL PROTEGIDO -->
+    <div id="secao-formulario-completo" style="display: none;">
+
+      <!-- BARRA DA SESSÃO DO USUÁRIO CONECTADO (GOOGLE WORKSPACE) -->
+      <div class="user-session-bar" id="session-user-bar">
+        <div class="session-user-info">
+          <img id="session-user-photo" src="" alt="Foto de Perfil" class="session-user-avatar" referrerpolicy="no-referrer" style="display: none;">
+          <div>
+            <div class="session-user-name" id="session-user-name">Carregando...</div>
+            <div class="session-user-email" id="session-user-email">email@unesp.br</div>
+          </div>
+          <span class="session-badge-verified">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Sessão Ativa (@unesp.br)
+          </span>
+        </div>
+        <button type="button" class="btn-session-logout" onclick="fazerLogout()" title="Encerrar sessão ou trocar de conta">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+          Sair / Trocar Conta
+        </button>
       </div>
 
-      <!-- Passos com Miniaturas das Imagens Oficiais -->
-      <div class="steps-container">
+      <!-- CARD 0: IDENTIFICAÇÃO DO SERVIDOR DECLARANTE (CONFORME PRINT 1) -->
+      <section class="card-bloco-stgp">
+        <div class="card-bloco-header">
+          <div class="card-bloco-title">
+            <img id="servidor-header-foto" class="card-title-avatar" src="" alt="Foto do(a) Servidor(a)" referrerpolicy="no-referrer" style="display: none;">
+            <svg id="servidor-header-svg" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <h2>Identificação do(a) Servidor(a) Declarante</h2>
+          </div>
+          <div class="badge-google-workspace">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Google Workspace Unesp
+          </div>
+        </div>
+
+        <div class="card-bloco-body">
+          <!-- Linha 1: Nome e E-mail carregados do Google Workspace -->
+          <div class="form-row-grid grid-2">
+            <div class="form-group">
+              <label for="servidor-nome">Nome do(a) Servidor(a) <span class="required-mark">*</span></label>
+              <input type="text" id="servidor-nome" readonly class="input-readonly">
+            </div>
+            <div class="form-group">
+              <label for="servidor-email">E-mail Institucional (@unesp.br) <span class="required-mark">*</span></label>
+              <input type="email" id="servidor-email" readonly class="input-readonly">
+            </div>
+          </div>
+
+          <!-- Linha 2: CPF, Estado Civil e CEP -->
+          <div class="form-row-grid grid-3-servidor">
+            <div class="form-group">
+              <label for="servidor-cpf">CPF do(a) Servidor(a) <span class="required-mark">*</span></label>
+              <input type="text" id="servidor-cpf" placeholder="000.000.000-00" maxlength="14" required>
+              <span class="field-error-msg" id="erro-cpf-servidor">CPF inválido perante a Receita Federal</span>
+            </div>
+
+            <div class="form-group">
+              <label for="servidor-estado-civil">Estado Civil <span class="required-mark">*</span></label>
+              <select id="servidor-estado-civil" required>
+                <option value="">Selecione...</option>
+                <option value="Solteiro(a)">Solteiro(a)</option>
+                <option value="Casado(a)">Casado(a)</option>
+                <option value="Separado(a) Judicialmente">Separado(a) Judicialmente</option>
+                <option value="Divorciado(a)">Divorciado(a)</option>
+                <option value="Viúvo(a)">Viúvo(a)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="servidor-cep">
+                CEP <span class="required-mark">*</span>
+                <span class="cep-loading-spinner" id="cep-spinner"></span>
+              </label>
+              <input type="text" id="servidor-cep" placeholder="00000-000" maxlength="9" required>
+            </div>
+          </div>
+
+          <!-- Linha 3: Tipo Logradouro, Logradouro e Número -->
+          <div class="form-row-grid grid-tipo-logradouro-num">
+            <div class="form-group">
+              <label for="servidor-tipo-logradouro">Tipo Logradouro <span class="required-mark">*</span></label>
+              <select id="servidor-tipo-logradouro" required>
+                <option value="Alameda">Alameda</option>
+                <option value="Avenida">Avenida</option>
+                <option value="Beco">Beco</option>
+                <option value="Buraco">Buraco</option>
+                <option value="Chácara">Chácara</option>
+                <option value="Condomínio">Condomínio</option>
+                <option value="Estância">Estância</option>
+                <option value="Estrada">Estrada</option>
+                <option value="Estrada Municipal">Estrada Municipal</option>
+                <option value="Estrada Vicinal">Estrada Vicinal</option>
+                <option value="Fazenda">Fazenda</option>
+                <option value="Granja">Granja</option>
+                <option value="Largo">Largo</option>
+                <option value="Lote">Lote</option>
+                <option value="Outros">Outros</option>
+                <option value="Passeio">Passeio</option>
+                <option value="Praça">Praça</option>
+                <option value="Prolongamento">Prolongamento</option>
+                <option value="Quadra">Quadra</option>
+                <option value="Rodovia">Rodovia</option>
+                <option value="Rua" selected>Rua</option>
+                <option value="Sítio">Sítio</option>
+                <option value="Travessa">Travessa</option>
+                <option value="Via">Via</option>
+                <option value="Via de Acesso">Via de Acesso</option>
+                <option value="Viela">Viela</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="servidor-logradouro">Logradouro <span class="required-mark">*</span></label>
+              <input type="text" id="servidor-logradouro" placeholder="Ex: Roberto Simonsen" required>
+            </div>
+
+            <div class="form-group">
+              <label for="servidor-numero">Número <span class="required-mark">*</span></label>
+              <input type="text" id="servidor-numero" placeholder="Ex: 305 ou S/N" required>
+            </div>
+          </div>
+
+          <!-- Linha 4: Complemento (Opcional), Bairro, Cidade e UF -->
+          <div class="form-row-grid grid-compl-bairro-cidade-uf">
+            <div class="form-group">
+              <label for="servidor-complemento">Complemento <span class="label-optional">(Opcional)</span></label>
+              <input type="text" id="servidor-complemento" placeholder="Ex: Apto 12, Bloco B">
+            </div>
+
+            <div class="form-group">
+              <label for="servidor-bairro">Bairro <span class="required-mark">*</span></label>
+              <input type="text" id="servidor-bairro" placeholder="Ex: Centro Educacional" required>
+            </div>
+
+            <div class="form-group">
+              <label for="servidor-cidade">Cidade <span class="required-mark">*</span></label>
+              <input type="text" id="servidor-cidade" placeholder="Presidente Prudente" required>
+            </div>
+
+            <div class="form-group">
+              <label for="servidor-uf">UF <span class="required-mark">*</span></label>
+              <select id="servidor-uf" required>
+                <option value="AC">AC</option>
+                <option value="AL">AL</option>
+                <option value="AP">AP</option>
+                <option value="AM">AM</option>
+                <option value="BA">BA</option>
+                <option value="CE">CE</option>
+                <option value="DF">DF</option>
+                <option value="ES">ES</option>
+                <option value="GO">GO</option>
+                <option value="MA">MA</option>
+                <option value="MT">MT</option>
+                <option value="MS">MS</option>
+                <option value="MG">MG</option>
+                <option value="PA">PA</option>
+                <option value="PB">PB</option>
+                <option value="PR">PR</option>
+                <option value="PE">PE</option>
+                <option value="PI">PI</option>
+                <option value="RJ">RJ</option>
+                <option value="RN">RN</option>
+                <option value="RS">RS</option>
+                <option value="RO">RO</option>
+                <option value="RR">RR</option>
+                <option value="SC">SC</option>
+                <option value="SP" selected>SP</option>
+                <option value="SE">SE</option>
+                <option value="TO">TO</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CARD 1: TRIAGEM DE DEPENDENTES (CONFORME PRINT 1) -->
+      <section class="card-bloco-stgp">
+        <div class="card-bloco-header">
+          <div class="card-bloco-title">
+            <span class="badge-numero-etapa">1</span>
+            <h2>Triagem de Dependentes</h2>
+          </div>
+        </div>
+
+        <div class="card-bloco-body">
+          <p class="triagem-pergunta-label">
+            Você possui dependente para fins de Imposto de Renda, Salário-Família ou Plano de Saúde? <span class="required-mark">*</span>
+          </p>
+
+          <div class="triage-cards-grid">
+            <label class="triage-radio-box" id="box-opcao-sim">
+              <input type="radio" name="radioTriagem" value="sim" onchange="selecionarTriagem('sim')">
+              <div class="triage-radio-content">
+                <strong>SIM, possuo dependente(s)</strong>
+                <p>Desejo cadastrar ou atualizar os dependentes sob minha responsabilidade legal.</p>
+              </div>
+            </label>
+
+            <label class="triage-radio-box" id="box-opcao-nao">
+              <input type="radio" name="radioTriagem" value="nao" onchange="selecionarTriagem('nao')">
+              <div class="triage-radio-content">
+                <strong>NÃO possuo dependentes</strong>
+                <p>Emitir a Declaração Negativa de Dependentes perante a STGP.</p>
+              </div>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================== -->
+      <!-- SEÇÃO QUANDO "NÃO POSSUO DEPENDENTES" (CONFORME PRINT 2) -->
+      <!-- ======================================================== -->
+      <section class="card-bloco-stgp" id="bloco-declaracao-negativa" style="display: none;">
+        <div class="card-bloco-header" style="border-bottom: 2px solid #eab308;">
+          <div class="card-bloco-title" style="color: #b45309;">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#d97706" stroke-width="2.2">
+              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+              <line x1="12" y1="9" x2="12" y2="13"></line>
+              <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            </svg>
+            <h2>Emissão de Declaração Negativa de Dependentes</h2>
+          </div>
+        </div>
+
+        <div class="card-bloco-body">
+          <div class="termo-legal-negativa">
+            <p>
+              Eu, <strong id="negativa-nome-servidor">Servidor</strong>, portador(a) do e-mail institucional <strong id="negativa-email-servidor">email@unesp.br</strong>, declaro sob as penas da lei, para todos os efeitos cabíveis junto à <strong>Faculdade de Ciências e Tecnologia – Câmpus de Presidente Prudente</strong> e à <strong>Seção Técnica de Gestão de Pessoas (STGP)</strong>, que <strong style="color: #ea580c;">NÃO POSSUO DEPENDENTES</strong> para fins de dedução do Imposto de Renda Retido na Fonte (IRRF), percepção do benefício de Salário-Família ou vinculação a Plano de Saúde Privado.
+            </p>
+            <p>
+              Declaro estar ciente de que deverei comunicar imediatamente à STGP qualquer alteração futura em minha condição de dependentes, respondendo civil, penal e administrativamente pela exatidão das informações aqui declaradas (art. 299 do Código Penal Brasileiro).
+            </p>
+          </div>
+
+          <label class="checkbox-confirmacao-negativa">
+            <input type="checkbox" id="check-aceite-negativa" required>
+            <span>Li e confirmo os termos da presente Declaração Negativa de Dependentes.</span>
+          </label>
+
+          <div class="conclusao-buttons-centralizado">
+            <button type="button" id="btn-emitir-negativa" class="btn-cyan-action" onclick="submeterDeclaracaoNegativa()">
+              Emitir Declaração Negativa com Assinatura Eletrônica
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================== -->
+      <!-- SEÇÃO QUANDO "SIM, POSSUO DEPENDENTES" (CONFORME PRINT 3) -->
+      <!-- ======================================================== -->
+      <div id="bloco-com-dependentes" style="display: none;">
         
-        <!-- Passo 1 -->
-        <div class="step-card">
-          <div class="step-badge">1</div>
-          <h4 class="step-title">Revisar Permissões</h4>
-          <p class="step-desc">
-            Na primeira tela informando que o aplicativo precisa de permissão, clique no botão azul <strong>"Review Permissions"</strong> (Revisar permissões).
-          </p>
-          <div class="step-thumbnail-wrapper" onclick="openLightbox('images/declaracao_dep_tela01.jpg', 'Passo 1: Clique no botão azul Review Permissions')">
-            <img src="images/declaracao_dep_tela01.jpg" alt="Passo 1: Review Permissions" class="step-thumbnail" loading="lazy">
-            <div class="zoom-overlay">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
-              <span>Ampliar Imagem</span>
+        <!-- CARD 2: CADASTRAR DEPENDENTE -->
+        <section class="card-bloco-stgp">
+          <div class="card-bloco-header">
+            <div class="card-bloco-title">
+              <span class="badge-numero-etapa">2</span>
+              <h2>Cadastrar Dependente</h2>
             </div>
           </div>
-        </div>
 
-        <!-- Passo 2 -->
-        <div class="step-card">
-          <div class="step-badge">2</div>
-          <h4 class="step-title">Confirmar Conta Institucional</h4>
-          <p class="step-desc">
-            Na tela seguinte, confira os seus dados e certifique-se de estar usando o seu e-mail institucional (<strong>@unesp.br</strong>). Clique em <strong>"Continuar"</strong>.
-          </p>
-          <div class="step-thumbnail-wrapper" onclick="openLightbox('images/declaracao_dep_tela02.jpg', 'Passo 2: Verifique os dados institucionais e clique em Continuar')">
-            <img src="images/declaracao_dep_tela02.jpg" alt="Passo 2: Confirmar Conta" class="step-thumbnail" loading="lazy">
-            <div class="zoom-overlay">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
-              <span>Ampliar Imagem</span>
-            </div>
-          </div>
-        </div>
+          <div class="card-bloco-body" id="form-dependente-individual">
+            <!-- Linha 1: Nome do Dependente e Nome Abreviado -->
+            <div class="form-row-grid grid-2">
+              <div class="form-group">
+                <div class="label-with-counter">
+                  <label for="dep-nome">Nome do Dependente <span class="required-mark">*</span></label>
+                  <span class="counter-text" id="counter-dep-nome">0/100</span>
+                </div>
+                <input type="text" id="dep-nome" placeholder="Nome completo do dependente" maxlength="100" oninput="atualizarNomeAbreviado(this.value)">
+              </div>
 
-        <!-- Passo 3 -->
-        <div class="step-card">
-          <div class="step-badge">3</div>
-          <h4 class="step-title">Marcar "Selecionar Tudo"</h4>
-          <p class="step-desc">
-            O Google informará quais recursos o app acessará. <strong>Marque a opção "Selecionar tudo"</strong>, role até o final da página e clique novamente em <strong>"Continuar"</strong>.
-          </p>
-          <div class="step-thumbnail-wrapper" onclick="openLightbox('images/declaracao_dep_tela03.jpg', 'Passo 3: Marque Selecionar tudo, role até o final e clique em Continuar')">
-            <img src="images/declaracao_dep_tela03.jpg" alt="Passo 3: Selecionar Tudo" class="step-thumbnail" loading="lazy">
-            <div class="zoom-overlay">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
-              <span>Ampliar Imagem</span>
+              <div class="form-group">
+                <div class="label-with-counter">
+                  <label for="dep-nome-abreviado">Nome Abreviado (Máx 60) <span class="required-mark">*</span></label>
+                  <span class="counter-text" id="counter-dep-abreviado">0/60</span>
+                </div>
+                <input type="text" id="dep-nome-abreviado" placeholder="GERADO AUTOMATICAMENTE" readonly class="input-readonly">
+                <span class="input-hint">Abrevia automaticamente apenas nomes superiores a 60 caracteres</span>
+              </div>
+            </div>
+
+            <!-- Linha 2: Data Nascimento, Sexo e CPF -->
+            <div class="form-row-grid grid-3">
+              <div class="form-group">
+                <label for="dep-nascimento">Data de Nascimento <span class="required-mark">*</span></label>
+                <input type="date" id="dep-nascimento">
+              </div>
+
+              <div class="form-group">
+                <label for="dep-sexo">Sexo <span class="required-mark">*</span></label>
+                <select id="dep-sexo">
+                  <option value="">Selecione...</option>
+                  <option value="Feminino">Feminino</option>
+                  <option value="Masculino">Masculino</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="dep-cpf">CPF do Dependente <span class="required-mark">*</span></label>
+                <input type="text" id="dep-cpf" placeholder="000.000.000-00" maxlength="14">
+                <span class="field-error-msg" id="erro-cpf-dep">CPF inválido perante a Receita Federal</span>
+              </div>
+            </div>
+
+            <!-- Linha 3: Grau de Parentesco e Responsabilidade -->
+            <div class="form-row-grid grid-2">
+              <div class="form-group">
+                <label for="dep-parentesco">Grau de Parentesco <span class="required-mark">*</span></label>
+                <select id="dep-parentesco" onchange="verificarGrauParentescoResponsabilidade()">
+                  <option value="">Selecione o parentesco...</option>
+                  <option value="Avô(ó)">Avô(ó)</option>
+                  <option value="Bisavô(ó)">Bisavô(ó)</option>
+                  <option value="Bisneto(a)">Bisneto(a)</option>
+                  <option value="Cônjuge">Cônjuge</option>
+                  <option value="Curatelado(a)">Curatelado(a)</option>
+                  <option value="Enteado(a)">Enteado(a)</option>
+                  <option value="Filho(a)">Filho(a)</option>
+                  <option value="Guarda Judicial">Guarda Judicial</option>
+                  <option value="Irmão(ã)">Irmão(ã)</option>
+                  <option value="Mãe">Mãe</option>
+                  <option value="Neto(a)">Neto(a)</option>
+                  <option value="Pai">Pai</option>
+                  <option value="Sobrinho(a)">Sobrinho(a)</option>
+                  <option value="Tio(a)">Tio(a)</option>
+                  <option value="Tutelado(a)">Tutelado(a)</option>
+                  <option value="União Estável">União Estável</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="dep-responsabilidade">
+                  Responsabilidade <span class="required-mark" id="req-mark-responsabilidade">*</span>
+                </label>
+                <select id="dep-responsabilidade">
+                  <option value="">Selecione...</option>
+                  <option value="Adoção">Adoção</option>
+                  <option value="Biológica">Biológica</option>
+                  <option value="Curatela">Curatela</option>
+                  <option value="Guarda">Guarda</option>
+                  <option value="Tutela">Tutela</option>
+                </select>
+                <span class="input-hint" id="hint-responsabilidade-nao-aplicavel" style="display: none; color: #64748b; font-style: italic; margin-top: 0.35rem;">
+                  Campo não aplicável para o parentesco selecionado.
+                </span>
+              </div>
+            </div>
+
+            <!-- Linha 4: Finalidades e Benefícios (4 Toggles conforme print 3) -->
+            <div style="margin-top: 1.25rem;">
+              <label style="font-weight: 700; color: #1e293b; font-size: 0.92rem; display: block; margin-bottom: 0.65rem;">
+                Finalidades e Benefícios Solicitados para este Dependente:
+              </label>
+
+              <div class="finalidades-toggle-grid">
+                <!-- Toggle 1: IRRF -->
+                <div class="toggle-card">
+                  <div class="toggle-card-header">
+                    <strong>Imposto de Renda (IRRF)</strong>
+                    <label class="switch-toggle">
+                      <input type="checkbox" id="dep-fin-irrf">
+                      <span class="slider"></span>
+                    </label>
+                  </div>
+                  <p class="toggle-card-desc">Dedução legal da base de cálculo do IRRF.</p>
+                </div>
+
+                <!-- Toggle 2: Salário-Família -->
+                <div class="toggle-card">
+                  <div class="toggle-card-header">
+                    <strong>Salário-Família</strong>
+                    <label class="switch-toggle">
+                      <input type="checkbox" id="dep-fin-salario">
+                      <span class="slider"></span>
+                    </label>
+                  </div>
+                  <div class="toggle-warning-box">
+                    Aviso: Benefício previdenciário devido apenas a servidores com remuneração bruta até o teto legal estipulado pelo INSS.
+                  </div>
+                </div>
+
+                <!-- Toggle 3: Plano de Saúde / Odonto -->
+                <div class="toggle-card">
+                  <div class="toggle-card-header">
+                    <strong>Plano de Saúde / Odontológico (Conveniado Unesp)</strong>
+                    <label class="switch-toggle">
+                      <input type="checkbox" id="dep-fin-saude">
+                      <span class="slider"></span>
+                    </label>
+                  </div>
+                  <p class="toggle-card-desc">Inclusão ou manutenção em plano coletivo conveniado à Unesp (Ex: Unesp Saúde / Unesp Odonto)</p>
+                </div>
+
+                <!-- Toggle 4: Incapacitado para o Trabalho -->
+                <div class="toggle-card">
+                  <div class="toggle-card-header">
+                    <strong>Incapacitado para o Trabalho</strong>
+                    <label class="switch-toggle">
+                      <input type="checkbox" id="dep-fin-incapacitado">
+                      <span class="slider"></span>
+                    </label>
+                  </div>
+                  <p class="toggle-card-desc">
+                    Responda "SIM" apenas se o dependente for incapacitado física e/ou mentalmente para o trabalho.<br>
+                    <small><strong>Obs:</strong> Portador de necessidades especiais é aquele incapacitado para a vida independente e para o trabalho.</small>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Botões do Dependente -->
+            <div class="dep-action-buttons">
+              <button type="button" class="btn-dark-stgp" onclick="limparCamposDependente()">
+                Limpar Campos
+              </button>
+              <button type="button" class="btn-cyan-action" onclick="salvarDependente()">
+                Salvar Dependente
+              </button>
             </div>
           </div>
-        </div>
+        </section>
+
+        <!-- CARD 3: DEPENDENTES CADASTRADOS (CONFORME PRINT 3) -->
+        <section class="card-bloco-stgp">
+          <div class="card-bloco-header">
+            <div class="card-bloco-title">
+              <span class="badge-numero-etapa">3</span>
+              <h2>Dependentes Cadastrados (<span id="dep-contador-total">0</span>)</h2>
+            </div>
+            <button type="button" class="btn-outline-add-dep" onclick="focarCadastroDependente()">
+              + Adicionar Outro Dependente
+            </button>
+          </div>
+
+          <div class="card-bloco-body">
+            <!-- Tabela de Dependentes -->
+            <div class="table-responsive-wrapper">
+              <table class="tabela-dependentes-stgp">
+                <thead>
+                  <tr>
+                    <th style="width: 40px;">#</th>
+                    <th>NOME DO DEPENDENTE</th>
+                    <th>CPF</th>
+                    <th>PARENTESCO / RESP.</th>
+                    <th>NASCIMENTO / IDADE</th>
+                    <th>FINALIDADES</th>
+                    <th style="text-align: center; width: 90px;">AÇÕES</th>
+                  </tr>
+                </thead>
+                <tbody id="tabela-dependentes-corpo">
+                  <!-- Linha vazia inicial -->
+                  <tr id="linha-tabela-vazia">
+                    <td colspan="7" class="tabela-vazia-cell">
+                      <div class="empty-state-box">
+                        <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="#64748b" stroke-width="1.8">
+                          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                          <polyline points="14 2 14 8 20 8"></polyline>
+                          <line x1="16" y1="13" x2="8" y2="13"></line>
+                          <line x1="16" y1="17" x2="8" y2="17"></line>
+                          <polyline points="10 9 9 9 8 9"></polyline>
+                        </svg>
+                        <strong>Nenhum dependente incluído</strong>
+                        <p>Preencha os campos do formulário acima e clique em "Salvar Dependente".</p>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Botão de Finalização Centralizado -->
+            <div class="finalizacao-buttons-bar">
+              <button type="button" id="btn-finalizar-emissao" class="btn-green-action" onclick="submeterDeclaracaoComDependentes()">
+                Emitir Declaração Positiva com Assinatura Eletrônica
+              </button>
+            </div>
+          </div>
+        </section>
 
       </div>
 
-      <!-- Solução de Problemas -->
-      <div class="card-troubleshoot">
-        <h4>
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon>
-            <line x1="12" y1="8" x2="12" y2="12"></line>
-            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+    </div>
+
+    <!-- CARD DE SUCESSO E COMPROVANTE DE AUTENTICIDADE -->
+    <article class="receipt-success-card" id="card-comprovante-sucesso" style="display: none;">
+      <div class="receipt-top-status">
+        <div class="receipt-badge-icon">
+          <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="20 6 9 17 4 12"></polyline>
           </svg>
-          Esqueceu de marcar a opção "Selecionar tudo"?
-        </h4>
-        <p>
-          Se você clicou em "Continuar" no Passo 3 sem conceder todas as permissões, o formulário apresentará uma mensagem de erro. Para corrigir, siga estes passos simples:
-        </p>
-        <ol class="troubleshoot-list">
-          <li>Acesse a página de conexões da sua Conta Google <a href="https://myaccount.google.com/connections" target="_blank" rel="noopener noreferrer">clicando aqui</a> (certifique-se de estar conectado com seu e-mail @unesp.br).</li>
-          <li>Na lista de aplicativos autorizados, localize <strong>Declaração de Dependentes - STGP/FCT Unesp</strong> e clique nele.</li>
-          <li>Role até o final da página e clique em <strong>"Excluir todas as conexões que você tem com..."</strong> (ou Remover acesso) e confirme.</li>
-          <li>Retorne a esta página e, assim que o serviço for reativado, refaça a autorização lembrando de marcar <strong>"Selecionar tudo"</strong>.</li>
-        </ol>
+        </div>
+        <h3>Declaração Registrada e Autenticada com Sucesso!</h3>
+        <p>As informações foram enviadas para a STGP/FCT e os comprovantes oficiais foram gerados.</p>
       </div>
 
-    </article>
+      <div class="receipt-protocol-box">
+        <span class="protocol-label">CÓDIGO OFICIAL DE AUTENTICIDADE / PROTOCOLO</span>
+        <span class="protocol-code" id="resumo-protocolo">FCT-STGP-DEP-2026-XXXX</span>
+        <span class="protocol-date" id="resumo-datahora">--/--/---- --:--:--</span>
+      </div>
 
-    <!-- Card de Orientações de Preenchimento -->
-    <article class="card-guidelines">
-      <h3>
-        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary);">
-          <polyline points="9 11 12 14 22 4"></polyline>
-          <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+      <div class="receipt-details-grid">
+        <div class="receipt-detail-item">
+          <strong>Servidor(a):</strong>
+          <span id="resumo-nome">---</span>
+        </div>
+        <div class="receipt-detail-item">
+          <strong>CPF:</strong>
+          <span id="resumo-cpf">---</span>
+        </div>
+        <div class="receipt-detail-item">
+          <strong>E-mail Institucional:</strong>
+          <span id="resumo-email">---</span>
+        </div>
+        <div class="receipt-detail-item">
+          <strong>Tipo de Declaração:</strong>
+          <span id="resumo-tipo">---</span>
+        </div>
+        <div class="receipt-detail-item span-2">
+          <strong>Hash Criptográfico (SHA-256):</strong>
+          <code id="resumo-hash" class="receipt-hash">---</code>
+        </div>
+      </div>
+
+      <div class="receipt-email-notice">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+          <polyline points="22,6 12,13 2,6"></polyline>
         </svg>
-        Orientações de Preenchimento do Formulário
-      </h3>
-      <ol class="guidelines-ol">
-        <li>
-          <strong>Acesso com e-mail institucional:</strong> Faça login no formulário utilizando exclusivamente sua conta Google Workspace Unesp (<strong>@unesp.br</strong>). O sistema captura sua identidade funcional de forma segura.
-        </li>
-        <li>
-          <strong>Confirmação dos Dados Funcionais:</strong> Verifique e complete seus dados cadastrais: CPF, Estado Civil e o endereço residencial atualizado.
-        </li>
-        <li>
-          <strong>Triagem de Dependentes:</strong>
-          <br>
-          • <strong>Se possui dependente(s):</strong> Selecione a opção correspondente e preencha os dados de cada dependente (nome completo, data de nascimento, sexo, CPF, grau de parentesco, responsabilidade e as finalidades específicas solicitadas).
-          <br>
-          • <strong>Se NÃO possui dependente(s):</strong> Selecione a opção de não possuir dependentes para emitir a <u>Declaração Negativa de Dependentes</u>, mantendo seu cadastro regularizado junto à Seção Técnica de Gestão de Pessoas.
-        </li>
-        <li>
-          <strong>Envio da Declaração & Comprovante:</strong> Confira os dados e confirme a submissão. Após o envio, a STGP receberá automaticamente um e-mail com as informações declaradas para providências, e uma cópia oficial com carimbo eletrônico de autenticidade será enviada para o seu e-mail institucional como comprovante.
-        </li>
-      </ol>
+        <span>Uma cópia timbrada de comprovação foi enviada para o seu e-mail institucional e para <strong>rh.fct@unesp.br</strong>.</span>
+      </div>
+
+      <div class="receipt-actions">
+        <button type="button" class="btn-receipt-action print" onclick="window.print()">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+          Imprimir / Salvar em PDF
+        </button>
+        <button type="button" class="btn-receipt-action secondary" onclick="reiniciarFormulario()">
+          Preencher Nova Declaração
+        </button>
+      </div>
     </article>
 
   </main>
 
-  <!-- Modal Lightbox para Ampliação de Imagens -->
-  <div id="lightbox-modal" class="lightbox-modal" onclick="closeLightbox(event)">
-    <div class="lightbox-content" onclick="event.stopPropagation()">
-      <button class="lightbox-close" onclick="closeLightbox()" title="Fechar imagem">&times;</button>
-      <img id="lightbox-img" class="lightbox-img" src="" alt="Imagem ampliada">
-      <div id="lightbox-caption" class="lightbox-caption"></div>
-    </div>
-  </div>
-
-  <!-- Rodapé Institucional Oficial UNESP (Padrão Oficial Portal Unesp) -->
+  <!-- Rodapé Institucional Oficial UNESP -->
   <footer class="app-footer">
     <div class="footer-grid">
-      <!-- Coluna 1: FUNDAÇÕES -->
       <div class="footer-group">
         <h3>FUNDAÇÕES</h3>
         <ul>
@@ -287,8 +664,6 @@
           <li><a href="https://www.vunesp.com.br/" target="_blank" rel="noopener">Fundação Vunesp</a></li>
         </ul>
       </div>
-
-      <!-- Coluna 2: GOVERNO -->
       <div class="footer-group">
         <h3>GOVERNO</h3>
         <ul>
@@ -297,8 +672,6 @@
           <li><a href="https://unesp.br/transparencia/" target="_blank" rel="noopener">Transparência Unesp</a></li>
         </ul>
       </div>
-
-      <!-- Coluna 3: SISTEMAS -->
       <div class="footer-group">
         <h3>SISTEMAS</h3>
         <ul>
@@ -308,8 +681,6 @@
           <li><a href="https://email.unesp.br/" target="_blank" rel="noopener">Webmail</a></li>
         </ul>
       </div>
-
-      <!-- Coluna 4: SAÚDE -->
       <div class="footer-group">
         <h3>SAÚDE</h3>
         <ul>
@@ -318,8 +689,6 @@
           <li><a href="https://www.unesp.br/numis" target="_blank" rel="noopener">NUMIS</a></li>
         </ul>
       </div>
-
-      <!-- Coluna 5: INFORMAÇÕES -->
       <div class="footer-group">
         <h3>INFORMAÇÕES</h3>
         <ul>
@@ -330,7 +699,6 @@
       </div>
     </div>
 
-    <!-- Bloco Central do Rodapé (Logo, Endereço Oficial e Redes Sociais) -->
     <div class="footer-central-block">
       <a href="https://www.unesp.br" target="_blank" title="Universidade Estadual Paulista Júlio de Mesquita Filho" rel="noopener">
         <img src="unesp-logo.svg" alt="Logotipo UNESP" class="footer-unesp-logo-center">
@@ -343,59 +711,941 @@
       </div>
       <div class="footer-social-icons">
         <a href="https://www.facebook.com/UnespPrudente/" target="_blank" title="Facebook - FCT UNESP" aria-label="Facebook" rel="noopener">
-          <svg viewBox="0 0 36 36" width="36" height="36">
-            <circle cx="18" cy="18" r="18" fill="#1877F2"/>
-            <path d="M22.68 18.53l.65-4.23h-4.05v-2.75c0-1.16.57-2.28 2.38-2.28h1.84V5.67s-1.67-.28-3.27-.28c-3.33 0-5.52 2.02-5.52 5.69v3.22h-3.76v4.23h3.76v10.25c.75.12 1.53.18 2.31.18s1.56-.06 2.31-.18V18.53h3.35z" fill="#fff"/>
-          </svg>
+          <svg viewBox="0 0 36 36" width="36" height="36"><circle cx="18" cy="18" r="18" fill="#1877F2"/><path d="M22.68 18.53l.65-4.23h-4.05v-2.75c0-1.16.57-2.28 2.38-2.28h1.84V5.67s-1.67-.28-3.27-.28c-3.33 0-5.52 2.02-5.52 5.69v3.22h-3.76v4.23h3.76v10.25c.75.12 1.53.18 2.31.18s1.56-.06 2.31-.18V18.53h3.35z" fill="#fff"/></svg>
         </a>
         <a href="https://www.instagram.com/fctunesp/" target="_blank" title="Instagram - FCT UNESP" aria-label="Instagram" rel="noopener">
           <svg viewBox="0 0 36 36" width="36" height="36">
-            <defs>
-              <linearGradient id="igGrad" x1="0%" y1="100%" x2="100%" y2="0%">
-                <stop offset="0%" stop-color="#FFDD55"/>
-                <stop offset="50%" stop-color="#E1306C"/>
-                <stop offset="100%" stop-color="#C13584"/>
-              </linearGradient>
-            </defs>
-            <rect width="36" height="36" rx="9" fill="url(#igGrad)"/>
-            <rect x="7" y="7" width="22" height="22" rx="6" fill="none" stroke="#fff" stroke-width="2.2"/>
-            <circle cx="18" cy="18" r="4.8" fill="none" stroke="#fff" stroke-width="2.2"/>
-            <circle cx="24.5" cy="11.5" r="1.5" fill="#fff"/>
+            <defs><linearGradient id="igGrad" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#FFDD55"/><stop offset="50%" stop-color="#E1306C"/><stop offset="100%" stop-color="#C13584"/></linearGradient></defs>
+            <rect width="36" height="36" rx="9" fill="url(#igGrad)"/><rect x="7" y="7" width="22" height="22" rx="6" fill="none" stroke="#fff" stroke-width="2.2"/><circle cx="18" cy="18" r="4.8" fill="none" stroke="#fff" stroke-width="2.2"/><circle cx="24.5" cy="11.5" r="1.5" fill="#fff"/>
           </svg>
         </a>
         <a href="https://www.youtube.com/@fct_unesp" target="_blank" title="YouTube - FCT UNESP" aria-label="YouTube" rel="noopener">
-          <svg viewBox="0 0 46 34" width="44" height="32">
-            <rect width="46" height="34" rx="8" fill="#FF0000"/>
-            <polygon points="19,10 31,17 19,24" fill="#fff"/>
-          </svg>
+          <svg viewBox="0 0 46 34" width="44" height="32"><rect width="46" height="34" rx="8" fill="#FF0000"/><polygon points="19,10 31,17 19,24" fill="#fff"/></svg>
         </a>
       </div>
     </div>
   </footer>
 
-  <!-- Script para Controle do Lightbox -->
+  <!-- SCRIPT COMPLETO DE REGRAS, AUTENTICAÇÃO, VALIDAÇÃO CPF E REDUNDÂNCIA CEP -->
   <script>
-    function openLightbox(src, caption) {
-      var modal = document.getElementById('lightbox-modal');
-      var img = document.getElementById('lightbox-img');
-      var cap = document.getElementById('lightbox-caption');
-      img.src = src;
-      cap.textContent = caption || '';
-      modal.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
+    // CONFIGURAÇÕES
+    const GOOGLE_CLIENT_ID = "778581688889-tbjjj3clvgu45bl6aqcgtbr2qcb15du6.apps.googleusercontent.com";
+    const API_ENDPOINT = "https://script.google.com/macros/s/AKfycbwbvSX5xQfUejr1_3jVgWQB3JkXdjZNKybarjktqQR2YGwuu7s8902bJamw649prQzm/exec";
+    const CHAVE_APLICACAO_STGP = "STGP_FCT_UNESP_SECURE_TOKEN_2026_9b8a7c";
 
-    function closeLightbox() {
-      var modal = document.getElementById('lightbox-modal');
-      modal.classList.remove('active');
-      document.body.style.overflow = '';
-    }
+    let usuarioAutenticado = null;
+    let listaDependentes = [];
+    let tipoTriagemSelecionada = null; // 'sim' ou 'nao'
 
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') {
-        closeLightbox();
+    document.addEventListener("DOMContentLoaded", function () {
+      verificarSessaoExistente();
+      inicializarGoogleSignIn();
+
+      // Máscaras e Validação de CPF do Servidor
+      const cpfServidor = document.getElementById("servidor-cpf");
+      cpfServidor.addEventListener("input", function (e) {
+        e.target.value = mascaraCPF(e.target.value);
+        validarCampoCPF(e.target, "erro-cpf-servidor");
+      });
+
+      // Máscara e Consulta de CEP com Redundância
+      const cepInput = document.getElementById("servidor-cep");
+      cepInput.addEventListener("input", function (e) {
+        e.target.value = mascaraCEP(e.target.value);
+        if (e.target.value.replace(/\D/g, "").length === 8) {
+          executarConsultaCEPRobusta(e.target.value);
+        }
+      });
+
+      // Máscara e Validação de CPF do Dependente
+      const cpfDep = document.getElementById("dep-cpf");
+      cpfDep.addEventListener("input", function (e) {
+        e.target.value = mascaraCPF(e.target.value);
+        validarCampoCPF(e.target, "erro-cpf-dep");
+      });
+
+      if (window.location.protocol === "file:") {
+        const warn = document.getElementById("file-protocol-warning");
+        if (warn) warn.style.display = "block";
       }
     });
+
+    // ============================================================
+    // 1. ALGORITMO OFICIAL DE VALIDAÇÃO DE CPF (RECEITA FEDERAL)
+    // ============================================================
+    function validarCPFReceitaFederal(cpf) {
+      if (!cpf) return false;
+      cpf = cpf.replace(/\D/g, "");
+      if (cpf.length !== 11) return false;
+
+      // Rejeita sequências repetidas (000.000.000-00, 111.111.111-11, etc.)
+      if (/^(\d)\1{10}$/.test(cpf)) return false;
+
+      // 1º Dígito Verificador
+      let soma = 0;
+      for (let i = 0; i < 9; i++) {
+        soma += parseInt(cpf.charAt(i), 10) * (10 - i);
+      }
+      let resto = (soma * 10) % 11;
+      if (resto === 10 || resto === 11) resto = 0;
+      if (resto !== parseInt(cpf.charAt(9), 10)) return false;
+
+      // 2º Dígito Verificador
+      soma = 0;
+      for (let i = 0; i < 10; i++) {
+        soma += parseInt(cpf.charAt(i), 10) * (11 - i);
+      }
+      resto = (soma * 10) % 11;
+      if (resto === 10 || resto === 11) resto = 0;
+      if (resto !== parseInt(cpf.charAt(10), 10)) return false;
+
+      return true;
+    }
+
+    function validarCampoCPF(inputElement, idMensagemErro) {
+      const valor = inputElement.value.replace(/\D/g, "");
+      const msgErro = document.getElementById(idMensagemErro);
+
+      if (valor.length === 11) {
+        const ehValido = validarCPFReceitaFederal(valor);
+        if (!ehValido) {
+          inputElement.classList.add("input-invalido");
+          inputElement.classList.remove("input-valido");
+          if (msgErro) msgErro.style.display = "block";
+          return false;
+        } else {
+          inputElement.classList.remove("input-invalido");
+          inputElement.classList.add("input-valido");
+          if (msgErro) msgErro.style.display = "none";
+          return true;
+        }
+      } else {
+        inputElement.classList.remove("input-invalido", "input-valido");
+        if (msgErro) msgErro.style.display = "none";
+        return false;
+      }
+    }
+
+    // ============================================================
+    // 2. BUSCA DE CEP COM REDUNDÂNCIAS (VIACEP + BRASILAPI + OPENCEP)
+    // ============================================================
+    async function executarConsultaCEPRobusta(cepOriginal) {
+      const cep = cepOriginal.replace(/\D/g, "");
+      if (cep.length !== 8) return;
+
+      const spinner = document.getElementById("cep-spinner");
+      if (spinner) spinner.style.display = "inline-block";
+
+      let resultado = null;
+
+      // 1. Tentativa Primária: ViaCEP
+      try {
+        const res = await fetch(`https://viacep.com.br/ws/${cep}/json/`, { signal: AbortSignal.timeout(3000) });
+        if (res.ok) {
+          const data = await res.json();
+          if (!data.erro && data.logradouro) {
+            resultado = {
+              logradouroCompleto: data.logradouro,
+              bairro: data.bairro || "",
+              cidade: data.localidade || "",
+              uf: data.uf || "SP"
+            };
+          }
+        }
+      } catch (err) {
+        console.warn("ViaCEP indisponível ou timeout, tentando BrasilAPI...");
+      }
+
+      // 2. Redundância 1: BrasilAPI
+      if (!resultado) {
+        try {
+          const res = await fetch(`https://brasilapi.com.br/api/cep/v1/${cep}`, { signal: AbortSignal.timeout(3000) });
+          if (res.ok) {
+            const data = await res.json();
+            if (data.street) {
+              resultado = {
+                logradouroCompleto: data.street,
+                bairro: data.neighborhood || "",
+                cidade: data.city || "",
+                uf: data.state || "SP"
+              };
+            }
+          }
+        } catch (err) {
+          console.warn("BrasilAPI indisponível, tentando OpenCEP...");
+        }
+      }
+
+      // 3. Redundância 2: OpenCEP
+      if (!resultado) {
+        try {
+          const res = await fetch(`https://opencep.com/v1/${cep}`, { signal: AbortSignal.timeout(3000) });
+          if (res.ok) {
+            const data = await res.json();
+            if (data.logradouro) {
+              resultado = {
+                logradouroCompleto: data.logradouro,
+                bairro: data.bairro || "",
+                cidade: data.localidade || "",
+                uf: data.uf || "SP"
+              };
+            }
+          }
+        } catch (err) {
+          console.warn("Todas as APIs de CEP falharam.");
+        }
+      }
+
+      if (spinner) spinner.style.display = "none";
+
+      if (resultado) {
+        aplicarDadosEndereco(resultado);
+      }
+    }
+
+    function aplicarDadosEndereco(dados) {
+      // Separa o tipo de logradouro se vier junto (ex: "Rua Roberto Simonsen" -> Tipo: "Rua", Logradouro: "Roberto Simonsen")
+      let tipoIdentificado = "Rua";
+      let logradouroLimpo = dados.logradouroCompleto;
+
+      const tiposConhecidos = [
+        "Estrada Municipal", "Estrada Vicinal", "Via de Acesso",
+        "Alameda", "Avenida", "Beco", "Buraco", "Chácara", "Condomínio",
+        "Estância", "Estrada", "Fazenda", "Granja", "Largo", "Lote",
+        "Passeio", "Praça", "Prolongamento", "Quadra", "Rodovia", "Rua",
+        "Sítio", "Travessa", "Via", "Viela"
+      ];
+      for (const t of tiposConhecidos) {
+        const regex = new RegExp(`^${t}\\s+`, "i");
+        if (regex.test(dados.logradouroCompleto)) {
+          tipoIdentificado = t;
+          logradouroLimpo = dados.logradouroCompleto.replace(regex, "");
+          break;
+        }
+      }
+
+      // Seleciona tipo logradouro
+      const selectTipo = document.getElementById("servidor-tipo-logradouro");
+      if (selectTipo) {
+        for (let i = 0; i < selectTipo.options.length; i++) {
+          if (selectTipo.options[i].value.toLowerCase() === tipoIdentificado.toLowerCase()) {
+            selectTipo.selectedIndex = i;
+            break;
+          }
+        }
+      }
+
+      document.getElementById("servidor-logradouro").value = logradouroLimpo;
+      if (dados.bairro) document.getElementById("servidor-bairro").value = dados.bairro;
+      if (dados.cidade) document.getElementById("servidor-cidade").value = dados.cidade;
+      if (dados.uf) document.getElementById("servidor-uf").value = dados.uf;
+
+      // Foca automaticamente no campo de número para o servidor preencher
+      const inputNum = document.getElementById("servidor-numero");
+      if (inputNum && !inputNum.value) {
+        inputNum.focus();
+      }
+    }
+
+    // ============================================================
+    // 3. GOOGLE IDENTITY SERVICES (GIS)
+    // ============================================================
+    function inicializarGoogleSignIn() {
+      if (typeof google === "undefined" || !google.accounts) {
+        setTimeout(inicializarGoogleSignIn, 200);
+        return;
+      }
+
+      google.accounts.id.initialize({
+        client_id: GOOGLE_CLIENT_ID,
+        callback: tratarRespostaGoogle,
+        auto_select: false,
+        cancel_on_tap_outside: true,
+      });
+
+      google.accounts.id.renderButton(
+        document.getElementById("google-signin-btn"),
+        {
+          theme: "filled_blue",
+          size: "large",
+          shape: "pill",
+          text: "signin_with",
+          locale: "pt-BR",
+          width: 320
+        }
+      );
+    }
+
+    function tratarRespostaGoogle(resposta) {
+      try {
+        const payload = parseJwt(resposta.credential);
+        const email = (payload.email || "").toLowerCase().trim();
+        const hd = (payload.hd || "").toLowerCase().trim();
+
+        if (!email.endsWith("@unesp.br") && hd !== "unesp.br") {
+          mostrarErroAuth(`Acesso negado: A conta "${email}" não pertence ao domínio @unesp.br da UNESP. Conecte-se com seu e-mail institucional.`);
+          return;
+        }
+
+        usuarioAutenticado = {
+          email: payload.email,
+          nome: payload.name || "",
+          foto: payload.picture || "",
+          token: resposta.credential
+        };
+
+        sessionStorage.setItem("stgp_usuario_unesp", JSON.stringify(usuarioAutenticado));
+        ativarSessaoUsuario(usuarioAutenticado);
+
+      } catch (err) {
+        console.error("Erro JWT:", err);
+        mostrarErroAuth("Erro ao autenticar com Google. Tente novamente.");
+      }
+    }
+
+    function ativarSessaoUsuario(user) {
+      document.getElementById("card-auth-google").style.display = "none";
+      document.getElementById("secao-formulario-completo").style.display = "block";
+
+      // 1. Barra de Sessão Superior com Foto e Dados Google
+      const sessionBar = document.getElementById("session-user-bar");
+      if (sessionBar) sessionBar.style.display = "flex";
+
+      const sessionPhoto = document.getElementById("session-user-photo");
+      if (sessionPhoto) {
+        if (user.foto) {
+          sessionPhoto.src = user.foto;
+          sessionPhoto.style.display = "block";
+          sessionPhoto.onerror = function () {
+            this.style.display = "none";
+          };
+        } else {
+          sessionPhoto.style.display = "none";
+        }
+      }
+      const sessionName = document.getElementById("session-user-name");
+      if (sessionName) sessionName.textContent = user.nome || "Servidor(a) UNESP";
+      const sessionEmail = document.getElementById("session-user-email");
+      if (sessionEmail) sessionEmail.textContent = user.email || "";
+
+      // 2. Cabeçalho do Card 0: Foto de Perfil Google em destaque
+      const cardFoto = document.getElementById("servidor-header-foto");
+      const cardSvg = document.getElementById("servidor-header-svg");
+      if (cardFoto && cardSvg) {
+        if (user.foto) {
+          cardFoto.src = user.foto;
+          cardFoto.style.display = "inline-block";
+          cardSvg.style.display = "none";
+          cardFoto.onerror = function () {
+            this.style.display = "none";
+            cardSvg.style.display = "inline-block";
+          };
+        } else {
+          cardFoto.style.display = "none";
+          cardSvg.style.display = "inline-block";
+        }
+      }
+
+      // Preenche os campos do servidor diretamente com a conta logada
+      document.getElementById("servidor-nome").value = user.nome || "";
+      document.getElementById("servidor-email").value = user.email || "";
+
+      // Atualiza também os campos no termo de declaração negativa
+      document.getElementById("negativa-nome-servidor").textContent = user.nome || "Servidor(a)";
+      document.getElementById("negativa-email-servidor").textContent = user.email || "";
+
+      document.getElementById("secao-formulario-completo").scrollIntoView({ behavior: "smooth" });
+    }
+
+    function fazerLogout() {
+      sessionStorage.removeItem("stgp_usuario_unesp");
+      usuarioAutenticado = null;
+      document.getElementById("secao-formulario-completo").style.display = "none";
+      document.getElementById("card-auth-google").style.display = "block";
+      document.getElementById("servidor-nome").value = "";
+      document.getElementById("servidor-email").value = "";
+      if (typeof google !== "undefined" && google.accounts && google.accounts.id) {
+        google.accounts.id.disableAutoSelect();
+      }
+      document.getElementById("card-auth-google").scrollIntoView({ behavior: "smooth" });
+    }
+
+    function verificarSessaoExistente() {
+      const sessaoSalva = sessionStorage.getItem("stgp_usuario_unesp");
+      if (sessaoSalva) {
+        try {
+          const user = JSON.parse(sessaoSalva);
+          if (user && user.email && user.email.endsWith("@unesp.br")) {
+            usuarioAutenticado = user;
+            ativarSessaoUsuario(user);
+          }
+        } catch (e) {
+          sessionStorage.removeItem("stgp_usuario_unesp");
+        }
+      }
+    }
+
+    function mostrarErroAuth(mensagem) {
+      const box = document.getElementById("auth-error-msg");
+      box.textContent = mensagem;
+      box.style.display = "block";
+    }
+
+    function parseJwt(token) {
+      const base64Url = token.split('.')[1];
+      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+      const jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+      }).join(''));
+      return JSON.parse(jsonPayload);
+    }
+
+    // ============================================================
+    // 4. CONTROLE DE TRIAGEM (SIM vs NÃO)
+    // ============================================================
+    function selecionarTriagem(opcao) {
+      tipoTriagemSelecionada = opcao;
+      const blocoSim = document.getElementById("bloco-com-dependentes");
+      const blocoNao = document.getElementById("bloco-declaracao-negativa");
+      const boxSim = document.getElementById("box-opcao-sim");
+      const boxNao = document.getElementById("box-opcao-nao");
+
+      if (opcao === "sim") {
+        boxSim.classList.add("active");
+        boxNao.classList.remove("active");
+        blocoSim.style.display = "block";
+        blocoNao.style.display = "none";
+        blocoSim.scrollIntoView({ behavior: "smooth", block: "start" });
+      } else {
+        boxNao.classList.add("active");
+        boxSim.classList.remove("active");
+        blocoNao.style.display = "block";
+        blocoSim.style.display = "none";
+        blocoNao.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+
+    // ============================================================
+    // 5. ALGORITMO INTELIGENTE DE ABREVIAÇÃO DE NOMES (MÁX 60 CARACTERES)
+    // Atende às restrições cadastrais de RH e do eSocial
+    // ============================================================
+    function gerarNomeAbreviado(nomeCompleto) {
+      if (!nomeCompleto || typeof nomeCompleto !== "string") return "";
+      const nomeLimpo = nomeCompleto.trim().toUpperCase().replace(/\s+/g, " ");
+      if (!nomeLimpo) return "";
+
+      // 1. Regra Básica de Disparo: Até 60 caracteres, mantém 100% completo
+      if (nomeLimpo.length <= 60) {
+        return nomeLimpo;
+      }
+
+      // 2. Preservação Obrigatória de Agnomes / Sufixos Familiares
+      const AGNOMES = new Set([
+        "FILHO", "FILHA", "JUNIOR", "JÚNIOR", "NETO", "NETA",
+        "SOBRINHO", "SOBRINHA", "SEGUNDO", "TERCEIRO"
+      ]);
+
+      // 3. Preposições e Conectivos
+      const PREPOSICOES = new Set(["DE", "DA", "DO", "DOS", "DAS", "E"]);
+
+      const tokens = nomeLimpo.split(" ").filter(Boolean);
+      if (tokens.length <= 2) {
+        return nomeLimpo.slice(0, 60);
+      }
+
+      const primeiroNome = tokens[0];
+      let indiceFimIntermediarios = tokens.length - 1;
+      let blocoFinal = "";
+
+      const ultimoToken = tokens[tokens.length - 1];
+      const ehAgnome = AGNOMES.has(ultimoToken);
+
+      if (ehAgnome && tokens.length >= 3) {
+        const indiceSobrenomeAgnome = tokens.length - 2;
+        // Preserva preposição antes do penúltimo sobrenome se existir (ex: "DE MENDONÇA FILHO")
+        if (indiceSobrenomeAgnome - 1 >= 1 && PREPOSICOES.has(tokens[indiceSobrenomeAgnome - 1])) {
+          indiceFimIntermediarios = indiceSobrenomeAgnome - 1;
+        } else {
+          indiceFimIntermediarios = indiceSobrenomeAgnome;
+        }
+        blocoFinal = tokens.slice(indiceFimIntermediarios).join(" ");
+      } else {
+        // Último sobrenome sem agnome
+        const indiceUltimo = tokens.length - 1;
+        // Preserva preposição antes do último sobrenome se existir (ex: "DA SILVA")
+        if (indiceUltimo - 1 >= 1 && PREPOSICOES.has(tokens[indiceUltimo - 1])) {
+          indiceFimIntermediarios = indiceUltimo - 1;
+        } else {
+          indiceFimIntermediarios = indiceUltimo;
+        }
+        blocoFinal = tokens.slice(indiceFimIntermediarios).join(" ");
+      }
+
+      // Agrupa os intermediários com suas respectivas preposições associadas
+      const tokensIntermediarios = tokens.slice(1, indiceFimIntermediarios);
+      const intermediarios = [];
+
+      for (let i = 0; i < tokensIntermediarios.length; i++) {
+        const tokenAtual = tokensIntermediarios[i];
+        if (PREPOSICOES.has(tokenAtual)) {
+          if (i + 1 < tokensIntermediarios.length) {
+            const sobrenomeAssociado = tokensIntermediarios[i + 1];
+            intermediarios.push({
+              preposicao: tokenAtual,
+              sobrenome: sobrenomeAssociado,
+              tamanhoSobrenome: sobrenomeAssociado.length,
+              posicaoOriginal: intermediarios.length,
+              abreviado: false
+            });
+            i++; // consome o sobrenome associado
+          } else {
+            intermediarios.push({
+              preposicao: "",
+              sobrenome: tokenAtual,
+              tamanhoSobrenome: tokenAtual.length,
+              posicaoOriginal: intermediarios.length,
+              abreviado: false
+            });
+          }
+        } else {
+          intermediarios.push({
+            preposicao: "",
+            sobrenome: tokenAtual,
+            tamanhoSobrenome: tokenAtual.length,
+            posicaoOriginal: intermediarios.length,
+            abreviado: false
+          });
+        }
+      }
+
+      function montar(pNome, interList, bFinal) {
+        const partes = [pNome];
+        for (const item of interList) {
+          if (item.abreviado) {
+            // Inicial em maiúscula, sem ponto final, e preposição descartada
+            partes.push(item.sobrenome.charAt(0).toUpperCase());
+          } else {
+            if (item.preposicao) {
+              partes.push(item.preposicao + " " + item.sobrenome);
+            } else {
+              partes.push(item.sobrenome);
+            }
+          }
+        }
+        partes.push(bFinal);
+        return partes.join(" ");
+      }
+
+      // 4. Ordena por tamanho do sobrenome decrescente (prioriza abreviar primeiro os mais longos)
+      const ordenadosPorTamanho = [...intermediarios].sort((a, b) => {
+        if (b.tamanhoSobrenome !== a.tamanhoSobrenome) {
+          return b.tamanhoSobrenome - a.tamanhoSobrenome;
+        }
+        return a.posicaoOriginal - b.posicaoOriginal;
+      });
+
+      let nomeAtual = montar(primeiroNome, intermediarios, blocoFinal);
+
+      // Abreviação gradual e sob demanda: para assim que atingir <= 60 caracteres
+      for (const item of ordenadosPorTamanho) {
+        if (nomeAtual.length <= 60) {
+          break;
+        }
+        item.abreviado = true;
+        nomeAtual = montar(primeiroNome, intermediarios, blocoFinal);
+      }
+
+      // 5. Garantia estrita de limite de 60 caracteres
+      if (nomeAtual.length > 60) {
+        nomeAtual = nomeAtual.slice(0, 60).trim();
+      }
+
+      return nomeAtual;
+    }
+
+    function atualizarNomeAbreviado(nomeCompleto) {
+      const inputNome = nomeCompleto || "";
+      document.getElementById("counter-dep-nome").textContent = `${inputNome.length}/100`;
+
+      if (!inputNome.trim()) {
+        document.getElementById("dep-nome-abreviado").value = "";
+        document.getElementById("counter-dep-abreviado").textContent = "0/60";
+        return;
+      }
+
+      const nomeAbrev = gerarNomeAbreviado(inputNome);
+      document.getElementById("dep-nome-abreviado").value = nomeAbrev;
+      document.getElementById("counter-dep-abreviado").textContent = `${nomeAbrev.length}/60`;
+    }
+
+    // Regra de Correlação: Grau de Parentesco vs Responsabilidade
+    const PARENTESCOS_ISENTOS_RESPONSABILIDADE = new Set([
+      "Cônjuge",
+      "Curatelado(a)",
+      "Enteado(a)",
+      "Guarda Judicial",
+      "Tutelado(a)",
+      "União Estável"
+    ]);
+
+    function verificarGrauParentescoResponsabilidade() {
+      const selectParentesco = document.getElementById("dep-parentesco");
+      const parentesco = selectParentesco ? selectParentesco.value : "";
+      const selectResp = document.getElementById("dep-responsabilidade");
+      const reqMark = document.getElementById("req-mark-responsabilidade");
+      const hintNaoAplicavel = document.getElementById("hint-responsabilidade-nao-aplicavel");
+
+      if (PARENTESCOS_ISENTOS_RESPONSABILIDADE.has(parentesco)) {
+        // Campo DESABILITADO (não aplicável / não obrigatório)
+        if (selectResp) {
+          selectResp.value = "";
+          selectResp.disabled = true;
+        }
+        if (reqMark) reqMark.style.display = "none";
+        if (hintNaoAplicavel) hintNaoAplicavel.style.display = "block";
+      } else {
+        // Campo OBRIGATÓRIO (para os 10 demais graus de parentesco)
+        if (selectResp) {
+          selectResp.disabled = false;
+        }
+        if (reqMark) reqMark.style.display = "inline";
+        if (hintNaoAplicavel) hintNaoAplicavel.style.display = "none";
+      }
+    }
+
+    function salvarDependente() {
+      const nome = document.getElementById("dep-nome").value.trim();
+      const nomeAbrev = document.getElementById("dep-nome-abreviado").value.trim() || gerarNomeAbreviado(nome);
+      const nascimento = document.getElementById("dep-nascimento").value;
+      const sexo = document.getElementById("dep-sexo").value;
+      const cpf = document.getElementById("dep-cpf").value.trim();
+      const parentesco = document.getElementById("dep-parentesco").value;
+      const responsabilidade = document.getElementById("dep-responsabilidade").value;
+
+      const finIRRF = document.getElementById("dep-fin-irrf").checked;
+      const finSalario = document.getElementById("dep-fin-salario").checked;
+      const finSaude = document.getElementById("dep-fin-saude").checked;
+      const finIncapacitado = document.getElementById("dep-fin-incapacitado").checked;
+
+      // Validações
+      if (!nome) { alert("Informe o Nome Completo do dependente."); document.getElementById("dep-nome").focus(); return; }
+      if (!nascimento) { alert("Informe a Data de Nascimento do dependente."); document.getElementById("dep-nascimento").focus(); return; }
+      if (!sexo) { alert("Selecione o Sexo do dependente."); document.getElementById("dep-sexo").focus(); return; }
+
+      if (!cpf || !validarCPFReceitaFederal(cpf)) {
+        alert("O CPF do dependente é obrigatório e deve ser válido perante a Receita Federal.");
+        document.getElementById("dep-cpf").focus();
+        return;
+      }
+
+      if (!parentesco) { alert("Selecione o Grau de Parentesco."); document.getElementById("dep-parentesco").focus(); return; }
+
+      // Validação Condicional da Responsabilidade
+      let valorResponsabilidade = responsabilidade;
+      if (PARENTESCOS_ISENTOS_RESPONSABILIDADE.has(parentesco)) {
+        valorResponsabilidade = "-";
+      } else {
+        if (!responsabilidade) {
+          alert("Selecione o tipo de responsabilidade.");
+          document.getElementById("dep-responsabilidade").focus();
+          return;
+        }
+      }
+
+      const finalidades = [];
+      if (finIRRF) finalidades.push("Imposto de Renda (IRRF)");
+      if (finSalario) finalidades.push("Salário-Família");
+      if (finSaude) finalidades.push("Plano de Saúde Conveniado");
+      if (finIncapacitado) finalidades.push("Incapacitado p/ Trabalho");
+
+      if (finalidades.length === 0) {
+        alert("Selecione pelo menos um benefício/finalidade para este dependente nos toggles.");
+        return;
+      }
+
+      // Adiciona na lista
+      const novoDependente = {
+        id: Date.now(),
+        nome,
+        nomeAbreviado: nomeAbrev,
+        nascimento: formatarDataBR(nascimento),
+        idade: calcularIdade(nascimento),
+        sexo,
+        cpf,
+        parentesco,
+        responsabilidade: valorResponsabilidade,
+        finalidades
+      };
+
+      listaDependentes.push(novoDependente);
+      renderizarTabelaDependentes();
+      limparCamposDependente();
+
+      // Rola suavemente até a tabela de cadastrados
+      document.getElementById("bloco-com-dependentes").scrollIntoView({ behavior: "smooth", block: "end" });
+    }
+
+    function calcularIdade(dataIso) {
+      if (!dataIso) return "";
+      const hoje = new Date();
+      const nasc = new Date(dataIso);
+      let idade = hoje.getFullYear() - nasc.getFullYear();
+      const m = hoje.getMonth() - nasc.getMonth();
+      if (m < 0 || (m === 0 && hoje.getDate() < nasc.getDate())) {
+        idade--;
+      }
+      return `${idade} anos`;
+    }
+
+    function renderizarTabelaDependentes() {
+      const tbody = document.getElementById("tabela-dependentes-corpo");
+      const contador = document.getElementById("dep-contador-total");
+      contador.textContent = listaDependentes.length;
+
+      if (listaDependentes.length === 0) {
+        tbody.innerHTML = `
+          <tr id="linha-tabela-vazia">
+            <td colspan="7" class="tabela-vazia-cell">
+              <div class="empty-state-box">
+                <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="#64748b" stroke-width="1.8">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                </svg>
+                <strong>Nenhum dependente incluído</strong>
+                <p>Preencha os campos do formulário acima e clique em "Salvar Dependente".</p>
+              </div>
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      tbody.innerHTML = listaDependentes.map((dep, index) => `
+        <tr>
+          <td><strong>${index + 1}</strong></td>
+          <td>
+            <strong>${dep.nome}</strong>
+            ${dep.nome !== dep.nomeAbreviado ? `<br><small style="color:#64748b;">(${dep.nomeAbreviado})</small>` : ""}
+          </td>
+          <td><code>${dep.cpf}</code></td>
+          <td>${dep.parentesco} <br><small style="color:#64748b;">${dep.responsabilidade && dep.responsabilidade !== '-' ? dep.responsabilidade : '-'}</small></td>
+          <td>${dep.nascimento} <br><small style="color:#64748b;">${dep.idade}</small></td>
+          <td>
+            <div class="table-chips-group">
+              ${dep.finalidades.map(f => `<span class="table-chip">${f}</span>`).join(" ")}
+            </div>
+          </td>
+          <td style="text-align: center;">
+            <button type="button" class="btn-table-remover" onclick="excluirDependente(${dep.id})" title="Remover dependente">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+            </button>
+          </td>
+        </tr>
+      `).join("");
+    }
+
+    function excluirDependente(id) {
+      if (confirm("Deseja realmente remover este dependente da lista?")) {
+        listaDependentes = listaDependentes.filter(d => d.id !== id);
+        renderizarTabelaDependentes();
+      }
+    }
+
+    function limparCamposDependente() {
+      document.getElementById("dep-nome").value = "";
+      document.getElementById("dep-nome-abreviado").value = "";
+      document.getElementById("counter-dep-nome").textContent = "0/100";
+      document.getElementById("counter-dep-abreviado").textContent = "0/60";
+      document.getElementById("dep-nascimento").value = "";
+      document.getElementById("dep-sexo").selectedIndex = 0;
+      document.getElementById("dep-cpf").value = "";
+      document.getElementById("dep-parentesco").selectedIndex = 0;
+      verificarGrauParentescoResponsabilidade();
+      document.getElementById("dep-fin-irrf").checked = false;
+      document.getElementById("dep-fin-salario").checked = false;
+      document.getElementById("dep-fin-saude").checked = false;
+      document.getElementById("dep-fin-incapacitado").checked = false;
+      validarCampoCPF(document.getElementById("dep-cpf"), "erro-cpf-dep");
+    }
+
+    function focarCadastroDependente() {
+      document.getElementById("form-dependente-individual").scrollIntoView({ behavior: "smooth", block: "center" });
+      document.getElementById("dep-nome").focus();
+    }
+
+
+
+    // ============================================================
+    // 6. SUBMISSÃO DE DECLARAÇÃO
+    // ============================================================
+    function validarDadosServidor() {
+      const cpf = document.getElementById("servidor-cpf").value.trim();
+      const estadoCivil = document.getElementById("servidor-estado-civil").value;
+      const cep = document.getElementById("servidor-cep").value.trim();
+      const tipoLogradouro = document.getElementById("servidor-tipo-logradouro").value;
+      const logradouro = document.getElementById("servidor-logradouro").value.trim();
+      const numero = document.getElementById("servidor-numero").value.trim();
+      const bairro = document.getElementById("servidor-bairro").value.trim();
+      const cidade = document.getElementById("servidor-cidade").value.trim();
+      const uf = document.getElementById("servidor-uf").value;
+
+      if (!cpf || !validarCPFReceitaFederal(cpf)) {
+        alert("O CPF do(a) servidor(a) é obrigatório e deve ser válido perante a Receita Federal.");
+        document.getElementById("servidor-cpf").focus();
+        return null;
+      }
+      if (!estadoCivil) { alert("Selecione o Estado Civil."); document.getElementById("servidor-estado-civil").focus(); return null; }
+      if (!cep) { alert("Informe o CEP residencial."); document.getElementById("servidor-cep").focus(); return null; }
+      if (!logradouro) { alert("Informe o Logradouro."); document.getElementById("servidor-logradouro").focus(); return null; }
+      if (!numero) { alert("Informe o Número residencial."); document.getElementById("servidor-numero").focus(); return null; }
+      if (!bairro) { alert("Informe o Bairro residencial."); document.getElementById("servidor-bairro").focus(); return null; }
+      if (!cidade) { alert("Informe a Cidade residencial."); document.getElementById("servidor-cidade").focus(); return null; }
+      if (!uf) { alert("Selecione a UF."); return null; }
+
+      const complemento = document.getElementById("servidor-complemento").value.trim();
+      const enderecoCompleto = `${tipoLogradouro} ${logradouro}, ${numero}${complemento ? ', ' + complemento : ''} - ${bairro}, ${cidade}/${uf} (CEP: ${cep})`;
+
+      return {
+        cpf,
+        estadoCivil,
+        enderecoCompleto
+      };
+    }
+
+    // Envio: Declaração Negativa
+    async function submeterDeclaracaoNegativa() {
+      const dadosServidor = validarDadosServidor();
+      if (!dadosServidor) return;
+
+      const checkAceite = document.getElementById("check-aceite-negativa");
+      if (!checkAceite.checked) {
+        alert("Você deve assinalar o termo de confirmação da Declaração Negativa de Dependentes.");
+        checkAceite.focus();
+        return;
+      }
+
+      const payload = {
+        tokenGoogle: usuarioAutenticado ? (usuarioAutenticado.token || "") : "",
+        chaveSeguranca: CHAVE_APLICACAO_STGP,
+        email: usuarioAutenticado.email,
+        nome: usuarioAutenticado.nome,
+        cpf: dadosServidor.cpf,
+        estadoCivil: dadosServidor.estadoCivil,
+        enderecoCompleto: dadosServidor.enderecoCompleto,
+        possuiDependentes: false,
+        dependentes: []
+      };
+
+      await enviarAoServidor(payload);
+    }
+
+    // Envio: Com Dependentes
+    async function submeterDeclaracaoComDependentes() {
+      const dadosServidor = validarDadosServidor();
+      if (!dadosServidor) return;
+
+      if (listaDependentes.length === 0) {
+        alert("Nenhum dependente foi adicionado na tabela. Cadastre ao menos um dependente antes de finalizar.");
+        focarCadastroDependente();
+        return;
+      }
+
+      const payload = {
+        tokenGoogle: usuarioAutenticado ? (usuarioAutenticado.token || "") : "",
+        chaveSeguranca: CHAVE_APLICACAO_STGP,
+        email: usuarioAutenticado.email,
+        nome: usuarioAutenticado.nome,
+        cpf: dadosServidor.cpf,
+        estadoCivil: dadosServidor.estadoCivil,
+        enderecoCompleto: dadosServidor.enderecoCompleto,
+        possuiDependentes: true,
+        dependentes: listaDependentes
+      };
+
+      await enviarAoServidor(payload);
+    }
+
+    async function enviarAoServidor(payload) {
+      const btnEmissao = payload.possuiDependentes
+        ? document.getElementById("btn-finalizar-emissao")
+        : document.getElementById("btn-emitir-negativa");
+
+      if (btnEmissao) {
+        btnEmissao.disabled = true;
+        btnEmissao.textContent = "Transmitindo declaração à STGP...";
+      }
+
+      try {
+        const resposta = await fetch(API_ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify(payload)
+        });
+
+        const resultado = await resposta.json();
+
+        if (resultado.sucesso) {
+          document.getElementById("secao-formulario-completo").style.display = "none";
+          document.getElementById("resumo-protocolo").textContent = resultado.protocolo;
+          document.getElementById("resumo-datahora").textContent = resultado.dataHora;
+          document.getElementById("resumo-nome").textContent = payload.nome;
+          document.getElementById("resumo-cpf").textContent = payload.cpf;
+          document.getElementById("resumo-email").textContent = payload.email;
+          document.getElementById("resumo-tipo").textContent = payload.possuiDependentes ? `Com Dependentes (${payload.dependentes.length})` : "Declaração Negativa de Dependentes";
+          document.getElementById("resumo-hash").textContent = resultado.hash || "Autenticado Digitalmente";
+
+          const cardSucesso = document.getElementById("card-comprovante-sucesso");
+          cardSucesso.style.display = "block";
+          cardSucesso.scrollIntoView({ behavior: "smooth" });
+        } else {
+          alert("Erro no envio: " + (resultado.erro || "Ocorreu um erro ao processar sua declaração."));
+        }
+      } catch (err) {
+        console.error(err);
+        alert("Falha de conexão com o servidor da UNESP. Tente novamente em instantes.");
+      } finally {
+        if (btnEmissao) {
+          btnEmissao.disabled = false;
+          btnEmissao.textContent = payload.possuiDependentes
+            ? "Emitir Declaração Positiva com Assinatura Eletrônica"
+            : "Emitir Declaração Negativa com Assinatura Eletrônica";
+        }
+      }
+    }
+
+    // Máscaras de entrada
+    function mascaraCPF(valor) {
+      valor = valor.replace(/\D/g, "");
+      if (valor.length > 11) valor = valor.slice(0, 11);
+      return valor
+        .replace(/(\d{3})(\d)/, "$1.$2")
+        .replace(/(\d{3})(\d)/, "$1.$2")
+        .replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+    }
+
+    function mascaraCEP(valor) {
+      valor = valor.replace(/\D/g, "");
+      if (valor.length > 8) valor = valor.slice(0, 8);
+      return valor.replace(/(\d{5})(\d)/, "$1-$2");
+    }
+
+    function formatarDataBR(dataIso) {
+      if (!dataIso) return "";
+      const partes = dataIso.split("-");
+      if (partes.length === 3) return `${partes[2]}/${partes[1]}/${partes[0]}`;
+      return dataIso;
+    }
+
+    function reiniciarFormulario() {
+      listaDependentes = [];
+      renderizarTabelaDependentes();
+      document.getElementById("secao-formulario-completo").style.display = "block";
+      document.getElementById("card-comprovante-sucesso").style.display = "none";
+      selecionarTriagem('sim');
+      document.getElementById("secao-formulario-completo").scrollIntoView({ behavior: "smooth" });
+    }
   </script>
 </body>
 </html>

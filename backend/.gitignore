@@ -1,0 +1,18 @@
+# Dependências
+node_modules/
+
+# Variáveis de ambiente sensíveis
+.env
+.env.local
+
+# Chaves e credenciais privadas Google
+credentials/*.json
+!credentials/README.md
+
+# Logs
+*.log
+npm-debug.log*
+
+# Sistema Operacional
+.DS_Store
+Thumbs.db
